@@ -22,6 +22,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
+import { BottomNav } from '@/components/materials/BottomNav';
+
 export default async function LangLayout({
   children,
   params,
@@ -33,11 +35,14 @@ export default async function LangLayout({
 
   return (
     <DictionaryProvider dictionary={dictionary} lang={params.lang}>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 pb-[calc(4rem+env(safe-area-inset-bottom))]"> {/* Added padding for global bottom nav */}
         <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>
+        <div className="md:hidden">
+          <BottomNav />
+        </div>
       </div>
     </DictionaryProvider>
   );

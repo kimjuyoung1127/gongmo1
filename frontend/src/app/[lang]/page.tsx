@@ -2,7 +2,6 @@
 
 import { MainHeader } from '@/components/mainpage/MainHeader';
 import { FeatureCard } from '@/components/mainpage/FeatureCard';
-import { MainBottomNav } from '@/components/mainpage/MainBottomNav';
 import { FloatingActionButton } from '@/components/mainpage/FloatingActionButton';
 import { useDictionary, useLang } from '@/contexts/DictionaryContext';
 import { useRouter } from 'next/navigation';
@@ -56,11 +55,6 @@ export default function MainPage() {
 
       {/* Floating Action Button (Mobile Only) */}
       <FloatingActionButton onClick={() => console.log('FAB Clicked')} />
-
-      {/* Bottom Navigation (Mobile Only) */}
-      <div className="md:hidden">
-        <MainBottomNav />
-      </div>
     </div>
   );
 }
