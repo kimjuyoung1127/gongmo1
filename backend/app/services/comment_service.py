@@ -35,6 +35,7 @@ class CommentService:
             post_id=post_id,
             user_id=user_id,
             content=comment_data.content,
+            is_anonymous=comment_data.is_anonymous,
         )
 
         return await self.comment_repo.create(new_comment)

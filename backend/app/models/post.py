@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.core.database import Base
@@ -13,6 +13,7 @@ class Post(Base):
     title = Column(String(200), nullable=False)
     content = Column(Text, nullable=False)
     image_url = Column(String(500), nullable=True)
+    is_anonymous = Column(Boolean, nullable=False, default=False, server_default="false")
     view_count = Column(Integer, nullable=False, default=0, server_default="0")
     like_count = Column(Integer, nullable=False, default=0, server_default="0")
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)

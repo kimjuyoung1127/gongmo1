@@ -19,6 +19,7 @@ class PostService:
             title=post_data.title,
             content=post_data.content,
             image_url=post_data.image_url,
+            is_anonymous=post_data.is_anonymous,
         )
 
         return await self.post_repo.create(new_post)
