@@ -17,6 +17,22 @@ export type Dictionary = {
     ocrScanDesc: string;
     startScanning: string;
   };
+  ocr: {
+    scanResult: string;
+    extractedTitle: string;
+    save: string;
+    share: string;
+    edit: string;
+  };
+  community: {
+    wage: string;
+    housing: string;
+    workplace: string;
+    visa: string;
+    free: string;
+    write: string;
+    anonymous: string;
+  };
   nav: {
     home: string;
     newPost: string;

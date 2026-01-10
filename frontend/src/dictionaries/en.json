@@ -15,6 +15,22 @@
     "ocrScanDesc": "Translate work documents",
     "startScanning": "Start Scanning"
   },
+  "ocr": {
+    "scanResult": "Scan Result",
+    "extractedTitle": "Extracted & Translated Text",
+    "save": "Save to My Documents",
+    "share": "Share",
+    "edit": "Edit Text"
+  },
+  "community": {
+    "wage": "Wage/Salary",
+    "housing": "Housing",
+    "workplace": "Workplace Issue",
+    "visa": "Visa/Contract",
+    "free": "Free Talk",
+    "write": "Write Post",
+    "anonymous": "Anonymous"
+  },
   "nav": {
     "home": "Home",
     "newPost": "New Post",

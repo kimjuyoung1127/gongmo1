@@ -1,6 +1,5 @@
 import { getDictionary } from '@/dictionaries';
 import { DictionaryProvider } from '@/contexts/DictionaryContext';
-import { Header } from '@/components/organisms';
 import { Locale } from '@/types/common';
 
 export async function generateStaticParams() {
@@ -36,7 +35,6 @@ export default async function LangLayout({
   return (
     <DictionaryProvider dictionary={dictionary} lang={params.lang}>
       <div className="min-h-screen bg-gray-50 pb-[calc(4rem+env(safe-area-inset-bottom))]"> {/* Added padding for global bottom nav */}
-        <Header />
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {children}
         </main>

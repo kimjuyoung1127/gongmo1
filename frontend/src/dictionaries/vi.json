@@ -15,6 +15,22 @@
     "ocrScanDesc": "Dịch nhanh tài liệu công việc",
     "startScanning": "Bắt đầu quét"
   },
+  "ocr": {
+    "scanResult": "Kết quả quét",
+    "extractedTitle": "Văn bản đã trích xuất & dịch",
+    "save": "Lưu vào tài liệu của tôi",
+    "share": "Chia sẻ",
+    "edit": "Chỉnh sửa văn bản"
+  },
+  "community": {
+    "wage": "Lương/Thưởng",
+    "housing": "Nhà ở",
+    "workplace": "Vấn đề nơi làm việc",
+    "visa": "Visa/Hợp đồng",
+    "free": "Tự do",
+    "write": "Viết bài",
+    "anonymous": "Ẩn danh"
+  },
   "nav": {
     "home": "Trang chủ",
     "newPost": "Viết bài",

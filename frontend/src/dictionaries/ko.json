@@ -15,6 +15,22 @@
     "ocrScanDesc": "업무 문서를 빠르게 번역하세요",
     "startScanning": "스캔 시작하기"
   },
+  "ocr": {
+    "scanResult": "스캔 결과",
+    "extractedTitle": "추출 및 번역된 텍스트",
+    "save": "내 문서에 저장",
+    "share": "공유하기",
+    "edit": "텍스트 편집"
+  },
+  "community": {
+    "wage": "임금/급여",
+    "housing": "이주/숙소",
+    "workplace": "사업장 문제",
+    "visa": "계약/비자",
+    "free": "자유 이야기",
+    "write": "글쓰기",
+    "anonymous": "익명"
+  },
   "nav": {
     "home": "홈",
     "newPost": "글쓰기",
