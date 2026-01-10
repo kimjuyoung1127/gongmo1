@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { authService } from '@/services/authService';
-import { User, AnonymousLoginRequest } from '@/types';
+import { User, RegisterRequest, LoginRequest, AnonymousLoginRequest, UserUpdateRequest } from '@/types';
 import { setSessionToken, getSessionToken, removeSessionToken } from '@/utils/storage';
 
 export function useAuth() {
@@ -32,17 +32,56 @@ export function useAuth() {
     checkAuth();
   }, []);
 
-  const login = async (data: AnonymousLoginRequest): Promise<boolean> => {
+  const register = async (data: RegisterRequest): Promise<{ success: boolean; error?: string }> => {
+    try {
+      setError(null);
+      setLoading(true);
+      await authService.register(data);
+      return { success: true };
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.detail || 'Registration failed';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const login = async (data: LoginRequest): Promise<{ success: boolean; error?: string; user?: User }> => {
+    try {
+      setError(null);
+      setLoading(true);
+      const response = await authService.login(data);
+      if (response.session_token) {
+        setSessionToken(response.session_token);
+        setUser(response);
+        return { success: true, user: response };
+      }
+      return { success: false, error: 'No session token received' };
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.detail || 'Login failed';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginAnonymous = async (data: AnonymousLoginRequest): Promise<{ success: boolean; error?: string }> => {
     try {
       setError(null);
       setLoading(true);
       const response = await authService.createAnonymousUser(data);
-      setSessionToken(response.session_token);
-      setUser(response);
-      return true;
-    } catch (err) {
-      setError('Login failed');
-      return false;
+      if (response.session_token) {
+        setSessionToken(response.session_token);
+        setUser(response);
+        return { success: true };
+      }
+      return { success: false, error: 'No session token received' };
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.detail || 'Anonymous login failed';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
     } finally {
       setLoading(false);
     }
@@ -54,12 +93,28 @@ export function useAuth() {
     setUser(null);
   };
 
+  const updateProfile = async (data: UserUpdateRequest): Promise<{ success: boolean; error?: string }> => {
+    try {
+      setError(null);
+      const updatedUser = await authService.updateProfile(data);
+      setUser(updatedUser);
+      return { success: true };
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.detail || 'Profile update failed';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    }
+  };
+
   return {
     user,
     loading,
     error,
+    register,
     login,
+    loginAnonymous,
     logout,
+    updateProfile,
     isAuthenticated: !!user,
   };
 }

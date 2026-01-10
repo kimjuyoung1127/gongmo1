@@ -6,7 +6,7 @@ from app.core.dependencies import get_current_user
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
 from app.services.auth_service import AuthService
-from app.schemas.user_schema import UserRegister, UserLogin, AnonymousUserCreate, UserResponse
+from app.schemas.user_schema import UserRegister, UserLogin, AnonymousUserCreate, UserUpdate, UserResponse
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -78,3 +78,26 @@ async def get_current_user_info(
     - 헤더: X-Session-Token 필요
     """
     return current_user
+
+
+@router.patch("/me", response_model=UserResponse)
+async def update_current_user(
+    update_data: UserUpdate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    """
+    현재 로그인한 사용자 정보 업데이트
+    - 헤더: X-Session-Token 필요
+    - 닉네임 및 선호 언어 변경 가능
+    """
+    user_repo = UserRepository(db)
+    auth_service = AuthService(user_repo)
+
+    try:
+        updated_user = await auth_service.update_user(current_user.id, update_data)
+        if not updated_user:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+        return updated_user
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

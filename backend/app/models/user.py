@@ -11,6 +11,7 @@ class User(Base):
     nickname = Column(String(50), unique=True, nullable=False, index=True)
     password_hash = Column(String(255), nullable=False)
     session_token = Column(String(255), unique=True, nullable=True, index=True)
+    preferred_language = Column(String(5), nullable=False, server_default="ko")
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
 

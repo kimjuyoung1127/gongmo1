@@ -4,7 +4,7 @@ from typing import Optional
 
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
-from app.schemas.user_schema import UserRegister, UserLogin, AnonymousUserCreate
+from app.schemas.user_schema import UserRegister, UserLogin, AnonymousUserCreate, UserUpdate
 from app.core.config import settings
 from app.utils.password import hash_password, verify_password
 
@@ -85,11 +85,21 @@ class AuthService:
 
         return user
 
-    async def update_user_nickname(self, user_id: int, nickname: str) -> Optional[User]:
-        """사용자 닉네임 업데이트"""
+    async def update_user(self, user_id: int, update_data: UserUpdate) -> Optional[User]:
+        """사용자 정보 업데이트"""
         user = await self.user_repo.get_by_id(user_id)
         if not user:
             return None
 
-        user.nickname = nickname
+        # 닉네임 변경 시 중복 체크
+        if update_data.nickname and update_data.nickname != user.nickname:
+            existing_user = await self.user_repo.get_by_nickname(update_data.nickname)
+            if existing_user:
+                raise ValueError("이미 사용 중인 닉네임입니다")
+            user.nickname = update_data.nickname
+
+        # 선호 언어 업데이트
+        if update_data.preferred_language:
+            user.preferred_language = update_data.preferred_language
+
         return await self.user_repo.update(user)

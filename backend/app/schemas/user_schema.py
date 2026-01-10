@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Literal
 
 
 class UserRegister(BaseModel):
@@ -22,12 +22,14 @@ class AnonymousUserCreate(BaseModel):
 
 class UserUpdate(BaseModel):
     nickname: Optional[str] = Field(None, min_length=2, max_length=50, description="사용자 닉네임")
+    preferred_language: Optional[Literal["ko", "en", "vi", "ne"]] = Field(None, description="선호 언어")
 
 
 class UserResponse(BaseModel):
     id: int
     nickname: str
     session_token: Optional[str]
+    preferred_language: str
     created_at: datetime
     updated_at: datetime
 
