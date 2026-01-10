@@ -1,0 +1,34 @@
+import { memo } from 'react';
+
+interface InputProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  type?: 'text' | 'email' | 'password';
+  disabled?: boolean;
+  className?: string;
+}
+
+export const Input = memo<InputProps>(({
+  value,
+  onChange,
+  placeholder = '',
+  type = 'text',
+  disabled = false,
+  className = '',
+}) => {
+  return (
+    <input
+      type={type}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      disabled={disabled}
+      className={`w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 ${className}`}
+    />
+  );
+});
+
+Input.displayName = 'Input';
+
+export default Input;

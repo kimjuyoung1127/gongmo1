@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "title": "WeWorkHere - Foreign Workers Community",
+    "description": "Anonymous community for foreign workers. Share jobs, life, and visa information."
+  },
+  "nav": {
+    "home": "Home",
+    "newPost": "New Post",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "categories": {
+    "all": "All",
+    "general": "General",
+    "work": "Work",
+    "life": "Life",
+    "visa": "Visa",
+    "housing": "Housing",
+    "health": "Health"
+  },
+  "post": {
+    "createPost": "Create New Post",
+    "editPost": "Edit Post",
+    "title": "Title",
+    "content": "Content",
+    "category": "Category",
+    "selectCategory": "Select Category",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "like": "Like",
+    "views": "Views",
+    "comments": "Comments",
+    "noTitle": "Please enter a title",
+    "noContent": "Please enter content",
+    "createSuccess": "Post created successfully",
+    "deleteSuccess": "Post deleted successfully",
+    "createError": "Failed to create post",
+    "deleteError": "Failed to delete post"
+  },
+  "comment": {
+    "addComment": "Add Comment",
+    "writeComment": "Write a comment",
+    "submit": "Submit",
+    "delete": "Delete",
+    "noComments": "No comments yet",
+    "createSuccess": "Comment added successfully",
+    "deleteSuccess": "Comment deleted successfully",
+    "createError": "Failed to add comment",
+    "deleteError": "Failed to delete comment"
+  },
+  "login": {
+    "title": "WeWorkHere Login",
+    "subtitle": "Start with an anonymous nickname",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "Enter your nickname",
+    "loginButton": "Get Started",
+    "nicknameRequired": "Please enter a nickname",
+    "nicknameLength": "Nickname must be between 2-50 characters",
+    "loginError": "Login failed"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "back": "Back"
+  }
+}
