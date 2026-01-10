@@ -3,6 +3,18 @@
     "title": "WeWorkHere - Cộng đồng Lao động Nước ngoài",
     "description": "Cộng đồng ẩn danh cho lao động nước ngoài. Chia sẻ công việc, cuộc sống và thông tin visa."
   },
+  "dashboard": {
+    "greeting": "Xin chào",
+    "aiManual": "Hướng dẫn AI",
+    "aiManualDesc": "Hỏi về công việc và an toàn tại công trường",
+    "startChat": "Bắt đầu trò chuyện",
+    "community": "Cộng đồng",
+    "communityDesc": "Chia sẻ thông tin và kết nối với đồng nghiệp",
+    "joinDiscussion": "Tham gia thảo luận",
+    "ocrScan": "Quét tài liệu",
+    "ocrScanDesc": "Dịch nhanh tài liệu công việc",
+    "startScanning": "Bắt đầu quét"
+  },
   "nav": {
     "home": "Trang chủ",
     "newPost": "Viết bài",

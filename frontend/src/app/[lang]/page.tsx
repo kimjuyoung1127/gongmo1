@@ -1,72 +1,66 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { PostList } from '@/components/organisms';
-import { CategoryFilter } from '@/components/molecules';
-import { Button } from '@/components/atoms';
-import { usePosts } from '@/hooks/usePosts';
-import { categoryService } from '@/services/categoryService';
-import { Category } from '@/types';
+import { MainHeader } from '@/components/mainpage/MainHeader';
+import { FeatureCard } from '@/components/mainpage/FeatureCard';
+import { MainBottomNav } from '@/components/mainpage/MainBottomNav';
+import { FloatingActionButton } from '@/components/mainpage/FloatingActionButton';
 import { useDictionary, useLang } from '@/contexts/DictionaryContext';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import { MessageSquare, Users, ScanText } from 'lucide-react';
 
 export default function MainPage() {
   const dict = useDictionary();
   const lang = useLang();
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>();
-
-  const { data, loading, error, setPage, setCategoryId } = usePosts({
-    page: 1,
-    page_size: 20,
-  });
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const cats = await categoryService.getCategories();
-        setCategories(cats);
-      } catch (err) {
-        console.error('Failed to fetch categories', err);
-      }
-    };
-    fetchCategories();
-  }, []);
-
-  const handleCategoryChange = (categoryId?: number) => {
-    setSelectedCategoryId(categoryId);
-    setCategoryId(categoryId);
-  };
 
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">WeWorkHere</h1>
-        {isAuthenticated && (
-          <Button onClick={() => router.push(`/${lang}/posts/new`)}>
-            {dict.nav.newPost}
-          </Button>
-        )}
+    <div className="min-h-screen bg-gray-900 pb-24">
+      <MainHeader />
+
+      <main className="container mx-auto px-4 py-4 space-y-6">
+        {/* Welcome Text (Optional) */}
+        {/* <h1 className="text-2xl font-bold text-white mb-6">{dict.dashboard.greeting}</h1> */}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {/* AI Manual Card - Blue */}
+          <FeatureCard
+            title={dict.dashboard.aiManual}
+            description={dict.dashboard.aiManualDesc}
+            icon={MessageSquare}
+            colorTheme="blue"
+            buttonText={dict.dashboard.startChat}
+            onClick={() => router.push(`/${lang}/ai-manual`)}
+          />
+
+          {/* Community Card - Green */}
+          <FeatureCard
+            title={dict.dashboard.community}
+            description={dict.dashboard.communityDesc}
+            icon={Users}
+            colorTheme="green"
+            buttonText={dict.dashboard.joinDiscussion}
+            onClick={() => router.push(`/${lang}/community`)}
+          />
+
+          {/* OCR Scan Card - Orange */}
+          <FeatureCard
+            title={dict.dashboard.ocrScan}
+            description={dict.dashboard.ocrScanDesc}
+            icon={ScanText}
+            colorTheme="orange"
+            buttonText={dict.dashboard.startScanning}
+            onClick={() => router.push(`/${lang}/ocr-scan`)}
+          />
+        </div>
+      </main>
+
+      {/* Floating Action Button (Mobile Only) */}
+      <FloatingActionButton onClick={() => console.log('FAB Clicked')} />
+
+      {/* Bottom Navigation (Mobile Only) */}
+      <div className="md:hidden">
+        <MainBottomNav />
       </div>
-
-      <CategoryFilter
-        categories={categories}
-        selectedCategoryId={selectedCategoryId}
-        onSelectCategory={handleCategoryChange}
-      />
-
-      <PostList
-        posts={data?.posts || []}
-        categories={categories}
-        loading={loading}
-        error={error}
-        currentPage={data?.page || 1}
-        totalPages={data?.total_pages || 1}
-        onPageChange={setPage}
-      />
     </div>
   );
 }

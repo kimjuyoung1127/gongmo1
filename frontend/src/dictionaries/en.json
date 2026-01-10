@@ -3,6 +3,18 @@
     "title": "WeWorkHere - Foreign Workers Community",
     "description": "Anonymous community for foreign workers. Share jobs, life, and visa information."
   },
+  "dashboard": {
+    "greeting": "Hello, User",
+    "aiManual": "AI Manual",
+    "aiManualDesc": "Ask about site work & safety",
+    "startChat": "Start Chat",
+    "community": "Community",
+    "communityDesc": "Share info & connect with others",
+    "joinDiscussion": "Join Discussion",
+    "ocrScan": "OCR Scan",
+    "ocrScanDesc": "Translate work documents",
+    "startScanning": "Start Scanning"
+  },
   "nav": {
     "home": "Home",
     "newPost": "New Post",

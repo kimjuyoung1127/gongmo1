@@ -5,6 +5,18 @@ export type Dictionary = {
     title: string;
     description: string;
   };
+  dashboard: {
+    greeting: string;
+    aiManual: string;
+    aiManualDesc: string;
+    startChat: string;
+    community: string;
+    communityDesc: string;
+    joinDiscussion: string;
+    ocrScan: string;
+    ocrScanDesc: string;
+    startScanning: string;
+  };
   nav: {
     home: string;
     newPost: string;
