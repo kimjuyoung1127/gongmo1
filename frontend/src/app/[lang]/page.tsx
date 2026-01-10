@@ -2,7 +2,6 @@
 
 import { MainHeader } from '@/components/mainpage/MainHeader';
 import { FeatureCard } from '@/components/mainpage/FeatureCard';
-import { FloatingActionButton } from '@/components/mainpage/FloatingActionButton';
 import { useDictionary, useLang } from '@/contexts/DictionaryContext';
 import { useRouter } from 'next/navigation';
 import { MessageSquare, Users, ScanText } from 'lucide-react';
@@ -52,9 +51,6 @@ export default function MainPage() {
           />
         </div>
       </main>
-
-      {/* Floating Action Button (Mobile Only) */}
-      <FloatingActionButton onClick={() => console.log('FAB Clicked')} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ export interface User {
   preferred_language: string;
   created_at: string;
   updated_at: string;
+  avatarUrl?: string;
 }
 
 export interface RegisterRequest {

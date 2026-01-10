@@ -1,72 +1,136 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { PostList } from '@/components/organisms';
-import { CategoryFilter } from '@/components/molecules';
-import { Button } from '@/components/atoms';
-import { usePosts } from '@/hooks/usePosts';
-import { categoryService } from '@/services/categoryService';
-import { Category } from '@/types';
-import { useDictionary, useLang } from '@/contexts/DictionaryContext';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import { useState } from 'react';
+import { Post, CategoryType, User } from '@/components/CommunityPage/types';
+import { CategoryFilter } from '@/components/CommunityPage/CategoryFilter';
+import { PostList } from '@/components/CommunityPage/PostList';
+import { PointBadge } from '@/components/CommunityPage/PointBadge';
+import { DesktopFloatingButton } from '@/components/materials/DesktopFloatingButton';
+import { useLang } from '@/contexts/DictionaryContext';
+
+// Mock Data
+const MOCK_USER: User = { id: 'u1', nickname: 'Worker123', avatarUrl: '' };
+
+const MOCK_POSTS: Post[] = [
+    {
+        id: 'p1',
+        category: 'WAGES',
+        author: { id: 'u2', nickname: 'Anonymous' },
+        content: 'Has anyone received their paycheck for last month? Mine is delayed.',
+        createdAt: new Date().toISOString(),
+        likeCount: 5,
+        commentCount: 2,
+        comments: [
+            { id: 'c1', author: { id: 'u3', nickname: 'Kim' }, content: 'Me too, waiting.', createdAt: new Date().toISOString(), likeCount: 1 },
+            { id: 'c2', author: { id: 'u4', nickname: 'Lee' }, content: 'I got mine yesterday.', createdAt: new Date().toISOString(), likeCount: 0 }
+        ],
+        poll: {
+            id: 'poll1',
+            question: 'Did you get paid?',
+            options: [
+                { id: 'opt1', text: 'Yes', votes: 15 },
+                { id: 'opt2', text: 'No', votes: 8 },
+                { id: 'opt3', text: 'Partial', votes: 2 }
+            ],
+            totalVotes: 25
+        }
+    },
+    {
+        id: 'p2',
+        category: 'HOUSING',
+        author: { id: 'u5', nickname: 'NewLife' },
+        content: 'Looking for a roommate in downtown area. Clean and quiet.',
+        imageUrls: ['https://picsum.photos/seed/room/400/300'],
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        likeCount: 12,
+        commentCount: 0,
+        comments: []
+    }
+];
 
 export default function CommunityPage() {
-    const dict = useDictionary();
     const lang = useLang();
-    const router = useRouter();
-    const { isAuthenticated } = useAuth();
-    const [categories, setCategories] = useState<Category[]>([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState<number | undefined>();
+    // State
+    const [posts, setPosts] = useState<Post[]>(MOCK_POSTS);
+    const [selectedCategory, setSelectedCategory] = useState<CategoryType | 'ALL'>('ALL');
+    const [earnedPoints, setEarnedPoints] = useState<number | null>(null);
 
-    const { data, loading, error, setPage, setCategoryId } = usePosts({
-        page: 1,
-        page_size: 20,
-    });
+    // Filter Posts
+    const filteredPosts = selectedCategory === 'ALL'
+        ? posts
+        : posts.filter(p => p.category === selectedCategory);
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const cats = await categoryService.getCategories();
-                setCategories(cats);
-            } catch (err) {
-                console.error('Failed to fetch categories', err);
+    // Handlers
+    const handleVote = (pollId: string, optionId: string) => {
+        setPosts(posts.map(post => {
+            if (post.poll?.id === pollId) {
+                const updatedOptions = post.poll.options.map(opt =>
+                    opt.id === optionId ? { ...opt, votes: opt.votes + 1 } : opt
+                );
+                return {
+                    ...post,
+                    poll: {
+                        ...post.poll,
+                        options: updatedOptions,
+                        totalVotes: post.poll.totalVotes + 1,
+                        userVotedOptionId: optionId
+                    }
+                };
             }
-        };
-        fetchCategories();
-    }, []);
+            return post;
+        }));
+    };
 
-    const handleCategoryChange = (categoryId?: number) => {
-        setSelectedCategoryId(categoryId);
-        setCategoryId(categoryId);
+    const handleAddComment = (postId: string, content: string) => {
+        setPosts(posts.map(post => {
+            if (post.id === postId) {
+                const newComment = {
+                    id: `c_${Date.now()}`,
+                    author: MOCK_USER,
+                    content,
+                    createdAt: new Date().toISOString(),
+                    likeCount: 0
+                };
+                return {
+                    ...post,
+                    comments: [...post.comments, newComment],
+                    commentCount: post.commentCount + 1
+                };
+            }
+            return post;
+        }));
+    };
+
+    const handleTranslate = (postId: string) => {
+        alert(`Translate post ${postId} (Mock)`);
     };
 
     return (
-        <div className="space-y-8 pb-20"> {/* Added pb-20 for bottom nav clearance */}
-            <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-gray-900">{dict.dashboard.community}</h1>
-                {isAuthenticated && (
-                    <Button onClick={() => router.push(`/${lang}/posts/new`)}>
-                        {dict.nav.newPost}
-                    </Button>
-                )}
+        <div className="relative min-h-screen bg-gray-50">
+            {/* Header */}
+            <div className="bg-white sticky top-14 z-10 border-b border-gray-100">
+                <div className="flex justify-between items-center px-4 py-3">
+                    <h1 className="text-xl font-bold text-gray-900">Community</h1>
+                    {earnedPoints && <PointBadge points={earnedPoints} />}
+                </div>
+                <CategoryFilter
+                    selectedCategory={selectedCategory}
+                    onSelectCategory={setSelectedCategory}
+                />
             </div>
 
-            <CategoryFilter
-                categories={categories}
-                selectedCategoryId={selectedCategoryId}
-                onSelectCategory={handleCategoryChange}
-            />
+            {/* List */}
+            <div className="pt-4">
+                <PostList
+                    posts={filteredPosts}
+                    onVote={handleVote}
+                    onAddComment={handleAddComment}
+                    onTranslate={handleTranslate}
+                />
+            </div>
 
-            <PostList
-                posts={data?.posts || []}
-                categories={categories}
-                loading={loading}
-                error={error}
-                currentPage={data?.page || 1}
-                totalPages={data?.total_pages || 1}
-                onPageChange={setPage}
-            />
+            {/* Desktop Floating Button */}
+            <DesktopFloatingButton href={`/${lang}/posts/new`} />
         </div>
     );
 }
