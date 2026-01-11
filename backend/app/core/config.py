@@ -17,11 +17,11 @@ class Settings(BaseSettings):
         return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:5432/{self.POSTGRES_DB}"
 
     # Server
-    BACKEND_PORT: int = 25051
+    BACKEND_PORT: int  # .env에서 필수로 설정해야 함
     HOST: str = "0.0.0.0"
 
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:24051"
+    ALLOWED_ORIGINS: str  # .env에서 필수로 설정해야 함 (예: http://localhost:24051)
 
     @property
     def CORS_ORIGINS(self) -> List[str]:

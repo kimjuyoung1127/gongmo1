@@ -17,14 +17,19 @@ cd "$PROJECT_DIR" || exit 1
 echo "✓ 프로젝트 디렉토리: $PROJECT_DIR"
 echo ""
 
-# .env 파일 확인
+# .env 파일 확인 및 로드
 if [ ! -f ".env" ]; then
     echo "❌ 에러: .env 파일이 없습니다."
     echo "   .env.example을 참고하여 .env 파일을 생성해주세요."
     exit 1
 fi
 
-echo "✓ .env 파일 확인 완료"
+# .env 파일에서 환경 변수 로드
+set -a
+source .env
+set +a
+
+echo "✓ .env 파일 확인 및 로드 완료"
 echo ""
 
 # shared_db_network 확인/생성
@@ -57,8 +62,8 @@ echo "배포 완료!"
 echo "======================================"
 echo ""
 echo "로컬 확인:"
-echo "  Frontend: http://localhost:24050"
-echo "  Backend:  http://localhost:25050/health"
+echo "  Frontend: http://localhost:${FRONTEND_PORT}"
+echo "  Backend:  http://localhost:${BACKEND_PORT}/health"
 echo ""
 echo "공개 URL (Cloudflare Tunnel 실행 후):"
 echo "  https://weworkhere.alldatabox.com"

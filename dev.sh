@@ -9,14 +9,18 @@ start_frontend() {
     echo "🎨 Starting frontend (local)..."
     pkill -f "next dev" 2>/dev/null
 
-    # Load environment variables from .env
+    # Load ALL environment variables from .env
     if [ -f "$SCRIPT_DIR/.env" ]; then
-        export $(grep -v '^#' "$SCRIPT_DIR/.env" | grep FRONTEND_PORT | xargs)
+        set -a
+        source "$SCRIPT_DIR/.env"
+        set +a
     fi
 
-    FRONTEND_PORT=${FRONTEND_PORT:-24051}
-    cd "$SCRIPT_DIR/frontend" && PORT=$FRONTEND_PORT npm run dev > /tmp/frontend-dev.log 2>&1 &
+    # Set PORT environment variable for Next.js
+    export PORT=${FRONTEND_PORT:-24051}
+    cd "$SCRIPT_DIR/frontend" && npm run dev > /tmp/frontend-dev.log 2>&1 &
     sleep 2
+    FRONTEND_PORT=${FRONTEND_PORT:-24051}
     if lsof -i :$FRONTEND_PORT >/dev/null 2>&1; then
         echo "   ✅ Frontend running on http://localhost:$FRONTEND_PORT"
     else
@@ -26,14 +30,19 @@ start_frontend() {
 
 case "$1" in
   start)
+    # Load environment variables for display
+    if [ -f "$SCRIPT_DIR/.env" ]; then
+        export $(grep -v '^#' "$SCRIPT_DIR/.env" | grep -E 'FRONTEND_PORT|BACKEND_PORT|POSTGRES_PORT' | xargs)
+    fi
+
     echo "🚀 Starting services..."
     docker-compose up -d backend db
     sleep 2
     start_frontend
     echo "✅ All services started!"
-    echo "   - Frontend: http://localhost:24051 (local)"
-    echo "   - Backend:  http://localhost:25051 (docker)"
-    echo "   - DB:       localhost:5444 (docker)"
+    echo "   - Frontend: http://localhost:${FRONTEND_PORT:-24051} (local)"
+    echo "   - Backend:  http://localhost:${BACKEND_PORT:-25051} (docker)"
+    echo "   - DB:       localhost:${POSTGRES_PORT:-5444} (docker)"
     ;;
 
   stop)
@@ -51,15 +60,20 @@ case "$1" in
     ;;
 
   rebuild)
+    # Load environment variables for display
+    if [ -f "$SCRIPT_DIR/.env" ]; then
+        export $(grep -v '^#' "$SCRIPT_DIR/.env" | grep -E 'FRONTEND_PORT|BACKEND_PORT|POSTGRES_PORT' | xargs)
+    fi
+
     echo "🔨 Rebuilding and restarting..."
     docker-compose down
     docker-compose up -d --build backend db
     sleep 3
     start_frontend
     echo "✅ Rebuild complete!"
-    echo "   - Frontend: http://localhost:24051 (local)"
-    echo "   - Backend:  http://localhost:25051 (docker)"
-    echo "   - DB:       localhost:5444 (docker)"
+    echo "   - Frontend: http://localhost:${FRONTEND_PORT:-24051} (local)"
+    echo "   - Backend:  http://localhost:${BACKEND_PORT:-25051} (docker)"
+    echo "   - DB:       localhost:${POSTGRES_PORT:-5444} (docker)"
     ;;
 
   logs)
@@ -143,15 +157,20 @@ case "$1" in
 
   *)
     # 기본 동작: rebuild
+    # Load environment variables for display
+    if [ -f "$SCRIPT_DIR/.env" ]; then
+        export $(grep -v '^#' "$SCRIPT_DIR/.env" | grep -E 'FRONTEND_PORT|BACKEND_PORT|POSTGRES_PORT' | xargs)
+    fi
+
     echo "🔨 Rebuilding and restarting all services..."
     docker-compose down
     docker-compose up -d --build backend db
     sleep 3
     start_frontend
     echo "✅ Rebuild complete!"
-    echo "   - Frontend: http://localhost:24051 (local)"
-    echo "   - Backend:  http://localhost:25051 (docker)"
-    echo "   - DB:       localhost:5444 (docker)"
+    echo "   - Frontend: http://localhost:${FRONTEND_PORT:-24051} (local)"
+    echo "   - Backend:  http://localhost:${BACKEND_PORT:-25051} (docker)"
+    echo "   - DB:       localhost:${POSTGRES_PORT:-5444} (docker)"
     echo ""
     echo "💡 Tip: ./dev.sh help 명령어로 도움말을 확인하세요"
     ;;
