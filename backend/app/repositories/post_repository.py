@@ -1,5 +1,6 @@
 from typing import List, Optional
 from sqlalchemy import select, func, desc
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.post import Post
@@ -19,6 +20,7 @@ class PostRepository(BaseRepository[Post]):
         """카테고리별 게시글 조회 (최신순)"""
         result = await self.db.execute(
             select(Post)
+            .options(selectinload(Post.images))
             .where(Post.category_id == category_id)
             .order_by(desc(Post.created_at))
             .offset(skip)
@@ -30,11 +32,20 @@ class PostRepository(BaseRepository[Post]):
         """모든 게시글 조회 (최신순)"""
         result = await self.db.execute(
             select(Post)
+            .options(selectinload(Post.images))
             .order_by(desc(Post.created_at))
             .offset(skip)
             .limit(limit)
         )
         return list(result.scalars().all())
+
+    async def get_by_id(self, id: int) -> Optional[Post]:
+        result = await self.db.execute(
+            select(Post)
+            .options(selectinload(Post.images))
+            .where(Post.id == id)
+        )
+        return result.scalar_one_or_none()
 
     async def count_by_category(self, category_id: Optional[int] = None) -> int:
         """카테고리별 게시글 수 조회"""

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getSessionToken } from '@/utils/storage';
+import { emitAuthChange } from '@/utils/authEvents';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
 
@@ -33,6 +34,7 @@ apiClient.interceptors.response.use(
       if (typeof window !== 'undefined') {
         localStorage.removeItem('session_token');
       }
+      emitAuthChange();
     }
     return Promise.reject(error);
   }

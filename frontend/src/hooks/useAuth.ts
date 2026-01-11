@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { authService } from '@/services/authService';
 import { User, RegisterRequest, LoginRequest, AnonymousLoginRequest, UserUpdateRequest } from '@/types';
 import { setSessionToken, getSessionToken, removeSessionToken } from '@/utils/storage';
+import { emitAuthChange, onAuthChange } from '@/utils/authEvents';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -11,25 +12,46 @@ export function useAuth() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const checkAuth = async () => {
       const token = getSessionToken();
       if (!token) {
-        setLoading(false);
+        if (isMounted) {
+          setUser(null);
+          setLoading(false);
+        }
         return;
       }
 
       try {
+        if (isMounted) {
+          setLoading(true);
+        }
         const currentUser = await authService.getCurrentUser();
-        setUser(currentUser);
+        if (isMounted) {
+          setUser(currentUser);
+        }
       } catch (err) {
         removeSessionToken();
-        setUser(null);
+        if (isMounted) {
+          setUser(null);
+        }
+        emitAuthChange();
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
+    const unsubscribe = onAuthChange(checkAuth);
     checkAuth();
+
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
   }, []);
 
   const register = async (data: RegisterRequest): Promise<{ success: boolean; error?: string }> => {
@@ -55,6 +77,7 @@ export function useAuth() {
       if (response.session_token) {
         setSessionToken(response.session_token);
         setUser(response);
+        emitAuthChange();
         return { success: true, user: response };
       }
       return { success: false, error: 'No session token received' };
@@ -75,6 +98,7 @@ export function useAuth() {
       if (response.session_token) {
         setSessionToken(response.session_token);
         setUser(response);
+        emitAuthChange();
         return { success: true };
       }
       return { success: false, error: 'No session token received' };
@@ -91,6 +115,7 @@ export function useAuth() {
     authService.logout();
     removeSessionToken();
     setUser(null);
+    emitAuthChange();
   };
 
   const updateProfile = async (data: UserUpdateRequest): Promise<{ success: boolean; error?: string }> => {
@@ -98,6 +123,7 @@ export function useAuth() {
       setError(null);
       const updatedUser = await authService.updateProfile(data);
       setUser(updatedUser);
+      emitAuthChange();
       return { success: true };
     } catch (err: any) {
       const errorMessage = err.response?.data?.detail || 'Profile update failed';

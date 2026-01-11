@@ -17,11 +17,11 @@ class Settings(BaseSettings):
         return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:5432/{self.POSTGRES_DB}"
 
     # Server
-    BACKEND_PORT: int = 25050
+    BACKEND_PORT: int = 25051
     HOST: str = "0.0.0.0"
 
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:24050"
+    ALLOWED_ORIGINS: str = "http://localhost:24051"
 
     @property
     def CORS_ORIGINS(self) -> List[str]:
@@ -35,6 +35,10 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = ""
     JWT_ALGORITHM: str = "HS256"
     SESSION_EXPIRE_HOURS: int = 720  # 30 days
+
+    # Uploads
+    UPLOAD_DIR: str = "uploads"
+    UPLOAD_URL_PATH: str = "/uploads"
 
     class Config:
         env_file = ".env"

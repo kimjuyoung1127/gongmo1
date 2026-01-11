@@ -8,6 +8,7 @@ class PostCreate(BaseModel):
     title: str = Field(..., min_length=1, max_length=200, description="게시글 제목")
     content: str = Field(..., min_length=1, description="게시글 내용")
     image_url: Optional[str] = Field(None, max_length=500, description="이미지 URL")
+    image_urls: Optional[List[str]] = Field(None, description="이미지 URL 목록")
     is_anonymous: bool = Field(False, description="익명 여부")
 
 
@@ -16,6 +17,7 @@ class PostUpdate(BaseModel):
     title: Optional[str] = Field(None, min_length=1, max_length=200, description="게시글 제목")
     content: Optional[str] = Field(None, min_length=1, description="게시글 내용")
     image_url: Optional[str] = Field(None, max_length=500, description="이미지 URL")
+    image_urls: Optional[List[str]] = Field(None, description="이미지 URL 목록")
     is_anonymous: Optional[bool] = Field(None, description="익명 여부")
 
 
@@ -26,6 +28,7 @@ class PostResponse(BaseModel):
     title: str
     content: str
     image_url: Optional[str]
+    image_urls: List[str]
     is_anonymous: bool
     view_count: int
     like_count: int

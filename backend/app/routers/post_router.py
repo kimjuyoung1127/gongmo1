@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Query
+from fastapi import APIRouter, Depends, HTTPException, status, Query, UploadFile, File
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 
@@ -6,8 +6,11 @@ from app.core.database import get_db
 from app.core.dependencies import get_current_user
 from app.models.user import User
 from app.repositories.post_repository import PostRepository
+from app.repositories.post_image_repository import PostImageRepository
 from app.services.post_service import PostService
+from app.services.post_image_service import PostImageService
 from app.schemas.post_schema import PostCreate, PostResponse, PostUpdate, PostListResponse
+from app.schemas.post_image_schema import PostImageListResponse
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
 
@@ -23,7 +26,8 @@ async def create_post(
     - 인증 필요 (X-Session-Token)
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     new_post = await post_service.create_post(current_user.id, post_data)
 
@@ -43,7 +47,8 @@ async def get_posts(
     - category_id로 필터링 가능
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     result = await post_service.get_posts_paginated(page, page_size, category_id)
 
@@ -61,7 +66,8 @@ async def get_post(
     - 인증 불필요
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     post = await post_service.get_post_by_id(post_id, increment_view=True)
 
@@ -87,7 +93,8 @@ async def update_post(
     - 인증 필요 (X-Session-Token)
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     updated_post = await post_service.update_post(post_id, current_user.id, post_data)
 
@@ -112,7 +119,8 @@ async def delete_post(
     - 인증 필요 (X-Session-Token)
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     success = await post_service.delete_post(post_id, current_user.id)
 
@@ -137,8 +145,34 @@ async def toggle_like(
     - 현재는 단순 카운트만 증가 (향후 Reaction 모델과 연동)
     """
     post_repo = PostRepository(db)
-    post_service = PostService(post_repo)
+    post_image_repo = PostImageRepository(db)
+    post_service = PostService(post_repo, post_image_repo)
 
     result = await post_service.toggle_like(post_id, current_user.id)
 
     return result
+
+
+@router.post(
+    "/{post_id}/images",
+    response_model=PostImageListResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def upload_post_images(
+    post_id: int,
+    files: list[UploadFile] = File(...),
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    게시글 이미지 업로드 (다중 파일)
+    - 작성자만 업로드 가능
+    - 인증 필요 (X-Session-Token)
+    """
+    post_repo = PostRepository(db)
+    post_image_repo = PostImageRepository(db)
+    image_service = PostImageService(post_repo, post_image_repo)
+
+    images = await image_service.upload_post_images(post_id, current_user.id, files)
+
+    return {"images": images}

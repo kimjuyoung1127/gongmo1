@@ -3,6 +3,7 @@ from app.repositories.user_repository import UserRepository
 from app.repositories.category_repository import CategoryRepository
 from app.repositories.post_repository import PostRepository
 from app.repositories.comment_repository import CommentRepository
+from app.repositories.post_image_repository import PostImageRepository
 
 __all__ = [
     "BaseRepository",
@@ -10,4 +11,5 @@ __all__ = [
     "CategoryRepository",
     "PostRepository",
     "CommentRepository",
+    "PostImageRepository",
 ]

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.routers import (
@@ -14,6 +16,10 @@ app = FastAPI(
     description="외국인 노동자 익명 커뮤니티 플랫폼 API",
     version="1.0.0",
 )
+
+upload_dir = Path(settings.UPLOAD_DIR)
+upload_dir.mkdir(parents=True, exist_ok=True)
+app.mount(settings.UPLOAD_URL_PATH, StaticFiles(directory=upload_dir), name="uploads")
 
 # CORS middleware
 app.add_middleware(

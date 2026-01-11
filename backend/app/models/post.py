@@ -24,3 +24,16 @@ class Post(Base):
     category = relationship("Category", back_populates="posts")
     comments = relationship("Comment", back_populates="post", cascade="all, delete-orphan")
     reactions = relationship("Reaction", back_populates="post", cascade="all, delete-orphan")
+    images = relationship(
+        "PostImage",
+        back_populates="post",
+        cascade="all, delete-orphan",
+        order_by="PostImage.sort_order",
+    )
+
+    @property
+    def image_urls(self) -> list[str]:
+        urls = [image.url for image in self.images] if self.images else []
+        if not urls and self.image_url:
+            return [self.image_url]
+        return urls

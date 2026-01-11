@@ -4,25 +4,52 @@ import math
 
 from app.models.post import Post
 from app.repositories.post_repository import PostRepository
+from app.repositories.post_image_repository import PostImageRepository
 from app.schemas.post_schema import PostCreate, PostUpdate
 
 
 class PostService:
-    def __init__(self, post_repo: PostRepository):
+    def __init__(self, post_repo: PostRepository, post_image_repo: PostImageRepository):
         self.post_repo = post_repo
+        self.post_image_repo = post_image_repo
+
+    def _normalize_image_urls(
+        self,
+        image_urls: Optional[List[str]],
+        image_url: Optional[str],
+    ) -> Optional[List[str]]:
+        if image_urls is not None:
+            return [url for url in image_urls if url]
+        if image_url is not None:
+            return [image_url] if image_url else []
+        return None
 
     async def create_post(self, user_id: int, post_data: PostCreate) -> Post:
         """게시글 생성"""
+        normalized_urls = self._normalize_image_urls(
+            post_data.image_urls,
+            post_data.image_url,
+        )
+        primary_image = None
+        if normalized_urls:
+            primary_image = normalized_urls[0]
+
         new_post = Post(
             user_id=user_id,
             category_id=post_data.category_id,
             title=post_data.title,
             content=post_data.content,
-            image_url=post_data.image_url,
+            image_url=primary_image,
             is_anonymous=post_data.is_anonymous,
         )
 
-        return await self.post_repo.create(new_post)
+        post = await self.post_repo.create(new_post)
+
+        if normalized_urls:
+            images = await self.post_image_repo.create_many(post.id, normalized_urls)
+            post.images = images
+
+        return post
 
     async def get_post_by_id(self, post_id: int, increment_view: bool = False) -> Optional[Post]:
         """게시글 조회 (선택적 조회수 증가)"""
@@ -84,8 +111,19 @@ class PostService:
             post.content = post_data.content
         if post_data.category_id is not None:
             post.category_id = post_data.category_id
-        if post_data.image_url is not None:
-            post.image_url = post_data.image_url
+        normalized_urls = self._normalize_image_urls(
+            post_data.image_urls,
+            post_data.image_url,
+        )
+        if normalized_urls is not None:
+            await self.post_image_repo.delete_by_post_id(post_id)
+            if normalized_urls:
+                images = await self.post_image_repo.create_many(post_id, normalized_urls)
+                post.images = images
+                post.image_url = normalized_urls[0]
+            else:
+                post.images = []
+                post.image_url = None
 
         return await self.post_repo.update(post)
 

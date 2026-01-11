@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:24050';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:24051';
   const languages = ['ko', 'en', 'vi', 'ne'];
 
   const routes = languages.flatMap((lang) => [
