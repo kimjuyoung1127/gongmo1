@@ -55,7 +55,7 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <div className="max-w-3xl mx-auto px-4 pt-24 pb-12">
       <h1 className="text-2xl md:text-3xl font-bold text-black mb-8">
         {dict.post.createPost}
       </h1>
