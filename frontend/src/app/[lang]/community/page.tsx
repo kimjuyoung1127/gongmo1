@@ -106,7 +106,7 @@ export default function CommunityPage() {
     };
 
     return (
-        <div className="relative min-h-screen bg-gray-50">
+        <div className="relative min-h-screen bg-gray-50 pt-14">
             {/* Header */}
             <div className="bg-white sticky top-14 z-10 border-b border-gray-100">
                 <div className="flex justify-between items-center px-4 py-3">

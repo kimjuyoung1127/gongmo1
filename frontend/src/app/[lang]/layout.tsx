@@ -35,9 +35,9 @@ export default async function LangLayout({
 
   return (
     <DictionaryProvider dictionary={dictionary} lang={params.lang}>
-      <div className="min-h-screen bg-gray-50 pb-[calc(4rem+env(safe-area-inset-bottom))]"> {/* Added padding for global bottom nav */}
+      <div className="min-h-screen pb-[calc(4rem+env(safe-area-inset-bottom))]"> {/* Added padding for global bottom nav */}
         <Header />
-        <main className="w-full min-h-full pt-16">
+        <main className="w-full min-h-full">
           {children}
         </main>
         <div className="md:hidden">

@@ -11,8 +11,8 @@ export default function MainPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gray-900 pb-24">
-      <main className="container mx-auto px-4 py-8 space-y-6">
+    <div className="min-h-screen bg-gray-900 pt-20 pb-24">
+      <main className="container mx-auto px-4 space-y-6">
         {/* Welcome Text (Optional) */}
         {/* <h1 className="text-2xl font-bold text-white mb-6">{dict.dashboard.greeting}</h1> */}
 
