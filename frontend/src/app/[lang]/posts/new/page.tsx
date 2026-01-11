@@ -3,18 +3,26 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card } from '@/components/atoms';
-import { PostForm } from '@/components/organisms';
+import { PostForm } from '@/components/CommunityPage/PostForm';
 import { useAuth } from '@/hooks/useAuth';
 import { categoryService } from '@/services/categoryService';
 import { Category } from '@/types';
 import { useDictionary, useLang } from '@/contexts/DictionaryContext';
+
+const MOCK_CATEGORIES: Category[] = [
+  { id: 1, name_ko: '임금/급여', name_en: 'Wages', name_vi: 'Tiền lương', name_ne: 'Wages' },
+  { id: 2, name_ko: '숙소', name_en: 'Housing', name_vi: 'Chỗ ở', name_ne: 'Housing' },
+  { id: 3, name_ko: '사업장 문제', name_en: 'Workplace', name_vi: 'Nơi làm việc', name_ne: 'Workplace' },
+  { id: 4, name_ko: '계약/비자', name_en: 'Visa/Contract', name_vi: 'Visa', name_ne: 'Visa' },
+  { id: 5, name_ko: '자유 이야기', name_en: 'Free Talk', name_vi: 'Tự do', name_ne: 'Free Talk' },
+];
 
 export default function NewPostPage() {
   const dict = useDictionary();
   const lang = useLang();
   const router = useRouter();
   const { isAuthenticated, loading } = useAuth();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[]>(MOCK_CATEGORIES);
 
   useEffect(() => {
     // Development Bypass: Commented out authentication check
@@ -25,17 +33,18 @@ export default function NewPostPage() {
     */
   }, [isAuthenticated, loading, lang, router]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const cats = await categoryService.getCategories();
-        setCategories(cats);
-      } catch (err) {
-        console.error('Failed to fetch categories', err);
-      }
-    };
-    fetchCategories();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const cats = await categoryService.getCategories();
+  //       setCategories(cats);
+  //     } catch (err) {
+  //       console.error('Failed to fetch categories', err);
+  //       setCategories(MOCK_CATEGORIES); // Fallback to mock
+  //     }
+  //   };
+  //   fetchCategories();
+  // }, []);
 
   if (loading) {
     return (
@@ -46,8 +55,8 @@ export default function NewPostPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">
+    <div className="max-w-3xl mx-auto px-4 py-12">
+      <h1 className="text-2xl md:text-3xl font-bold text-black mb-8">
         {dict.post.createPost}
       </h1>
       <Card>
