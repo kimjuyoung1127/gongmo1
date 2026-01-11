@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, Menu, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { ArrowLeft, Menu, X, Home, FileText, Wrench, Settings } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useLang } from '@/contexts/DictionaryContext';
 import { LanguageSelector } from '@/components/molecules/LanguageSelector';
+import Link from 'next/link';
 
 interface HeaderProps {
     title?: string;
@@ -16,9 +17,17 @@ interface HeaderProps {
 
 export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, rightElement }: HeaderProps) => {
     const router = useRouter();
+    const pathname = usePathname();
     const { isAuthenticated, user, logout } = useAuth();
     const lang = useLang();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navItems = [
+        { label: 'Home', href: `/${lang}`, icon: Home },
+        { label: 'Community', href: `/${lang}/community`, icon: FileText },
+        { label: 'Tools', href: `/${lang}/tools`, icon: Wrench },
+        { label: 'Settings', href: `/${lang}/settings`, icon: Settings },
+    ];
 
     const handleLogin = () => {
         setIsMenuOpen(false);
@@ -32,24 +41,51 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
 
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 bg-gray-900 border-b border-gray-800 z-50 px-4 py-3">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        {showBack && (
-                            <button
-                                onClick={() => router.back()}
-                                className="p-1 text-white hover:bg-gray-800 rounded-full transition-colors"
+            <header className="fixed top-0 left-0 right-0 bg-gray-900 border-b border-gray-800 z-50 px-4 md:px-8 py-3">
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center gap-8">
+                        <div className="flex items-center gap-3">
+                            {showBack && (
+                                <button
+                                    onClick={() => router.back()}
+                                    className="p-1 text-white hover:bg-gray-800 rounded-full transition-colors"
+                                >
+                                    <ArrowLeft size={24} />
+                                </button>
+                            )}
+                            <div 
+                                className="flex items-center gap-2 cursor-pointer group" 
+                                onClick={() => router.push(`/${lang}`)}
                             >
-                                <ArrowLeft size={24} />
-                            </button>
-                        )}
-                        <div>
-                            <h1 className="text-lg font-bold text-white cursor-pointer" onClick={() => router.push(`/${lang}`)}>{title}</h1>
-                            {subtitle && <p className="text-xs text-blue-400 font-medium">{subtitle}</p>}
+                                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm group-hover:bg-blue-500 transition-colors">
+                                    W
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-base font-bold text-white leading-none">WeWorkHere</span>
+                                    {subtitle && <p className="text-[10px] text-blue-400 font-medium mt-0.5">{subtitle}</p>}
+                                </div>
+                            </div>
                         </div>
+
+                        {/* Desktop Navigation Links */}
+                        <nav className="hidden md:flex items-center gap-6">
+                            {navItems.map((item) => {
+                                const isActive = pathname === item.href || (item.href !== `/${lang}` && pathname.startsWith(item.href));
+                                return (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className={`text-sm font-medium transition-colors hover:text-blue-500 ${isActive ? 'text-blue-500' : 'text-gray-400'
+                                            }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
+                        </nav>
                     </div>
 
-                    {/* Desktop View */}
+                    {/* Desktop Right Side View */}
                     <div className="hidden md:flex items-center gap-4">
                         <LanguageSelector className="scale-90" />
                         {isAuthenticated ? (

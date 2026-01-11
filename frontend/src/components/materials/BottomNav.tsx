@@ -14,7 +14,7 @@ export const BottomNav = () => {
         { icon: Home, label: 'Home', href: `/${lang}` },
         { icon: FileText, label: 'Community', href: `/${lang}/community` },
         { isFab: true, href: `/${lang}/posts/new` },
-        { icon: Wrench, label: 'Tools', href: `/${lang}/tools` },
+        { icon: Wrench, label: 'OCR', href: `/${lang}/ocr` },
         { icon: Settings, label: 'Settings', href: `/${lang}/settings` },
     ];
 
@@ -33,7 +33,7 @@ export const BottomNav = () => {
 
                     // Type guard for non-fab items
                     if (!item.icon || !item.label) return null;
-                    
+
                     const Icon = item.icon;
                     const isActive = pathname === item.href;
                     return (

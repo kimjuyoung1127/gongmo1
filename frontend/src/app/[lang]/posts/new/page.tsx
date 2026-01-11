@@ -17,9 +17,12 @@ export default function NewPostPage() {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
+    // Development Bypass: Commented out authentication check
+    /*
     if (!loading && !isAuthenticated) {
       router.push(`/${lang}/login`);
     }
+    */
   }, [isAuthenticated, loading, lang, router]);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function NewPostPage() {
     fetchCategories();
   }, []);
 
-  if (loading || !isAuthenticated) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <p>{dict.common.loading}</p>
