@@ -11,12 +11,9 @@ export default function MainPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-20 pb-24">
-      <main className="container mx-auto px-4 space-y-6">
-        {/* Welcome Text (Optional) */}
-        {/* <h1 className="text-2xl font-bold text-white mb-6">{dict.dashboard.greeting}</h1> */}
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div className="h-[calc(100dvh-5rem-env(safe-area-inset-bottom))] md:h-dvh bg-gray-900 pt-20 pb-6 md:pb-0 flex flex-col">
+      <main className="container mx-auto px-4 h-full flex flex-col justify-center">
+        <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-6 h-full w-full max-w-6xl mx-auto">
           {/* AI Manual Card - Blue */}
           <FeatureCard
             title={dict.dashboard.aiManual}
@@ -25,6 +22,7 @@ export default function MainPage() {
             colorTheme="blue"
             buttonText={dict.dashboard.startChat}
             onClick={() => router.push(`/${lang}/ai-manual`)}
+            className="flex-1"
           />
 
           {/* Community Card - Green */}
@@ -35,6 +33,7 @@ export default function MainPage() {
             colorTheme="green"
             buttonText={dict.dashboard.joinDiscussion}
             onClick={() => router.push(`/${lang}/community`)}
+            className="flex-1"
           />
 
           {/* OCR Scan Card - Orange */}
@@ -45,6 +44,7 @@ export default function MainPage() {
             colorTheme="orange"
             buttonText={dict.dashboard.startScanning}
             onClick={() => router.push(`/${lang}/ocr-scan`)}
+            className="flex-1"
           />
         </div>
       </main>

@@ -40,9 +40,9 @@
 - **Container**: Docker Compose
 - **Server**: Mac Mini (macOS)
 - **Ports**:
-  - Frontend: 24050
-  - Backend: 25050
-  - Database: 5443
+  - Frontend: 24050 (Production) / 24051 (Local Dev)
+  - Backend: 25050 (Production) / 25051 (Local Dev)
+  - Database: 5443 (External) / 5432 (Internal)
 
 ## 🌍 다국어 지원
 
@@ -70,10 +70,57 @@
 - ✅ 전화번호 인증 없음
 - ✅ 익명성 보장
 
-### 안전 기능
-- ✅ 신고 기능 (준비됨)
-- ✅ 관리자 개입 최소화
-- ✅ 위치 정보 수집 없음
+## 🚀 빠른 시작 (개발 환경)
+
+이 프로젝트는 편리한 개발 환경 관리를 위해 `dev.sh` 스크립트를 제공합니다.
+
+### 1. 환경 변수 설정
+
+```bash
+cp .env.example .env
+# .env 파일을 열어 필요한 값 수정 (기본값 사용 권장)
+```
+
+### 2. 서비스 실행 (Frontend: Local, Backend/DB: Docker)
+
+```bash
+# 권한 부여 (최초 1회)
+chmod +x dev.sh
+
+# 서비스 시작 (Frontend + Backend + DB)
+./dev.sh start
+```
+
+이 명령어는 Backend와 Database를 Docker로 실행하고, Frontend를 로컬(`npm run dev`)에서 실행합니다.
+
+### 3. 접속
+
+- **Frontend**: http://localhost:3000 (Next.js 기본 포트)
+- **Backend API**: http://localhost:25051/docs
+- **DB (Direct)**: localhost:5444
+
+> **참고**: `npm run dev` 실행 시 `BACKEND_URL` 환경변수가 `.env`에 설정되어 있어야 API 호출이 정상적으로 프록시됩니다. (설정되지 않으면 경고 메시지가 출력됩니다.)
+
+### 4. 기타 명령어
+
+```bash
+./dev.sh stop     # 모든 서비스 중지
+./dev.sh restart  # 서비스 재시작
+./dev.sh rebuild  # Docker 이미지 재빌드 및 재시작
+./dev.sh logs     # 로그 확인
+./dev.sh help     # 도움말 보기
+```
+
+## 📦 배포
+
+배포를 위해서는 `deploy.sh` 스크립트를 사용합니다.
+
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+상세 배포 가이드는 `DEPLOYMENT_CHECKLIST.md`를 참조하세요.
 
 ## 📁 프로젝트 구조
 
@@ -81,178 +128,41 @@
 WeWorkHere/
 ├── .env                         # 환경 변수
 ├── .env.example                 # 환경 변수 템플릿
-├── docker-compose.yml           # Docker 설정
+├── docker-compose.yml           # Docker 설정 (운영 환경 고정)
+├── dev.sh                       # 개발 환경 관리 스크립트
+├── deploy.sh                    # 배포 스크립트
 ├── README.md                    # 프로젝트 개요
-├── CLAUDE.md                    # AI 개발 가이드
+├── CLAUDE.md                    # AI 개발 가이드 및 아키텍처 문서
 │
 ├── frontend/                    # Next.js Frontend
 │   ├── src/
-│   │   ├── app/                 # Next.js 라우팅
-│   │   │   ├── [lang]/          # 다국어 라우팅
-│   │   │   ├── sitemap.ts       # SEO
-│   │   │   └── robots.ts        # SEO
-│   │   ├── components/          # Atomic Design
-│   │   │   ├── atoms/           # 10-30줄
-│   │   │   ├── molecules/       # 30-80줄
-│   │   │   └── organisms/       # 80-150줄
-│   │   ├── hooks/               # 비즈니스 로직
-│   │   ├── services/            # API 호출
-│   │   ├── types/               # TypeScript 타입
-│   │   ├── constants/           # 상수
-│   │   └── dictionaries/        # i18n 번역
-│   └── public/                  # 정적 파일
+│   │   ├── app/                 # Next.js App Router
+│   │   ├── components/          # Atomic Design Components
+│   │   ├── hooks/               # Custom Hooks
+│   │   └── services/            # API Services
 │
 └── backend/                     # FastAPI Backend
     ├── app/
-    │   ├── main.py              # FastAPI 진입점
-    │   ├── core/                # 설정, DB
-    │   ├── models/              # SQLAlchemy 모델
-    │   ├── schemas/             # Pydantic 스키마
-    │   ├── repositories/        # DB 접근
-    │   ├── services/            # 비즈니스 로직
-    │   └── routers/             # API 엔드포인트
-    ├── alembic/                 # DB 마이그레이션
-    └── requirements.txt         # Python 의존성
+    │   ├── main.py              # Entry point
+    │   ├── routers/             # API Endpoints
+    │   ├── services/            # Business Logic
+    │   └── models/              # DB Models
+    └── alembic/                 # DB Migrations
 ```
-
-## 🚀 빠른 시작
-
-### 1. 환경 변수 설정
-
-```bash
-cp .env.example .env
-# .env 파일을 열어 필요한 값 수정
-```
-
-### 2. Docker Compose로 실행
-
-```bash
-# 전체 서비스 시작
-docker-compose up -d --build
-
-# 로그 확인
-docker-compose logs -f
-```
-
-### 3. 데이터베이스 마이그레이션
-
-```bash
-# Backend 컨테이너 진입
-docker exec -it weworkhere_backend_dev bash
-
-# 마이그레이션 실행
-alembic upgrade head
-```
-
-### 4. 접속
-
-- **Frontend**: http://localhost:24050
-- **Backend API**: http://localhost:25050/docs
-- **Health Check**: http://localhost:25050/health
-
-## 🗄️ 데이터베이스 스키마
-
-### 주요 테이블
-
-- **users**: 사용자 (익명 닉네임, 세션 토큰)
-- **categories**: 카테고리 (다국어 이름)
-- **posts**: 게시글 (제목, 내용, 이미지, 조회수, 좋아요)
-- **comments**: 댓글
-- **reactions**: 반응 (준비됨, 향후 확장)
 
 ## 🔌 API 엔드포인트
 
-모든 엔드포인트는 `/api/v1` prefix 사용
+모든 엔드포인트는 `/api/v1` prefix를 사용합니다. 상세 문서는 서버 실행 후 `/docs`에서 확인할 수 있습니다.
 
-### 인증
-- `POST /api/v1/auth/anonymous` - 익명 사용자 생성
-- `GET /api/v1/auth/me` - 현재 사용자 정보
-
-### 카테고리
-- `GET /api/v1/categories` - 카테고리 목록
-
-### 게시글
-- `GET /api/v1/posts` - 게시글 목록 (페이지네이션, 카테고리 필터)
-- `GET /api/v1/posts/{id}` - 게시글 상세
-- `POST /api/v1/posts` - 게시글 작성
-- `PUT /api/v1/posts/{id}` - 게시글 수정
-- `DELETE /api/v1/posts/{id}` - 게시글 삭제
-- `POST /api/v1/posts/{id}/like` - 좋아요
-
-### 댓글
-- `GET /api/v1/posts/{post_id}/comments` - 댓글 목록
-- `POST /api/v1/posts/{post_id}/comments` - 댓글 작성
-- `DELETE /api/v1/comments/{id}` - 댓글 삭제
-
-## 🏗️ 아키텍처 패턴
-
-### Frontend 계층
-```
-Page → Organisms → Hooks → Services → API
-     → Molecules → Atoms
-```
-
-### Backend 계층
-```
-Router → Service → Repository → Database
-```
-
-**중요**: 계층 건너뛰기 절대 금지
+- **Auth**: `/api/v1/auth` (익명 로그인, 내 정보)
+- **Posts**: `/api/v1/posts` (CRUD, 목록, 좋아요)
+- **Comments**: `/api/v1/posts/{id}/comments` (댓글 CRUD)
+- **Categories**: `/api/v1/categories` (카테고리 목록)
 
 ## 📝 개발 가이드
 
-### Backend 개발 순서
-1. Models (DB 테이블 정의)
-2. Schemas (Pydantic DTO)
-3. Repositories (CRUD 함수)
-4. Services (비즈니스 로직)
-5. Routers (HTTP 엔드포인트)
-6. Alembic 마이그레이션
-
-### Frontend 개발 순서
-1. Types (인터페이스)
-2. Services (API 호출)
-3. Hooks (비즈니스 로직)
-4. Atoms → Molecules → Organisms
-5. Pages (라우팅)
-
-## 🔐 보안
-
-- 익명성 보장 (최소한의 개인정보 수집)
-- 세션 토큰 기반 인증
-- 로그 최소화
-- 위치 정보 수집 없음
-- CORS 설정 (환경별 분리)
-
-## 🧪 테스트
-
-```bash
-# Backend 테스트
-cd backend
-pytest
-
-# Frontend 테스트
-cd frontend
-npm test
-```
-
-## 📦 배포
-
-상세 배포 가이드는 `DEPLOYMENT_CHECKLIST.md` 참조
+상세한 개발 가이드, 아키텍처 패턴, 네이밍 규칙 등은 **[CLAUDE.md](CLAUDE.md)** 파일을 참조하세요.
 
 ## 📄 라이선스
 
 이 프로젝트는 MIT 라이선스를 따릅니다.
-
-## 🤝 기여
-
-이슈 및 풀 리퀘스트는 언제나 환영합니다!
-
-## 📞 문의
-
-프로젝트 관련 문의사항은 이슈로 등록해주세요.
-
----
-
-**Last Updated**: 2026-01-08
-**Version**: 1.0.0 (MVP)
