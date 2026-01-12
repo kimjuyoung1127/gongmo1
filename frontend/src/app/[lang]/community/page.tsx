@@ -5,6 +5,7 @@ import { Post, CategoryType, User } from '@/components/CommunityPage/types';
 import { CategoryFilter } from '@/components/CommunityPage/CategoryFilter';
 import { PostList } from '@/components/CommunityPage/PostList';
 import { PointBadge } from '@/components/CommunityPage/PointBadge';
+import { ReportModal } from '@/components/CommunityPage/ReportModal';
 import { DesktopFloatingButton } from '@/components/materials/DesktopFloatingButton';
 import { useLang } from '@/contexts/DictionaryContext';
 
@@ -54,6 +55,7 @@ export default function CommunityPage() {
     const [posts, setPosts] = useState<Post[]>(MOCK_POSTS);
     const [selectedCategory, setSelectedCategory] = useState<CategoryType | 'ALL'>('ALL');
     const [earnedPoints, setEarnedPoints] = useState<number | null>(null);
+    const [reportingPostId, setReportingPostId] = useState<string | null>(null);
 
     // Filter Posts
     const filteredPosts = selectedCategory === 'ALL'
@@ -105,6 +107,21 @@ export default function CommunityPage() {
         alert(`Translate post ${postId} (Mock)`);
     };
 
+    const handleReport = (postId: string) => {
+        setReportingPostId(postId);
+    };
+
+    const splitReportSubmit = (reason: string) => {
+        // Mock backend call
+        console.log(`Reporting post ${reportingPostId} for reason: ${reason}`);
+
+        // Show success feedback
+        alert(`Post has been reported for: ${reason}`);
+
+        // Close modal
+        setReportingPostId(null);
+    };
+
     return (
         <div className="relative min-h-screen bg-gray-50 pt-14">
             {/* Header */}
@@ -126,11 +143,19 @@ export default function CommunityPage() {
                     onVote={handleVote}
                     onAddComment={handleAddComment}
                     onTranslate={handleTranslate}
+                    onReport={handleReport}
                 />
             </div>
 
             {/* Desktop Floating Button */}
             <DesktopFloatingButton href={`/${lang}/posts/new`} />
+
+            {/* Report Modal */}
+            <ReportModal
+                isOpen={!!reportingPostId}
+                onClose={() => setReportingPostId(null)}
+                onSubmit={splitReportSubmit}
+            />
         </div>
     );
 }
