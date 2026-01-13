@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowLeft, Menu, X, Home, FileText, Wrench, Settings } from 'lucide-react';
+import { ArrowLeft, Menu, X, Home, FileText, Wrench, User } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useLang } from '@/contexts/DictionaryContext';
@@ -26,7 +26,7 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
         { label: 'Home', href: `/${lang}`, icon: Home },
         { label: 'Community', href: `/${lang}/community`, icon: FileText },
         { label: 'Tools', href: `/${lang}/tools`, icon: Wrench },
-        { label: 'Settings', href: `/${lang}/settings`, icon: Settings },
+        { label: 'My Page', href: `/${lang}/mypage`, icon: User },
     ];
 
     const handleLogin = () => {
@@ -88,8 +88,8 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
                                 </button>
                             </div>
                         ) : (
-                            <button onClick={() => router.push(`/${lang}/login`)} className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-full transition-colors">
-                                Login
+                            <button onClick={() => router.push(`/${lang}/mypage`)} className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-full transition-colors">
+                                Login (MyPage)
                             </button>
                         )}
                         {rightElement}
@@ -149,10 +149,13 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
                                     </>
                                 ) : (
                                     <button
-                                        onClick={handleLogin}
+                                        onClick={() => {
+                                            setIsMenuOpen(false);
+                                            router.push(`/${lang}/mypage`);
+                                        }}
                                         className="w-full py-2.5 text-center text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors font-bold"
                                     >
-                                        Login
+                                        Login (Go to MyPage)
                                     </button>
                                 )}
                             </div>
