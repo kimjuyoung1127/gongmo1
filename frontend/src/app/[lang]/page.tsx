@@ -1,21 +1,35 @@
 'use client';
 
 import { FeatureCard } from '@/components/mainpage/FeatureCard';
+import { DailyBriefingModal } from '@/components/mainpage/DailyBriefingModal';
 import { useDictionary, useLang } from '@/contexts/DictionaryContext';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, Users, ScanText } from 'lucide-react';
+import { MessageSquare, Users, ScanText, Bell } from 'lucide-react';
+import { useState } from 'react';
 
 export default function MainPage() {
   const dict = useDictionary();
   const lang = useLang();
   const router = useRouter();
+  const [isBriefingOpen, setIsBriefingOpen] = useState(false);
 
   return (
     <div className="relative bg-gray-900 pt-20 flex flex-col h-[calc(100dvh-4rem-env(safe-area-inset-bottom))] md:h-screen">
+
+      {/* Red Notification Button (Toss Style Trigger) */}
+      <button
+        onClick={() => setIsBriefingOpen(true)}
+        className="absolute top-24 right-6 z-40 p-3 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg shadow-red-500/30 transition-transform active:scale-95 animate-bounce-subtle group"
+        aria-label="Daily Briefing"
+      >
+        <Bell size={24} fill="currentColor" className="group-hover:rotate-12 transition-transform" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-red-500" />
+      </button>
+
       <main className="container mx-auto px-4 h-full flex flex-col md:justify-center">
         {/* Mobile: Flex Column (Stretch) | Desktop: Grid (Centered, Fixed Size) */}
         <div className="flex flex-col h-full pb-6 gap-3 md:grid md:grid-cols-3 md:gap-8 md:h-auto md:pb-0 md:w-full md:max-w-6xl md:mx-auto">
-          
+
           {/* AI Manual Card */}
           <FeatureCard
             title={dict.dashboard.aiManual}
@@ -50,6 +64,11 @@ export default function MainPage() {
           />
         </div>
       </main>
+
+      <DailyBriefingModal
+        isOpen={isBriefingOpen}
+        onClose={() => setIsBriefingOpen(false)}
+      />
     </div>
   );
 }
