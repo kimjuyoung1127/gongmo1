@@ -18,6 +18,7 @@ from app.models import (
     User,
     Category,
     Post,
+    PostImage,
     Comment,
     Reaction,
 )
