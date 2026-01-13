@@ -95,6 +95,16 @@ graph TD
 - `post_id`: Integer (FK)
 - *(Composite PK: user_id + post_id)*
 
+
+### 1.6 Reports (신고 - New)
+*프론트엔드 연동: `ReportModal.tsx`*
+- `id`: Integer (PK)
+- `reporter_id`: Integer (FK -> Users.id)
+- `post_id`: Integer (FK -> Posts.id)
+- `reason`: String (신고 사유 Enum: 'sexual', 'spam', 'abusive', 'other')
+- `status`: String (상태: 'pending', 'resolved', 'dismissed')
+- `created_at`: DateTime
+
 ---
 
 ## 2. API 명세 (API Endpoints)
@@ -124,6 +134,7 @@ graph TD
 | Method | Endpoint | 설명 | Request Body | Response |
 | :--- | :--- | :--- | :--- | :--- |
 | `POST` | `/api/posts/{id}/like` | 게시글 좋아요 토글 | - | `{"liked": boolean, "count": int}` |
+| `POST` | `/api/posts/{id}/report` | 게시글 신고 | `reason` | `{"success": true}` |
 
 ---
 
@@ -159,4 +170,6 @@ class CommentResponse(BaseModel):
 
 ## 4. 프론트엔드 요구사항 요약
 1. **인증 미들웨어**: 모든 `POST`, `PUT`, `DELETE` 요청은 헤더에 `Authorization: Bearer {session_token}`이 포함되어야 하며, 백엔드는 이를 통해 `current_user`를 식별해야 합니다.
-2. **다국어 카테고리**: 카테고리 API는 가능한 모든 언어 버전을 내려주거나, 요청 헤더(`Accept-Language`)에 따라 적절한 언어를 내려주어야 합니다. (현재 프론트엔드는 모든 언어 데이터를 받아 클라이언트에서 선택하는 방식 선호)
+2. **다국어 카테고리**: 카테고리 API는 가능한 모든 언어 버전을 내려주거나, 요청 헤더(`Accept-Language`)에 따라 적절한 언어를 내려주어야 합니다.
+3. **퀵 액션 모달**: 우측 하단 플로팅 버튼 클릭 시, '장비 점검', '제품 문제' 등의 퀵 액션 카드와 '커뮤니티 글쓰기'를 포함한 풀스크린 모달(키오스크 모드)이 표시되어야 합니다.
+4. **신고 기능**: 게시글의 3점 메뉴를 통해 신고 팝업(`ReportModal`)을 호출하고, 선택된 사유를 백엔드로 전송해야 합니다.

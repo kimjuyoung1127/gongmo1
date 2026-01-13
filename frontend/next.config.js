@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'picsum.photos'],
   },
   async rewrites() {
     // BACKEND_URL 환경변수 필수 사용

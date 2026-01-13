@@ -41,8 +41,8 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
 
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 bg-gray-900 border-b border-gray-800 z-50 px-4 md:px-8 py-3">
-                <div className="flex items-center justify-between w-full">
+            <header className="fixed top-0 left-0 right-0 bg-gray-900 border-b border-gray-800 z-50 px-4 py-3">
+                <div className="flex items-center justify-between max-w-7xl mx-auto">
                     <div className="flex items-center gap-8">
                         <div className="flex items-center gap-3">
                             {showBack && (
@@ -53,17 +53,9 @@ export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, right
                                     <ArrowLeft size={24} />
                                 </button>
                             )}
-                            <div 
-                                className="flex items-center gap-2 cursor-pointer group" 
-                                onClick={() => router.push(`/${lang}`)}
-                            >
-                                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm group-hover:bg-blue-500 transition-colors">
-                                    W
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-base font-bold text-white leading-none">WeWorkHere</span>
-                                    {subtitle && <p className="text-[10px] text-blue-400 font-medium mt-0.5">{subtitle}</p>}
-                                </div>
+                            <div>
+                                <h1 className="text-lg font-bold text-white cursor-pointer" onClick={() => router.push(`/${lang}`)}>{title}</h1>
+                                {subtitle && <p className="text-xs text-blue-400 font-medium">{subtitle}</p>}
                             </div>
                         </div>
 

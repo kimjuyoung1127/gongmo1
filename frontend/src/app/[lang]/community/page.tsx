@@ -6,6 +6,7 @@ import { CategoryFilter } from '@/components/CommunityPage/CategoryFilter';
 import { PostList } from '@/components/CommunityPage/PostList';
 import { PointBadge } from '@/components/CommunityPage/PointBadge';
 import { ReportModal } from '@/components/CommunityPage/ReportModal';
+import { CompanyIssueList } from '@/components/CommunityPage/CompanyIssueList';
 import { DesktopFloatingButton } from '@/components/materials/DesktopFloatingButton';
 import { useLang } from '@/contexts/DictionaryContext';
 
@@ -51,12 +52,17 @@ const MOCK_POSTS: Post[] = [
 
 export default function CommunityPage() {
     const lang = useLang();
-    // State
+
+    // View State: 'ISSUES' (default) or 'BOARD'
+    const [currentView, setCurrentView] = useState<'ISSUES' | 'BOARD'>('ISSUES');
+
+    // Posts State (for Free Board)
     const [posts, setPosts] = useState<Post[]>(MOCK_POSTS);
     const [selectedCategory, setSelectedCategory] = useState<CategoryType | 'ALL'>('ALL');
     const [earnedPoints, setEarnedPoints] = useState<number | null>(null);
     const [reportingPostId, setReportingPostId] = useState<string | null>(null);
 
+    // ... (Keep existing handlers for Board) ...
     // Filter Posts
     const filteredPosts = selectedCategory === 'ALL'
         ? posts
@@ -112,45 +118,67 @@ export default function CommunityPage() {
     };
 
     const splitReportSubmit = (reason: string) => {
-        // Mock backend call
         console.log(`Reporting post ${reportingPostId} for reason: ${reason}`);
-
-        // Show success feedback
         alert(`Post has been reported for: ${reason}`);
-
-        // Close modal
         setReportingPostId(null);
     };
 
     return (
         <div className="relative min-h-screen bg-gray-50 pt-14">
             {/* Header */}
-            <div className="bg-white sticky top-14 z-10 border-b border-gray-100">
+            <div className="bg-white sticky top-0 z-10 border-b border-gray-100 shadow-sm">
                 <div className="flex justify-between items-center px-4 py-3">
-                    <h1 className="text-xl font-bold text-gray-900">Community</h1>
+                    <h1 className="text-xl font-bold text-gray-900">
+                        {currentView === 'ISSUES' ? '우리 회사 이슈' : '자유게시판'}
+                    </h1>
+
+                    {/* View Toggle Button */}
+                    <button
+                        onClick={() => setCurrentView(prev => prev === 'ISSUES' ? 'BOARD' : 'ISSUES')}
+                        className="px-4 py-2 bg-blue-50 text-blue-600 font-bold rounded-xl text-sm hover:bg-blue-100 transition-colors"
+                    >
+                        {currentView === 'ISSUES' ? '자유게시판 이동 >' : '< 회사 이슈 보기'}
+                    </button>
+
+                    {/* Points Badge (Only show in Board view or right side?) - keeping it right side if space allows, 
+                        or maybe hide in Issues view to keep it clean like the screenshot. 
+                        Let's keep it but conditionally rendering to avoid clutter if needed. */}
                     {earnedPoints && <PointBadge points={earnedPoints} />}
                 </div>
-                <CategoryFilter
-                    selectedCategory={selectedCategory}
-                    onSelectCategory={setSelectedCategory}
-                />
+
+                {/* Categories only show in Board view */}
+                {currentView === 'BOARD' && (
+                    <CategoryFilter
+                        selectedCategory={selectedCategory}
+                        onSelectCategory={setSelectedCategory}
+                    />
+                )}
             </div>
 
-            {/* List */}
-            <div className="pt-4">
-                <PostList
-                    posts={filteredPosts}
-                    onVote={handleVote}
-                    onAddComment={handleAddComment}
-                    onTranslate={handleTranslate}
-                    onReport={handleReport}
-                />
+            {/* Content Area */}
+            <div className="pt-2 pb-24">
+                {currentView === 'ISSUES' ? (
+                    <div className="animate-fade-in-up">
+                        {/* Intro Text or Banner could go here */}
+                        <CompanyIssueList />
+                    </div>
+                ) : (
+                    <div className="animate-fade-in-up">
+                        <PostList
+                            posts={filteredPosts}
+                            onVote={handleVote}
+                            onAddComment={handleAddComment}
+                            onTranslate={handleTranslate}
+                            onReport={handleReport}
+                        />
+                    </div>
+                )}
             </div>
 
-            {/* Desktop Floating Button */}
+            {/* Floating Action Button (QuickActionModal Trigger) - Always visible */}
             <DesktopFloatingButton href={`/${lang}/posts/new`} />
 
-            {/* Report Modal */}
+            {/* Report Modal (For Board Posts) */}
             <ReportModal
                 isOpen={!!reportingPostId}
                 onClose={() => setReportingPostId(null)}
