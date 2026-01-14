@@ -1,6 +1,6 @@
-# WeWorkHere Backend
+# LinkOn Backend
 
-FastAPI backend for WeWorkHere - 외국인 노동자 익명 커뮤니티 플랫폼
+FastAPI backend for LinkOn - 외국인 노동자 익명 커뮤니티 플랫폼
 
 ## Tech Stack
 
@@ -120,9 +120,9 @@ cp .env.example .env
 
 Required variables:
 ```env
-POSTGRES_USER=weworkhere_user
-POSTGRES_PASSWORD=weworkhere_password
-POSTGRES_DB=weworkhere_db
+POSTGRES_USER=linkon_user
+POSTGRES_PASSWORD=linkon_password
+POSTGRES_DB=linkon_db
 POSTGRES_SERVER=db
 BACKEND_PORT=25050
 ALLOWED_ORIGINS=http://localhost:24050
@@ -284,7 +284,7 @@ async def create_post(self, user_id: int, post_data: PostCreate) -> Post:
 ### Database connection errors
 - Check PostgreSQL is running
 - Verify DATABASE_URL in `.env`
-- Test connection: `psql -h localhost -U weworkhere_user -d weworkhere_db`
+- Test connection: `psql -h localhost -U linkon_user -d linkon_db`
 
 ### Migration errors
 - Check all models are imported in `alembic/env.py`
@@ -293,4 +293,4 @@ async def create_post(self, user_id: int, post_data: PostCreate) -> Post:
 
 ## License
 
-Proprietary - WeWorkHere Platform
+Proprietary - LinkOn Platform

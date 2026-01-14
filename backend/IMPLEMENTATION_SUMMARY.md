@@ -1,8 +1,8 @@
-# WeWorkHere Backend Implementation Summary
+# LinkOn Backend Implementation Summary
 
 ## Overview
 
-Complete FastAPI backend implementation for WeWorkHere (외국인 노동자 익명 커뮤니티) following strict 3-layer architecture patterns from the monorepo.
+Complete FastAPI backend implementation for LinkOn (외국인 노동자 익명 커뮤니티) following strict 3-layer architecture patterns from the monorepo.
 
 **Total Files Created**: 42 files
 
@@ -298,7 +298,7 @@ Maximized code reuse from existing projects:
 - ✅ Service layer structure
 - ✅ Type hints conventions
 
-### Adaptations for WeWorkHere:
+### Adaptations for LinkOn:
 - ❌ Removed Google OAuth (use anonymous session tokens)
 - ✅ Added multi-language category support
 - ✅ Session-based auth instead of JWT
@@ -308,7 +308,7 @@ Maximized code reuse from existing projects:
 
 ### 1. Database Migration
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere/backend
+cd /Users/mac/Desktop/homeserver/LinkOn/backend
 source venv/bin/activate
 alembic upgrade head
 ```
@@ -325,7 +325,7 @@ Create seed script to populate categories with Korean/English/Vietnamese/Nepali 
 Copy `.env.example` to `.env` and configure for development/production.
 
 ### 5. Docker Deployment
-Update root `docker-compose.yml` to include WeWorkHere services.
+Update root `docker-compose.yml` to include LinkOn services.
 
 ## Configuration
 

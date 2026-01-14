@@ -1,4 +1,4 @@
-# WeWorkHere Frontend - Deployment Checklist
+# LinkOn Frontend - Deployment Checklist
 
 ## Pre-Deployment Tasks
 
@@ -106,7 +106,7 @@
 
 ### Step 1: Install Dependencies
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere/frontend
+cd /Users/mac/Desktop/homeserver/LinkOn/frontend
 npm install
 ```
 
@@ -115,7 +115,7 @@ Expected output:
 - No vulnerabilities or warnings
 
 ### Step 2: Environment Variables
-Check `/Users/mac/Desktop/homeserver/WeWorkHere/.env`:
+Check `/Users/mac/Desktop/homeserver/LinkOn/.env`:
 ```env
 # Frontend variables
 NEXT_PUBLIC_API_URL=/api/v1
@@ -127,7 +127,7 @@ NODE_ENV=development
 ### Step 3: Backend Verification
 Ensure backend is running:
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere
+cd /Users/mac/Desktop/homeserver/LinkOn
 docker-compose ps | grep backend
 ```
 
@@ -135,7 +135,7 @@ Backend should be on port 25050.
 
 ### Step 4: Test Development Server
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere/frontend
+cd /Users/mac/Desktop/homeserver/LinkOn/frontend
 npm run dev
 ```
 
@@ -192,7 +192,7 @@ Visit: http://localhost:24050
 
 ### Step 1: Build Frontend
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere
+cd /Users/mac/Desktop/homeserver/LinkOn
 docker-compose build frontend
 ```
 
@@ -207,9 +207,9 @@ docker-compose ps
 ```
 
 All services should be "Up":
-- weworkhere_db_dev
-- weworkhere_backend_dev
-- weworkhere_frontend_dev
+- linkon_db_dev
+- linkon_backend_dev
+- linkon_frontend_dev
 
 ### Step 4: Check Logs
 ```bash
@@ -228,8 +228,8 @@ Visit: http://localhost:24050
 ### Update .env for Production
 ```env
 NODE_ENV=production
-NEXT_PUBLIC_API_URL=https://api-weworkhere.alldatabox.com/api/v1
-NEXT_PUBLIC_BASE_URL=https://weworkhere.alldatabox.com
+NEXT_PUBLIC_API_URL=https://api-linkon.alldatabox.com/api/v1
+NEXT_PUBLIC_BASE_URL=https://linkon.alldatabox.com
 ```
 
 ### Build Production Image

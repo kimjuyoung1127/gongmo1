@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "WeWorkHere - 외국인 노동자 커뮤니티",
+    "title": "LinkOn - 외국인 노동자 커뮤니티",
     "description": "외국인 노동자를 위한 익명 커뮤니티. 일자리, 생활, 비자 정보를 공유하세요."
   },
   "dashboard": {
@@ -63,7 +63,7 @@
     "deleteError": "댓글 삭제에 실패했습니다"
   },
   "login": {
-    "title": "WeWorkHere 로그인",
+    "title": "LinkOn 로그인",
     "subtitle": "익명 닉네임으로 시작하세요",
     "nickname": "닉네임",
     "nicknamePlaceholder": "닉네임을 입력하세요",

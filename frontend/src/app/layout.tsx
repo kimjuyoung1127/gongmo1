@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WeWorkHere - Foreign Workers Community",
+  title: "LinkON - Foreign Workers Community",
   description: "Anonymous community platform for foreign workers",
   icons: { icon: "/favicon.ico" },
 };

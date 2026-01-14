@@ -1,7 +1,7 @@
 # Frontend Structure Analysis & Roadmap
 
 **Date:** 2026-01-10
-**Project:** WeWorkHere (Frontend)
+**Project:** LinkOn (Frontend)
 **Based on:** `C:\Users\gmdqn\gongmo1\frontend`
 
 ## 1. Overview

@@ -1,4 +1,4 @@
-# CLAUDE.md - WeWorkHere
+# CLAUDE.md - LinkOn
 
 > AI 개발 도구(Claude Code)를 위한 프로젝트 가이드
 
@@ -43,7 +43,7 @@ alembic revision --autogenerate -m "description"
 
 ## 프로젝트 개요
 
-**WeWorkHere**는 한국에서 근무하는 외국인 노동자를 위한 익명 커뮤니티 플랫폼입니다.
+**LinkOn**는 한국에서 근무하는 외국인 노동자를 위한 익명 커뮤니티 플랫폼입니다.
 
 **주요 특징**:
 - 익명 닉네임 기반 인증 (전화번호 없음)
@@ -58,7 +58,7 @@ alembic revision --autogenerate -m "description"
 - Database: PostgreSQL 15-alpine
 - Deployment: Docker Compose on Mac Mini
 - Ports: Frontend 24050, Backend 25050, DB 5443 (external) / 5432 (internal)
-- Network: Custom bridge network (weworkhere_network)
+- Network: Custom bridge network (linkon_network)
 
 ---
 
@@ -67,7 +67,7 @@ alembic revision --autogenerate -m "description"
 ### 디렉토리 구조
 
 ```
-WeWorkHere/
+LinkOn/
 ├── .env                         # 환경 변수
 ├── docker-compose.yml           # Docker 설정
 ├── README.md                    # 프로젝트 개요
@@ -146,7 +146,7 @@ services:
   db:
     - 외부 접근: localhost:5443
     - 내부 포트: 5432 (컨테이너 내부)
-    - 네트워크: weworkhere_network (격리된 브리지 네트워크)
+    - 네트워크: linkon_network (격리된 브리지 네트워크)
 ```
 
 ### 환경 변수 패턴
@@ -164,9 +164,9 @@ DATABASE_URL=postgresql+asyncpg://user:pass@db:5432/dbname  # 내부 포트 5432
 
 ```bash
 # === Database Configuration ===
-POSTGRES_USER=weworkhere_user
+POSTGRES_USER=linkon_user
 POSTGRES_PASSWORD=your_secure_password_here
-POSTGRES_DB=weworkhere_db
+POSTGRES_DB=linkon_db
 POSTGRES_PORT=5443
 
 # === Application Ports ===
@@ -180,7 +180,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:24050
 
 # === Backend Environment Variables ===
 BACKEND_URL=http://backend:25050
-DATABASE_URL=postgresql+asyncpg://weworkhere_user:your_secure_password_here@db:5432/weworkhere_db
+DATABASE_URL=postgresql+asyncpg://linkon_user:your_secure_password_here@db:5432/linkon_db
 
 # === CORS Configuration ===
 ALLOWED_ORIGINS=http://localhost:24050
@@ -612,7 +612,7 @@ npm start
 origins = ["http://localhost:24050"]
 
 # 프로덕션 환경
-origins = ["https://weworkhere.alldatabox.com"]
+origins = ["https://linkon.alldatabox.com"]
 ```
 
 ---
@@ -700,10 +700,10 @@ docker-compose logs -f db
 # 컨테이너 내부 접속
 docker-compose exec backend bash
 docker-compose exec frontend sh
-docker-compose exec db psql -U weworkhere_user -d weworkhere_db
+docker-compose exec db psql -U linkon_user -d linkon_db
 
 # 네트워크 확인
-docker network inspect weworkhere_weworkhere_network
+docker network inspect linkon_linkon_network
 
 # 완전히 초기화 (데이터 삭제됨!)
 docker-compose down -v
@@ -714,10 +714,10 @@ docker-compose up -d --build
 
 ```bash
 # 호스트에서 접속
-psql -h localhost -p 5443 -U weworkhere_user -d weworkhere_db
+psql -h localhost -p 5443 -U linkon_user -d linkon_db
 
 # 또는 Docker 컨테이너를 통해
-docker-compose exec db psql -U weworkhere_user -d weworkhere_db
+docker-compose exec db psql -U linkon_user -d linkon_db
 
 # 유용한 SQL 명령어
 \dt                    # 테이블 목록

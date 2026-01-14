@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# WeWorkHere 프로덕션 배포 스크립트
-# 운영 환경: weworkhere.alldatabox.com
+# LinkOn 프로덕션 배포 스크립트
+# 운영 환경: linkon.alldatabox.com
 
 set -e
 
 echo "======================================"
-echo "WeWorkHere 프로덕션 배포"
+echo "LinkOn 프로덕션 배포"
 echo "======================================"
 echo ""
 
@@ -132,7 +132,7 @@ echo "✅ 배포 완료!"
 echo "======================================"
 echo ""
 echo "📍 서비스 URL:"
-echo "  프로덕션: https://weworkhere.alldatabox.com"
+echo "  프로덕션: https://linkon.alldatabox.com"
 echo "  로컬 확인: http://localhost:${FRONTEND_PORT}"
 echo "  Backend:   http://localhost:${BACKEND_PORT}/health"
 echo ""

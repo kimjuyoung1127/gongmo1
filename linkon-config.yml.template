@@ -14,11 +14,11 @@ heartbeat-count: 3
 
 ingress:
   # Backend API (must come first - more specific)
-  - hostname: weworkhere.alldatabox.com
+  - hostname: linkon.alldatabox.com
     path: /api/*
     service: http://localhost:25050
   # Frontend (less specific)
-  - hostname: weworkhere.alldatabox.com
+  - hostname: linkon.alldatabox.com
     service: http://localhost:24050
   # Catch-all
   - service: http_status:404

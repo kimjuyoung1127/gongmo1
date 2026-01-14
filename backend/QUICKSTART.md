@@ -1,11 +1,11 @@
-# WeWorkHere Backend - Quick Start Guide
+# LinkOn Backend - Quick Start Guide
 
 ## Immediate Setup (5 Minutes)
 
 ### Step 1: Install Dependencies
 
 ```bash
-cd /Users/mac/Desktop/homeserver/WeWorkHere/backend
+cd /Users/mac/Desktop/homeserver/LinkOn/backend
 
 # Create virtual environment
 python3 -m venv venv
@@ -25,7 +25,7 @@ cp .env.example .env
 
 # Edit .env if needed (defaults work for local dev)
 # Default values:
-# - Database: weworkhere_user/weworkhere_password/weworkhere_db
+# - Database: linkon_user/linkon_password/linkon_db
 # - Port: 25050
 # - CORS: http://localhost:24050
 ```
@@ -41,7 +41,7 @@ docker-compose up -d db
 **Option B - Local PostgreSQL**:
 ```bash
 # Create database
-createdb -U postgres weworkhere_db
+createdb -U postgres linkon_db
 
 # Update .env with your PostgreSQL credentials
 POSTGRES_SERVER=localhost
@@ -108,7 +108,7 @@ curl -X POST http://localhost:25050/api/v1/posts \
   -H "X-Session-Token: YOUR_TOKEN_HERE" \
   -d '{
     "title": "My First Post",
-    "content": "Hello WeWorkHere!"
+    "content": "Hello LinkOn!"
   }'
 ```
 
@@ -197,7 +197,7 @@ pg_isready -U postgres
 ### "Alembic migration failed"
 ```bash
 # Check database connection
-psql -h localhost -U weworkhere_user -d weworkhere_db
+psql -h localhost -U linkon_user -d linkon_db
 
 # Verify all models are imported in alembic/env.py
 # Try fresh migration
@@ -264,8 +264,8 @@ backend/
 ## Support
 
 - API Documentation: http://localhost:25050/docs (when running)
-- Full README: `/Users/mac/Desktop/homeserver/WeWorkHere/backend/README.md`
-- Implementation Summary: `/Users/mac/Desktop/homeserver/WeWorkHere/backend/IMPLEMENTATION_SUMMARY.md`
+- Full README: `/Users/mac/Desktop/homeserver/LinkOn/backend/README.md`
+- Implementation Summary: `/Users/mac/Desktop/homeserver/LinkOn/backend/IMPLEMENTATION_SUMMARY.md`
 
 ---
 

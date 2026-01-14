@@ -1,6 +1,6 @@
-# WeWorkHere 배포 가이드
+# LinkOn 배포 가이드
 
-> weworkhere.alldatabox.com 배포 절차
+> linkon.alldatabox.com 배포 절차
 
 ---
 
@@ -48,7 +48,7 @@ POSTGRES_PASSWORD=your_secure_db_password_here
 ### 3.1 Tunnel 생성
 ```bash
 # Tunnel 생성
-cloudflared tunnel create weworkhere-tunnel
+cloudflared tunnel create linkon-tunnel
 
 # 출력된 Tunnel ID를 기록해두세요
 # 예: a1b2c3d4-e5f6-7890-abcd-ef1234567890
@@ -57,25 +57,25 @@ cloudflared tunnel create weworkhere-tunnel
 ### 3.2 DNS 라우팅 설정
 ```bash
 # DNS CNAME 레코드 생성
-cloudflared tunnel route dns weworkhere-tunnel weworkhere.alldatabox.com
+cloudflared tunnel route dns linkon-tunnel linkon.alldatabox.com
 ```
 
 ### 3.3 Tunnel 설정 파일 생성
 ```bash
 # 템플릿 복사
-cp weworkhere-config.yml.template ~/.cloudflared/weworkhere-config.yml
+cp linkon-config.yml.template ~/.cloudflared/linkon-config.yml
 
 # YOUR_TUNNEL_ID_HERE를 실제 Tunnel ID로 변경
 # macOS
-sed -i '' 's/YOUR_TUNNEL_ID_HERE/실제_Tunnel_ID/g' ~/.cloudflared/weworkhere-config.yml
+sed -i '' 's/YOUR_TUNNEL_ID_HERE/실제_Tunnel_ID/g' ~/.cloudflared/linkon-config.yml
 
 # Linux
-sed -i 's/YOUR_TUNNEL_ID_HERE/실제_Tunnel_ID/g' ~/.cloudflared/weworkhere-config.yml
+sed -i 's/YOUR_TUNNEL_ID_HERE/실제_Tunnel_ID/g' ~/.cloudflared/linkon-config.yml
 ```
 
 **또는 수동으로 편집:**
 ```bash
-nano ~/.cloudflared/weworkhere-config.yml
+nano ~/.cloudflared/linkon-config.yml
 ```
 
 ---
@@ -104,8 +104,8 @@ docker-compose logs -f db
 docker-compose ps
 
 # Health check 확인
-docker inspect weworkhere_frontend | grep -A 5 Health
-docker inspect weworkhere_backend | grep -A 5 Health
+docker inspect linkon_frontend | grep -A 5 Health
+docker inspect linkon_backend | grep -A 5 Health
 
 # 로컬 접속 테스트
 curl http://localhost:24050
@@ -119,13 +119,13 @@ curl http://localhost:25050/health
 ### 5.1 Tunnel 서비스 시작
 ```bash
 # 포그라운드 실행 (테스트용)
-cloudflared tunnel --config ~/.cloudflared/weworkhere-config.yml run weworkhere-tunnel
+cloudflared tunnel --config ~/.cloudflared/linkon-config.yml run linkon-tunnel
 
 # 백그라운드 실행
-nohup cloudflared tunnel --config ~/.cloudflared/weworkhere-config.yml run weworkhere-tunnel > ~/.cloudflared/weworkhere.log 2>&1 &
+nohup cloudflared tunnel --config ~/.cloudflared/linkon-config.yml run linkon-tunnel > ~/.cloudflared/linkon.log 2>&1 &
 
 # 로그 확인
-tail -f ~/.cloudflared/weworkhere.log
+tail -f ~/.cloudflared/linkon.log
 ```
 
 ### 5.2 Tunnel 서비스 등록 (선택사항 - macOS launchd)
@@ -154,15 +154,15 @@ curl http://localhost:25050/api/v1/categories
 ### 6.2 공개 URL 테스트
 ```bash
 # Frontend
-curl https://weworkhere.alldatabox.com
+curl https://linkon.alldatabox.com
 
 # Backend API
-curl https://weworkhere.alldatabox.com/api/v1/health
-curl https://weworkhere.alldatabox.com/api/v1/categories
+curl https://linkon.alldatabox.com/api/v1/health
+curl https://linkon.alldatabox.com/api/v1/categories
 ```
 
 ### 6.3 브라우저 테스트
-- https://weworkhere.alldatabox.com
+- https://linkon.alldatabox.com
 - 한국어, 영어, 베트남어, 네팔어 전환 확인
 - 게시글 작성/조회 테스트
 - 댓글 작성/삭제 테스트
@@ -197,7 +197,7 @@ docker-compose restart backend
 ### 7.3 데이터베이스 마이그레이션
 ```bash
 # Backend 컨테이너 진입
-docker exec -it weworkhere_backend bash
+docker exec -it linkon_backend bash
 
 # 마이그레이션 실행
 alembic upgrade head
@@ -218,7 +218,7 @@ docker-compose logs --tail=100
 docker-compose logs -f backend
 
 # Cloudflare Tunnel 로그
-tail -f ~/.cloudflared/weworkhere.log
+tail -f ~/.cloudflared/linkon.log
 ```
 
 ---
@@ -235,7 +235,7 @@ docker-compose logs backend
 docker-compose logs frontend
 
 # 네트워크 확인
-docker network inspect weworkhere_network
+docker network inspect linkon_network
 docker network inspect shared_db_network
 ```
 
@@ -248,20 +248,20 @@ docker-compose ps db
 docker-compose logs db
 
 # DB 직접 접속 테스트
-docker exec -it weworkhere_db psql -U weworkhere_user -d weworkhere_db
+docker exec -it linkon_db psql -U linkon_user -d linkon_db
 ```
 
 ### 8.3 Cloudflare Tunnel 연결 안 됨
 ```bash
 # Tunnel 상태 확인
-cloudflared tunnel info weworkhere-tunnel
+cloudflared tunnel info linkon-tunnel
 
 # DNS 레코드 확인
-cloudflared tunnel route ip show weworkhere-tunnel
+cloudflared tunnel route ip show linkon-tunnel
 
 # Tunnel 재시작
 pkill cloudflared
-cloudflared tunnel --config ~/.cloudflared/weworkhere-config.yml run weworkhere-tunnel
+cloudflared tunnel --config ~/.cloudflared/linkon-config.yml run linkon-tunnel
 ```
 
 ### 8.4 포트 충돌
@@ -288,7 +288,7 @@ kill -9 <PID>
 ```bash
 # Credentials 파일 권한 설정
 chmod 600 ~/.cloudflared/*.json
-chmod 600 ~/.cloudflared/weworkhere-config.yml
+chmod 600 ~/.cloudflared/linkon-config.yml
 ```
 
 ---
@@ -297,16 +297,16 @@ chmod 600 ~/.cloudflared/weworkhere-config.yml
 
 ### 10.1 컨테이너 리소스 사용량
 ```bash
-docker stats weworkhere_frontend weworkhere_backend weworkhere_db
+docker stats linkon_frontend linkon_backend linkon_db
 ```
 
 ### 10.2 디스크 사용량
 ```bash
 # Docker 볼륨 확인
-docker volume ls | grep weworkhere
+docker volume ls | grep linkon
 
 # 볼륨 상세 정보
-docker volume inspect gongmo1_weworkhere_postgres_data
+docker volume inspect gongmo1_linkon_postgres_data
 ```
 
 ### 10.3 Health Check
@@ -326,22 +326,22 @@ done
 ### 11.1 데이터베이스 백업
 ```bash
 # 백업 디렉토리 생성
-mkdir -p ~/backups/weworkhere
+mkdir -p ~/backups/linkon
 
 # 데이터베이스 덤프
-docker exec weworkhere_db pg_dump -U weworkhere_user weworkhere_db > ~/backups/weworkhere/backup_$(date +%Y%m%d_%H%M%S).sql
+docker exec linkon_db pg_dump -U linkon_user linkon_db > ~/backups/linkon/backup_$(date +%Y%m%d_%H%M%S).sql
 
 # 압축
-gzip ~/backups/weworkhere/backup_*.sql
+gzip ~/backups/linkon/backup_*.sql
 ```
 
 ### 11.2 데이터베이스 복구
 ```bash
 # 압축 해제
-gunzip ~/backups/weworkhere/backup_YYYYMMDD_HHMMSS.sql.gz
+gunzip ~/backups/linkon/backup_YYYYMMDD_HHMMSS.sql.gz
 
 # 복구
-docker exec -i weworkhere_db psql -U weworkhere_user weworkhere_db < ~/backups/weworkhere/backup_YYYYMMDD_HHMMSS.sql
+docker exec -i linkon_db psql -U linkon_user linkon_db < ~/backups/linkon/backup_YYYYMMDD_HHMMSS.sql
 ```
 
 ---
@@ -365,10 +365,10 @@ docker-compose logs -f
 docker-compose ps && curl http://localhost:25050/health
 
 # Tunnel 시작
-cloudflared tunnel --config ~/.cloudflared/weworkhere-config.yml run weworkhere-tunnel
+cloudflared tunnel --config ~/.cloudflared/linkon-config.yml run linkon-tunnel
 
 # 백업
-docker exec weworkhere_db pg_dump -U weworkhere_user weworkhere_db | gzip > ~/backups/weworkhere/backup_$(date +%Y%m%d).sql.gz
+docker exec linkon_db pg_dump -U linkon_user linkon_db | gzip > ~/backups/linkon/backup_$(date +%Y%m%d).sql.gz
 ```
 
 ---

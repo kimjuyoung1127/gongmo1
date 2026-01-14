@@ -12,7 +12,7 @@ from app.routers import (
 )
 
 app = FastAPI(
-    title="WeWorkHere API",
+    title="LinkOn API",
     description="외국인 노동자 익명 커뮤니티 플랫폼 API",
     version="1.0.0",
 )

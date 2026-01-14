@@ -7,7 +7,7 @@ router = APIRouter(tags=["Health"])
 async def root():
     """루트 엔드포인트"""
     return {
-        "message": "WeWorkHere API is running",
+        "message": "LinkOn API is running",
         "status": "healthy",
         "version": "1.0.0",
     }
@@ -18,5 +18,5 @@ async def health_check():
     """헬스 체크 엔드포인트"""
     return {
         "status": "healthy",
-        "service": "WeWorkHere API",
+        "service": "LinkOn API",
     }

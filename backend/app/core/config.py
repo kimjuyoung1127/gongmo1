@@ -5,9 +5,9 @@ from typing import List
 
 class Settings(BaseSettings):
     # Database
-    POSTGRES_USER: str = "weworkhere_user"
-    POSTGRES_PASSWORD: str = "weworkhere_password"
-    POSTGRES_DB: str = "weworkhere_db"
+    POSTGRES_USER: str = "linkon_user"
+    POSTGRES_PASSWORD: str = "linkon_password"
+    POSTGRES_DB: str = "linkon_db"
     POSTGRES_SERVER: str = "db"
     DB_PORT: int = 5432
 
