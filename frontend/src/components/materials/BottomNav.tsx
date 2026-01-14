@@ -1,6 +1,6 @@
 'use client';
 
-import { Home, FileText, Wrench, Settings } from 'lucide-react';
+import { Home, FileText, Wrench, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useLang } from '@/contexts/DictionaryContext';
@@ -14,8 +14,8 @@ export const BottomNav = () => {
         { icon: Home, label: 'Home', href: `/${lang}` },
         { icon: FileText, label: 'Community', href: `/${lang}/community` },
         { isFab: true, href: `/${lang}/posts/new` },
-        { icon: Wrench, label: 'Tools', href: `/${lang}/tools` },
-        { icon: Settings, label: 'Settings', href: `/${lang}/settings` },
+        { icon: Wrench, label: 'OCR', href: `/${lang}/ocr` },
+        { icon: User, label: 'My Page', href: `/${lang}/mypage` },
     ];
 
     const isCommunityPage = pathname.includes('/community');
@@ -33,7 +33,7 @@ export const BottomNav = () => {
 
                     // Type guard for non-fab items
                     if (!item.icon || !item.label) return null;
-                    
+
                     const Icon = item.icon;
                     const isActive = pathname === item.href;
                     return (

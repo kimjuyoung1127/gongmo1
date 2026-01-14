@@ -74,7 +74,7 @@ export default function LoginPage() {
         <div className="space-y-6">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900">로그인</h1>
-            <p className="text-gray-600 mt-2">WeWorkHere에 오신 것을 환영합니다</p>
+            <p className="text-gray-600 mt-2">LinkON에 오신 것을 환영합니다</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">

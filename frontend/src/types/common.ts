@@ -9,4 +9,4 @@ export interface PaginationParams {
   category_id?: number;
 }
 
-export type Locale = 'ko' | 'en' | 'vi' | 'ne';
+export type Locale = 'ko' | 'en' | 'vi' | 'ne' | 'km';

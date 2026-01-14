@@ -24,7 +24,7 @@ export interface AnonymousLoginRequest {
 
 export interface UserUpdateRequest {
   nickname?: string;
-  preferred_language?: 'ko' | 'en' | 'vi' | 'ne';
+  preferred_language?: 'ko' | 'en' | 'vi' | 'ne' | 'km';
 }
 
 export interface AuthResponse {

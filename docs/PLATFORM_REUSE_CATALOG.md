@@ -1,10 +1,10 @@
-# PLATFORM REUSE CATALOG - WeWorkHere
+# PLATFORM REUSE CATALOG - LinkON
 
 > 외국인 노동자 익명 커뮤니티 플랫폼의 재사용 가능한 코드 카탈로그
 
 ## 프로젝트 개요
 
-**Domain**: weworkhere.alldatabox.com (예정)
+**Domain**: linkon.alldatabox.com (예정)
 **Ports**: Frontend 24050, Backend 25050, Database 5443
 **Tech Stack**: Next.js 14, TypeScript, FastAPI, PostgreSQL
 **Purpose**: 외국인 노동자를 위한 익명 게시판 커뮤니티 (다국어 지원)
@@ -337,7 +337,7 @@ async def get_current_user(
 - ✅ apiClient interceptor (토큰 주입)
 - ✅ Card, Badge atoms
 
-### Unique to WeWorkHere
+### Unique to LinkON
 - PostCard, CommentItem molecules (커뮤니티 특화)
 - PostList, PostForm, CommentSection organisms
 - Category 다국어 모델 (name_ko, name_en, name_vi, name_ne)

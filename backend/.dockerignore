@@ -27,5 +27,5 @@ coverage.xml
 .DS_Store
 .env
 .env.local
-alembic/versions/*.py
+# alembic/versions/*.py  # 마이그레이션 파일은 포함해야 함
 !alembic/versions/__init__.py

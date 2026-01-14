@@ -6,9 +6,10 @@ interface PostListProps {
     onVote: (pollId: string, optionId: string) => void;
     onAddComment: (postId: string, content: string) => void;
     onTranslate: (postId: string) => void;
+    onReport: (postId: string) => void;
 }
 
-export function PostList({ posts, onVote, onAddComment, onTranslate }: PostListProps) {
+export function PostList({ posts, onVote, onAddComment, onTranslate, onReport }: PostListProps) {
     if (posts.length === 0) {
         return (
             <div className="text-center py-10 text-gray-500">
@@ -26,6 +27,7 @@ export function PostList({ posts, onVote, onAddComment, onTranslate }: PostListP
                     onVote={onVote}
                     onAddComment={onAddComment}
                     onTranslate={onTranslate}
+                    onReport={onReport}
                 />
             ))}
         </div>

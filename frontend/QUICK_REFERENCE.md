@@ -1,46 +1,46 @@
-# WeWorkHere Frontend - Quick Reference
+# LinkON Frontend - Quick Reference
 
 ## Essential File Paths
 
 ### Configuration
 ```
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/package.json
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/tsconfig.json
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/next.config.js
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/tailwind.config.js
+/Users/mac/Desktop/homeserver/LinkON/frontend/package.json
+/Users/mac/Desktop/homeserver/LinkON/frontend/tsconfig.json
+/Users/mac/Desktop/homeserver/LinkON/frontend/next.config.js
+/Users/mac/Desktop/homeserver/LinkON/frontend/tailwind.config.js
 ```
 
 ### Core Services
 ```
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/services/apiClient.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/services/authService.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/services/postService.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/services/commentService.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/services/categoryService.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/services/apiClient.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/services/authService.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/services/postService.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/services/commentService.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/services/categoryService.ts
 ```
 
 ### Hooks
 ```
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/hooks/useAuth.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/hooks/usePosts.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/hooks/usePost.ts
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/hooks/useComments.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/hooks/useAuth.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/hooks/usePosts.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/hooks/usePost.ts
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/hooks/useComments.ts
 ```
 
 ### Main Pages
 ```
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/app/[lang]/page.tsx          # Homepage
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/app/[lang]/login/page.tsx   # Login
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/app/[lang]/posts/new/page.tsx    # New Post
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/app/[lang]/posts/[id]/page.tsx   # Post Detail
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/app/[lang]/page.tsx          # Homepage
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/app/[lang]/login/page.tsx   # Login
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/app/[lang]/posts/new/page.tsx    # New Post
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/app/[lang]/posts/[id]/page.tsx   # Post Detail
 ```
 
 ### Key Organisms
 ```
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/components/organisms/Header.tsx
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/components/organisms/PostList.tsx
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/components/organisms/PostForm.tsx
-/Users/mac/Desktop/homeserver/WeWorkHere/frontend/src/components/organisms/CommentSection.tsx
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/components/organisms/Header.tsx
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/components/organisms/PostList.tsx
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/components/organisms/PostForm.tsx
+/Users/mac/Desktop/homeserver/LinkON/frontend/src/components/organisms/CommentSection.tsx
 ```
 
 ## Key Code Snippets
@@ -101,8 +101,8 @@ NEXT_PUBLIC_BASE_URL=http://localhost:24050
 
 ### Production (.env)
 ```
-NEXT_PUBLIC_API_URL=https://api-weworkhere.alldatabox.com/api/v1
-NEXT_PUBLIC_BASE_URL=https://weworkhere.alldatabox.com
+NEXT_PUBLIC_API_URL=https://api-linkon.alldatabox.com/api/v1
+NEXT_PUBLIC_BASE_URL=https://linkon.alldatabox.com
 ```
 
 ## Common Commands
@@ -233,7 +233,7 @@ Response: Category[]
 
 ```bash
 # Navigate to frontend
-cd /Users/mac/Desktop/homeserver/WeWorkHere/frontend
+cd /Users/mac/Desktop/homeserver/LinkON/frontend
 
 # Navigate to components
 cd src/components/atoms

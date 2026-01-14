@@ -8,22 +8,30 @@ export function formatDate(dateString: string, locale: string = 'ko'): string {
   const DAY = HOUR * 24;
 
   if (diffInSeconds < MINUTE) {
-    return locale === 'ko' ? '방금 전' : 'Just now';
+    if (locale === 'ko') return '방금 전';
+    if (locale === 'km') return 'មួយភ្លែតមុន';
+    return 'Just now';
   }
 
   if (diffInSeconds < HOUR) {
     const minutes = Math.floor(diffInSeconds / MINUTE);
-    return locale === 'ko' ? `${minutes}분 전` : `${minutes}m ago`;
+    if (locale === 'ko') return `${minutes}분 전`;
+    if (locale === 'km') return `${minutes} នាទីមុន`;
+    return `${minutes}m ago`;
   }
 
   if (diffInSeconds < DAY) {
     const hours = Math.floor(diffInSeconds / HOUR);
-    return locale === 'ko' ? `${hours}시간 전` : `${hours}h ago`;
+    if (locale === 'ko') return `${hours}시간 전`;
+    if (locale === 'km') return `${hours} ម៉ោងមុន`;
+    return `${hours}h ago`;
   }
 
   if (diffInSeconds < DAY * 7) {
     const days = Math.floor(diffInSeconds / DAY);
-    return locale === 'ko' ? `${days}일 전` : `${days}d ago`;
+    if (locale === 'ko') return `${days}일 전`;
+    if (locale === 'km') return `${days} ថ្ងៃមុន`;
+    return `${days}d ago`;
   }
 
   return date.toLocaleDateString(locale, {

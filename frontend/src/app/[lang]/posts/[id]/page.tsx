@@ -44,6 +44,7 @@ export default function PostDetailPage() {
       case 'en': return category.name_en;
       case 'vi': return category.name_vi;
       case 'ne': return category.name_ne;
+      case 'km': return category.name_km;
       default: return category.name_en;
     }
   };

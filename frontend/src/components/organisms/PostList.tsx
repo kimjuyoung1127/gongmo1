@@ -39,6 +39,7 @@ export const PostList = memo<PostListProps>(({
       case 'en': return category.name_en;
       case 'vi': return category.name_vi;
       case 'ne': return category.name_ne;
+      case 'km': return category.name_km;
       default: return category.name_en;
     }
   };
@@ -58,7 +59,11 @@ export const PostList = memo<PostListProps>(({
   if (posts.length === 0) {
     return (
       <Alert variant="info">
-        {lang === 'ko' ? '게시글이 없습니다' : 'No posts available'}
+        {lang === 'ko'
+          ? '게시글이 없습니다'
+          : lang === 'km'
+          ? 'មិនមានប្រកាស'
+          : 'No posts available'}
       </Alert>
     );
   }

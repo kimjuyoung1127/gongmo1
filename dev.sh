@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# WeWorkHere 개발 서버 관리 스크립트
+# LinkON 개발 서버 관리 스크립트
 # DB + Backend: Docker, Frontend: Local
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
@@ -131,7 +131,7 @@ case "$1" in
     ;;
 
   help)
-    echo "WeWorkHere 개발 서버 관리"
+    echo "LinkON 개발 서버 관리"
     echo ""
     echo "구조: DB + Backend (Docker) | Frontend (Local)"
     echo ""
