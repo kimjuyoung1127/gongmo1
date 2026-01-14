@@ -6,6 +6,7 @@ class CategoryCreate(BaseModel):
     name_en: str = Field(..., max_length=50)
     name_vi: str = Field(..., max_length=50)
     name_ne: str = Field(..., max_length=50)
+    name_km: str = Field(..., max_length=50)
     slug: str = Field(..., max_length=50)
 
 
@@ -15,6 +16,7 @@ class CategoryResponse(BaseModel):
     name_en: str
     name_vi: str
     name_ne: str
+    name_km: str
     slug: str
 
     class Config:

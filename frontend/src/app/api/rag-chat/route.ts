@@ -1,3 +1,10 @@
+import { NextResponse } from "next/server";
+
+// Temporary placeholder - implement when OpenAI integration is ready
+export async function POST() {
+  return NextResponse.json({ error: "Not implemented yet" }, { status: 501 });
+}
+
 // import { NextResponse } from "next/server";
 // import { openai } from "@/lib/openai";
 // import { buildContext, buildSystemPrompt } from "@/lib/rag/prompt";

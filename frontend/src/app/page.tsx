@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function LanguageSelectPage() {
   const router = useRouter();
 
-  const selectLang = (lang: "ko" | "en" | "vi") => {
+  const selectLang = (lang: "ko" | "en" | "vi" | "ne" | "km") => {
     router.push(`/${lang}`);
   };
 
@@ -34,6 +34,18 @@ export default function LanguageSelectPage() {
             className="w-full py-3 rounded-xl bg-orange-600 text-white font-bold"
           >
             Tiếng Việt
+          </button>
+          <button
+            onClick={() => selectLang("ne")}
+            className="w-full py-3 rounded-xl bg-purple-600 text-white font-bold"
+          >
+            नेपाली
+          </button>
+          <button
+            onClick={() => selectLang("km")}
+            className="w-full py-3 rounded-xl bg-amber-600 text-white font-bold"
+          >
+            ខ្មែរ
           </button>
         </div>
       </div>

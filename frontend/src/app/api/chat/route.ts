@@ -21,6 +21,8 @@ function systemPrompt(lang: string, section: RagSection) {
       ? "답변은 한국어로 해."
       : lang === "vi"
       ? "Trả lời bằng tiếng Việt."
+      : lang === "km"
+      ? "សូមឆ្លើយជាភាសាខ្មែរ។"
       : lang === "en"
       ? "Answer in English."
       : "Answer in the user's language.";

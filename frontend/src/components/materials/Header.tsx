@@ -82,14 +82,19 @@ export const Header = ({ title = 'LinkON', subtitle, showBack = false, rightElem
                         <LanguageSelector className="scale-90" />
                         {isAuthenticated ? (
                             <div className="flex items-center gap-3">
-                                <span className="text-sm text-gray-300">{user?.nickname}</span>
+                                <Link
+                                    href={`/${lang}/mypage`}
+                                    className="text-sm text-gray-300 hover:text-white transition-colors"
+                                >
+                                    {user?.nickname}
+                                </Link>
                                 <button onClick={logout} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
                                     Logout
                                 </button>
                             </div>
                         ) : (
-                            <button onClick={() => router.push(`/${lang}/mypage`)} className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-full transition-colors">
-                                Login (MyPage)
+                            <button onClick={() => router.push(`/${lang}/login`)} className="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-full transition-colors">
+                                Login
                             </button>
                         )}
                         {rightElement}
@@ -134,12 +139,16 @@ export const Header = ({ title = 'LinkON', subtitle, showBack = false, rightElem
                             <div className="flex flex-col gap-3">
                                 {isAuthenticated ? (
                                     <>
-                                        <div className="flex items-center gap-3 bg-gray-800 rounded-lg p-3">
+                                        <Link
+                                            href={`/${lang}/mypage`}
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="flex items-center gap-3 bg-gray-800 rounded-lg p-3"
+                                        >
                                             {user?.avatarUrl && (
                                                 <img src={user.avatarUrl} alt="" className="w-8 h-8 rounded-full bg-gray-700" />
                                             )}
                                             <span className="text-white font-medium">{user?.nickname || 'User'}</span>
-                                        </div>
+                                        </Link>
                                         <button
                                             onClick={handleLogout}
                                             className="w-full py-2.5 text-center text-white bg-red-600/20 hover:bg-red-600/30 border border-red-600/50 rounded-lg transition-colors font-medium"
@@ -151,11 +160,11 @@ export const Header = ({ title = 'LinkON', subtitle, showBack = false, rightElem
                                     <button
                                         onClick={() => {
                                             setIsMenuOpen(false);
-                                            router.push(`/${lang}/mypage`);
+                                            router.push(`/${lang}/login`);
                                         }}
                                         className="w-full py-2.5 text-center text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors font-bold"
                                     >
-                                        Login (Go to MyPage)
+                                        Login
                                     </button>
                                 )}
                             </div>

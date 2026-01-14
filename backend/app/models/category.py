@@ -11,6 +11,7 @@ class Category(Base):
     name_en = Column(String(50), nullable=False)
     name_vi = Column(String(50), nullable=False)
     name_ne = Column(String(50), nullable=False)
+    name_km = Column(String(50), nullable=False)
     slug = Column(String(50), unique=True, nullable=False, index=True)
 
     # Relationships

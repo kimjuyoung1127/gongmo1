@@ -4,5 +4,6 @@ export interface Category {
   name_en: string;
   name_vi: string;
   name_ne: string;
+  name_km: string;
   slug: string;
 }

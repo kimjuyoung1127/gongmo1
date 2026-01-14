@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SUPPORTED_LOCALES = ["ko", "en", "vi", "ne"] as const;
+const SUPPORTED_LOCALES = ["ko", "en", "vi", "ne", "km"] as const;
 type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 const DEFAULT_LOCALE: Locale = "ko";

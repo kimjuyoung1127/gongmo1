@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { useLang } from '@/contexts/DictionaryContext';
@@ -10,22 +10,17 @@ import { MenuSection } from '@/components/Mypage/MenuSection';
 import { LanguageModal } from '@/components/Mypage/LanguageModal';
 import { Locale } from '@/types/common';
 
-import { useEffect } from 'react';
-
 export default function Mypage() {
     const lang = useLang();
     const router = useRouter();
     const { user, logout, isAuthenticated, loading } = useAuth();
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
 
-    // Auth check commented out for fast development
-    /*
     useEffect(() => {
         if (!loading && !isAuthenticated) {
             router.push(`/${lang}/login`);
         }
     }, [loading, isAuthenticated, lang, router]);
-    */
 
     const handleEditProfile = () => {
         // Implement edit profile logic or navigation
@@ -46,7 +41,6 @@ export default function Mypage() {
         }
     };
 
-    /*
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -54,16 +48,9 @@ export default function Mypage() {
             </div>
         );
     }
-    */
-
-    // Mock User for Dev if real user is missing
-    const displayUser = user || {
-        nickname: '개발자(Dev)',
-        avatarUrl: '',
-        preferred_language: 'ko'
-    };
-
-    // if (!user) return null; // Bypass null check
+    if (!isAuthenticated || !user) {
+        return null;
+    }
 
     return (
         <div className="h-screen overflow-hidden bg-gray-50 pt-20">
@@ -71,12 +58,12 @@ export default function Mypage() {
                 <h1 className="text-2xl font-extrabold text-gray-900 mb-6 px-2">마이페이지</h1>
 
                 <ProfileSection
-                    user={displayUser}
+                    user={user}
                     onEdit={handleEditProfile}
                 />
 
                 <ActivitySummary
-                    userName={displayUser.nickname}
+                    userName={user.nickname}
                     points={1250}
                 />
 

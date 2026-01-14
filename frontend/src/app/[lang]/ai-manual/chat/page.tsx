@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 type Section = "bom" | "product-guide" | "sop" | "policy" | "wiki";
@@ -14,7 +14,7 @@ const SECTION_LABEL: Record<Section, string> = {
   wiki: "현장 용어 위키",
 };
 
-export default function SectionChatPage() {
+function ChatContent() {
   const router = useRouter();
   const params = useParams<{ lang: string }>();
   const lang = params.lang ?? "ko";
@@ -34,42 +34,40 @@ export default function SectionChatPage() {
   const title = useMemo(() => SECTION_LABEL[section] ?? "챗봇", [section]);
 
   const goBack = () => router.push(`/${lang}/ai-manual/menu`);
-  const goConfirm = () => router.push(`/${lang}/ai-manual/menu`); // 요청하신 구조: 확인 누르면 메뉴로
+  const goConfirm = () => router.push(`/${lang}/ai-manual/menu`);
 
   async function send() {
     const text = input.trim();
     if (!text || loading) return;
-
-    const nextMsgs: Msg[] = [...messages, { role: "user", content: text }];
-    setMessages(nextMsgs);
     setInput("");
     setLoading(true);
 
+    const userMsg: Msg = { role: "user", content: text };
+    setMessages((prev) => [...prev, userMsg]);
+
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/api/rag-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          section,
-          lang,
-          messages: nextMsgs.map((m) => ({ role: m.role, content: m.content })),
-        }),
+        body: JSON.stringify({ message: text, section, topK: 5 }),
       });
+      const data = await res.json();
 
-      const data = (await res.json()) as { text?: string; error?: string };
-      if (!res.ok) throw new Error(data.error ?? "API error");
-
+      if (res.ok) {
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: data.answer ?? "답변을 생성하지 못했습니다." },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: `❌ 오류: ${data.error ?? res.statusText}` },
+        ]);
+      }
+    } catch (err: any) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.text ?? "" },
-      ]);
-    } catch (e: any) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: `오류가 발생했습니다: ${e?.message ?? "unknown"}`,
-        },
+        { role: "assistant", content: `❌ 통신 오류: ${err.message}` },
       ]);
     } finally {
       setLoading(false);
@@ -77,90 +75,82 @@ export default function SectionChatPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center p-3">
-      <div className="w-full max-w-5xl bg-white rounded-2xl shadow-sm overflow-hidden">
-        {/* Top bar */}
-        <div className="flex items-center justify-between p-4 border-b bg-white">
-          <button
-            onClick={goBack}
-            className="rounded-lg bg-slate-100 px-3 py-2 hover:bg-slate-200 transition"
-            aria-label="뒤로가기"
-          >
-            ←
-          </button>
-
-          <div className="text-center">
-            <div className="font-extrabold text-slate-900">{title}</div>
-            <div className="text-xs text-slate-500">
-              언어: {lang.toUpperCase()} · 섹션: {section}
-            </div>
-          </div>
-
-          <button
-            onClick={() => setMessages([{ role: "assistant", content: `대화를 초기화했습니다.  "${title}" 질문을 다시 입력해주세요.` }])}
-            className="rounded-lg bg-slate-100 px-3 py-2 hover:bg-slate-200 transition text-sm"
-          >
-            초기화
-          </button>
-        </div>
-
-        {/* Chat area */}
-        <div className="p-4 h-[65vh] overflow-auto space-y-3 bg-slate-50">
-          {messages.map((m, idx) => (
-            <div
-              key={idx}
-              className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <div
-                className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
-                  m.role === "user"
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-slate-900 border"
-                }`}
-              >
-                {m.content}
-              </div>
-            </div>
-          ))}
-          {loading && (
-            <div className="flex justify-start">
-              <div className="bg-white text-slate-900 border rounded-2xl px-4 py-3 text-sm shadow-sm">
-                답변 생성 중...
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Input */}
-        <div className="p-4 border-t bg-white">
-          <div className="flex gap-2">
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") send();
-              }}
-              placeholder="질문을 입력하세요"
-              className="flex-1 rounded-xl border px-4 py-3 outline-none focus:ring-2 focus:ring-blue-200"
-            />
-            <button
-              onClick={send}
-              disabled={loading}
-              className="rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-bold px-4 py-3 transition"
-            >
-              전송
-            </button>
-          </div>
-
-          {/* Confirm → Menu */}
-          <button
-            onClick={goConfirm}
-            className="mt-3 w-full rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-3 transition"
-          >
-            ✅ 내용을 확인했습니다 (메뉴로)
-          </button>
-        </div>
+    <div className="flex flex-col h-screen bg-gray-50">
+      {/* Header */}
+      <div className="flex items-center gap-3 bg-gray-900 text-white px-4 py-3 shadow">
+        <button
+          onClick={goBack}
+          className="text-sm font-medium hover:underline"
+        >
+          ← 뒤로
+        </button>
+        <h1 className="text-lg font-bold">{title}</h1>
       </div>
-    </main>
+
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        {messages.map((m, i) => (
+          <div
+            key={i}
+            className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={`max-w-xs px-4 py-2 rounded-lg ${
+                m.role === "user"
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-gray-800 border"
+              }`}
+            >
+              {m.content}
+            </div>
+          </div>
+        ))}
+        {loading && (
+          <div className="flex justify-start">
+            <div className="bg-white px-4 py-2 rounded-lg border text-gray-500">
+              응답 중...
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Input */}
+      <div className="bg-white border-t p-3 flex gap-2">
+        <input
+          type="text"
+          className="flex-1 border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="질문을 입력하세요..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && send()}
+          disabled={loading}
+        />
+        <button
+          onClick={send}
+          disabled={loading}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        >
+          전송
+        </button>
+      </div>
+
+      {/* Confirm Button */}
+      <div className="bg-gray-100 border-t p-3">
+        <button
+          onClick={goConfirm}
+          className="w-full bg-green-600 text-white font-bold py-2 rounded hover:bg-green-700"
+        >
+          확인
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function SectionChatPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+      <ChatContent />
+    </Suspense>
   );
 }

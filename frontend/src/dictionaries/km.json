@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "title": "LinkON - សហគមន៍កម្មករបរទេស",
+    "description": "សហគមន៍អនាមិកសម្រាប់កម្មករបរទេស។ ចែករំលែកព័ត៌មានអំពីការងារ ជីវិត និងវីសា។"
+  },
+  "dashboard": {
+    "greeting": "សួស្តី",
+    "aiManual": "សៀវភៅណែនាំ AI",
+    "aiManualDesc": "សួរអំពីការងារនៅកន្លែងធ្វើការ និងសុវត្ថិភាព",
+    "startChat": "ចាប់ផ្តើមជជែក",
+    "community": "សហគមន៍",
+    "communityDesc": "ចែករំលែកព័ត៌មាន និងភ្ជាប់ទំនាក់ទំនង",
+    "joinDiscussion": "ចូលរួមពិភាក្សា",
+    "ocrScan": "ស្កេន OCR",
+    "ocrScanDesc": "បកប្រែឯកសារការងារ",
+    "startScanning": "ចាប់ផ្តើមស្កេន"
+  },
+  "nav": {
+    "home": "ទំព័រដើម",
+    "newPost": "ប្រកាសថ្មី",
+    "login": "ចូល",
+    "logout": "ចាកចេញ"
+  },
+  "categories": {
+    "all": "ទាំងអស់",
+    "general": "ទូទៅ",
+    "work": "ការងារ",
+    "life": "ជីវិត",
+    "visa": "វីសា",
+    "housing": "លំនៅដ្ឋាន",
+    "health": "សុខភាព"
+  },
+  "post": {
+    "createPost": "បង្កើតប្រកាសថ្មី",
+    "editPost": "កែសម្រួលប្រកាស",
+    "title": "ចំណងជើង",
+    "content": "មាតិកា",
+    "category": "ប្រភេទ",
+    "selectCategory": "ជ្រើសរើសប្រភេទ",
+    "submit": "ដាក់ស្នើ",
+    "cancel": "បោះបង់",
+    "delete": "លុប",
+    "edit": "កែសម្រួល",
+    "like": "ចូលចិត្ត",
+    "views": "ចំនួនមើល",
+    "comments": "មតិយោបល់",
+    "noTitle": "សូមបញ្ចូលចំណងជើង",
+    "noContent": "សូមបញ្ចូលមាតិកា",
+    "createSuccess": "បង្កើតប្រកាសបានជោគជ័យ",
+    "deleteSuccess": "លុបប្រកាសបានជោគជ័យ",
+    "createError": "បង្កើតប្រកាសបរាជ័យ",
+    "deleteError": "លុបប្រកាសបរាជ័យ"
+  },
+  "comment": {
+    "addComment": "បន្ថែមមតិយោបល់",
+    "writeComment": "សរសេរមតិយោបល់",
+    "submit": "ដាក់ស្នើ",
+    "delete": "លុប",
+    "noComments": "មិនមានមតិយោបល់នៅឡើយ",
+    "createSuccess": "បន្ថែមមតិយោបល់បានជោគជ័យ",
+    "deleteSuccess": "លុបមតិយោបល់បានជោគជ័យ",
+    "createError": "បន្ថែមមតិយោបល់បរាជ័យ",
+    "deleteError": "លុបមតិយោបល់បរាជ័យ"
+  },
+  "login": {
+    "title": "ចូល LinkON",
+    "subtitle": "ចាប់ផ្តើមដោយឈ្មោះអនាមិក",
+    "nickname": "ឈ្មោះក្រៅ",
+    "nicknamePlaceholder": "បញ្ចូលឈ្មោះក្រៅ",
+    "loginButton": "ចាប់ផ្តើម",
+    "nicknameRequired": "សូមបញ្ចូលឈ្មោះក្រៅ",
+    "nicknameLength": "ឈ្មោះក្រៅត្រូវមាន 2-50 តួអក្សរ",
+    "loginError": "ចូលបរាជ័យ"
+  },
+  "common": {
+    "loading": "កំពុងផ្ទុក...",
+    "error": "កំហុស",
+    "success": "ជោគជ័យ",
+    "confirm": "បញ្ជាក់",
+    "back": "ត្រឡប់ក្រោយ"
+  }
+}

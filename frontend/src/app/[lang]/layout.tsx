@@ -8,7 +8,7 @@ import { Header } from "@/components/materials/Header";
 import { BottomNav } from "@/components/materials/BottomNav";
 import type { Locale } from "@/types/common";
 
-const SUPPORTED_LOCALES = ["ko", "en", "vi", "ne"] as const;
+const SUPPORTED_LOCALES = ["ko", "en", "vi", "ne", "km"] as const;
 type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
 
 function isSupportedLocale(lang: string): lang is SupportedLocale {

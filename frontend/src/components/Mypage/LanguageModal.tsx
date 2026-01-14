@@ -15,6 +15,7 @@ const LANGUAGES: { code: Locale; label: string }[] = [
     { code: 'en', label: 'English' },
     { code: 'vi', label: 'Tiếng Việt' },
     { code: 'ne', label: 'नेपाली' },
+    { code: 'km', label: 'ខ្មែរ' },
 ];
 
 export function LanguageModal({ isOpen, onClose, currentLang, onChange }: LanguageModalProps) {

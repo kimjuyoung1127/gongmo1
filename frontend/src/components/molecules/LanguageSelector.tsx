@@ -13,6 +13,7 @@ const languages: { code: Locale; label: string }[] = [
     { code: 'en', label: 'EN' },
     { code: 'vi', label: 'VN' },
     { code: 'ne', label: 'NP' },
+    { code: 'km', label: 'KH' },
 ];
 
 export const LanguageSelector = ({ className = '' }: LanguageSelectorProps) => {
