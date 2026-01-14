@@ -15,7 +15,7 @@ interface HeaderProps {
     rightElement?: React.ReactNode;
 }
 
-export const Header = ({ title = 'WeWorkHere', subtitle, showBack = false, rightElement }: HeaderProps) => {
+export const Header = ({ title = 'LinkON', subtitle, showBack = false, rightElement }: HeaderProps) => {
     const router = useRouter();
     const pathname = usePathname();
     const { isAuthenticated, user, logout } = useAuth();
