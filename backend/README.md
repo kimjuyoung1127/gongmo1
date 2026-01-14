@@ -1,6 +1,6 @@
-# LinkOn Backend
+# LinkON Backend
 
-FastAPI backend for LinkOn - 외국인 노동자 익명 커뮤니티 플랫폼
+FastAPI backend for LinkON - 외국인 노동자 익명 커뮤니티 플랫폼
 
 ## Tech Stack
 
@@ -293,4 +293,4 @@ async def create_post(self, user_id: int, post_data: PostCreate) -> Post:
 
 ## License
 
-Proprietary - LinkOn Platform
+Proprietary - LinkON Platform

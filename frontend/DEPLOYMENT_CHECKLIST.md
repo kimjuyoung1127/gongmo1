@@ -1,4 +1,4 @@
-# LinkOn Frontend - Deployment Checklist
+# LinkON Frontend - Deployment Checklist
 
 ## Pre-Deployment Tasks
 
@@ -106,7 +106,7 @@
 
 ### Step 1: Install Dependencies
 ```bash
-cd /Users/mac/Desktop/homeserver/LinkOn/frontend
+cd /Users/mac/Desktop/homeserver/LinkON/frontend
 npm install
 ```
 
@@ -115,7 +115,7 @@ Expected output:
 - No vulnerabilities or warnings
 
 ### Step 2: Environment Variables
-Check `/Users/mac/Desktop/homeserver/LinkOn/.env`:
+Check `/Users/mac/Desktop/homeserver/LinkON/.env`:
 ```env
 # Frontend variables
 NEXT_PUBLIC_API_URL=/api/v1
@@ -127,7 +127,7 @@ NODE_ENV=development
 ### Step 3: Backend Verification
 Ensure backend is running:
 ```bash
-cd /Users/mac/Desktop/homeserver/LinkOn
+cd /Users/mac/Desktop/homeserver/LinkON
 docker-compose ps | grep backend
 ```
 
@@ -135,7 +135,7 @@ Backend should be on port 25050.
 
 ### Step 4: Test Development Server
 ```bash
-cd /Users/mac/Desktop/homeserver/LinkOn/frontend
+cd /Users/mac/Desktop/homeserver/LinkON/frontend
 npm run dev
 ```
 
@@ -192,7 +192,7 @@ Visit: http://localhost:24050
 
 ### Step 1: Build Frontend
 ```bash
-cd /Users/mac/Desktop/homeserver/LinkOn
+cd /Users/mac/Desktop/homeserver/LinkON
 docker-compose build frontend
 ```
 

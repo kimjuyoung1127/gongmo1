@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "LinkOn - Foreign Workers Community",
+    "title": "LinkON - Foreign Workers Community",
     "description": "Anonymous community for foreign workers. Share jobs, life, and visa information."
   },
   "dashboard": {
@@ -63,7 +63,7 @@
     "deleteError": "Failed to delete comment"
   },
   "login": {
-    "title": "LinkOn Login",
+    "title": "LinkON Login",
     "subtitle": "Start with an anonymous nickname",
     "nickname": "Nickname",
     "nicknamePlaceholder": "Enter your nickname",

@@ -1,4 +1,4 @@
-# LinkOn 배포 가이드
+# LinkON 배포 가이드
 
 > linkon.alldatabox.com 배포 절차
 

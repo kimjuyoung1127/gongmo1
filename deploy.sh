@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# LinkOn 프로덕션 배포 스크립트
+# LinkON 프로덕션 배포 스크립트
 # 운영 환경: linkon.alldatabox.com
 
 set -e
 
 echo "======================================"
-echo "LinkOn 프로덕션 배포"
+echo "LinkON 프로덕션 배포"
 echo "======================================"
 echo ""
 

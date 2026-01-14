@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "LinkOn - Cộng đồng Lao động Nước ngoài",
+    "title": "LinkON - Cộng đồng Lao động Nước ngoài",
     "description": "Cộng đồng ẩn danh cho lao động nước ngoài. Chia sẻ công việc, cuộc sống và thông tin visa."
   },
   "dashboard": {
@@ -63,7 +63,7 @@
     "deleteError": "Không thể xóa bình luận"
   },
   "login": {
-    "title": "Đăng nhập LinkOn",
+    "title": "Đăng nhập LinkON",
     "subtitle": "Bắt đầu với biệt danh ẩn danh",
     "nickname": "Biệt danh",
     "nicknamePlaceholder": "Nhập biệt danh của bạn",

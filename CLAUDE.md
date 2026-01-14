@@ -1,4 +1,4 @@
-# CLAUDE.md - LinkOn
+# CLAUDE.md - LinkON
 
 > AI 개발 도구(Claude Code)를 위한 프로젝트 가이드
 
@@ -43,7 +43,7 @@ alembic revision --autogenerate -m "description"
 
 ## 프로젝트 개요
 
-**LinkOn**는 한국에서 근무하는 외국인 노동자를 위한 익명 커뮤니티 플랫폼입니다.
+**LinkON**는 한국에서 근무하는 외국인 노동자를 위한 익명 커뮤니티 플랫폼입니다.
 
 **주요 특징**:
 - 익명 닉네임 기반 인증 (전화번호 없음)
@@ -67,7 +67,7 @@ alembic revision --autogenerate -m "description"
 ### 디렉토리 구조
 
 ```
-LinkOn/
+LinkON/
 ├── .env                         # 환경 변수
 ├── docker-compose.yml           # Docker 설정
 ├── README.md                    # 프로젝트 개요

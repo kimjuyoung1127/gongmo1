@@ -1,8 +1,8 @@
-# LinkOn Frontend Implementation Summary
+# LinkON Frontend Implementation Summary
 
 ## Overview
 
-Complete Next.js 14 frontend implementation for LinkOn (외국인 노동자 익명 커뮤니티) following the monorepo's Atomic Design architecture patterns.
+Complete Next.js 14 frontend implementation for LinkON (외국인 노동자 익명 커뮤니티) following the monorepo's Atomic Design architecture patterns.
 
 **Total Files Created: 65+**
 

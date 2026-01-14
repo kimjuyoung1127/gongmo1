@@ -74,7 +74,7 @@ export default function RegisterPage() {
         <div className="space-y-6">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900">회원가입</h1>
-            <p className="text-gray-600 mt-2">LinkOn 계정을 만드세요</p>
+            <p className="text-gray-600 mt-2">LinkON 계정을 만드세요</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">

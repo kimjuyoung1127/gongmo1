@@ -1,11 +1,11 @@
-# LinkOn Backend - Quick Start Guide
+# LinkON Backend - Quick Start Guide
 
 ## Immediate Setup (5 Minutes)
 
 ### Step 1: Install Dependencies
 
 ```bash
-cd /Users/mac/Desktop/homeserver/LinkOn/backend
+cd /Users/mac/Desktop/homeserver/LinkON/backend
 
 # Create virtual environment
 python3 -m venv venv
@@ -108,7 +108,7 @@ curl -X POST http://localhost:25050/api/v1/posts \
   -H "X-Session-Token: YOUR_TOKEN_HERE" \
   -d '{
     "title": "My First Post",
-    "content": "Hello LinkOn!"
+    "content": "Hello LinkON!"
   }'
 ```
 
@@ -264,8 +264,8 @@ backend/
 ## Support
 
 - API Documentation: http://localhost:25050/docs (when running)
-- Full README: `/Users/mac/Desktop/homeserver/LinkOn/backend/README.md`
-- Implementation Summary: `/Users/mac/Desktop/homeserver/LinkOn/backend/IMPLEMENTATION_SUMMARY.md`
+- Full README: `/Users/mac/Desktop/homeserver/LinkON/backend/README.md`
+- Implementation Summary: `/Users/mac/Desktop/homeserver/LinkON/backend/IMPLEMENTATION_SUMMARY.md`
 
 ---
 
