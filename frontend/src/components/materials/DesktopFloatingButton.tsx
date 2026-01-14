@@ -1,0 +1,22 @@
+'use client';
+
+import Link from 'next/link';
+import { Plus } from 'lucide-react';
+
+interface DesktopFloatingButtonProps {
+    href: string;
+}
+
+export const DesktopFloatingButton = ({ href }: DesktopFloatingButtonProps) => {
+    return (
+        <div className="hidden md:block fixed bottom-10 right-10 z-50">
+            <Link
+                href={href}
+                className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-xl hover:bg-blue-700 hover:scale-105 transition-all text-white"
+                aria-label="Create new post"
+            >
+                <Plus size={32} />
+            </Link>
+        </div>
+    );
+};

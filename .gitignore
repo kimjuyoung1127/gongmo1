@@ -1,0 +1,106 @@
+# Environment Variables
+.env
+!.env.example
+.env.local
+*.env.local
+
+# Docker Configuration (운영 환경 고정)
+docker-compose.yml
+Dockerfile
+**/docker-compose.yml
+**/Dockerfile
+!*.example.yml
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+ENV/
+env/
+.venv
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+*.log
+llm_log.txt
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+pgdata/
+pg_data/
+data/
+
+# Data files (large files that shouldn't be in Git)
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+*.parquet
+*.parquet.gzip
+*.parquet.snappy
+*.feather
+*.hdf5
+*.h5
+*.json.gz
+*.pkl
+*.pickle
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.cover
+.pytest_cache/
+.coverage
+test/node_modules/
+test/debug-snapshot*.png
+test/project_test/
+
+# Test directory (completely ignored)
+test/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+*.tsbuildinfo
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "title": "WeWorkHere - 외국인 노동자 커뮤니티",
+    "description": "외국인 노동자를 위한 익명 커뮤니티. 일자리, 생활, 비자 정보를 공유하세요."
+  },
+  "dashboard": {
+    "greeting": "환영합니다",
+    "aiManual": "AI 매뉴얼",
+    "aiManualDesc": "현장 업무 및 안전에 대해 질문하세요",
+    "startChat": "대화 시작하기",
+    "community": "커뮤니티",
+    "communityDesc": "정보를 공유하고 동료와 소통하세요",
+    "joinDiscussion": "토론 참여하기",
+    "ocrScan": "문서 스캔",
+    "ocrScanDesc": "업무 문서를 빠르게 번역하세요",
+    "startScanning": "스캔 시작하기"
+  },
+  "nav": {
+    "home": "홈",
+    "newPost": "글쓰기",
+    "login": "로그인",
+    "logout": "로그아웃"
+  },
+  "categories": {
+    "all": "전체",
+    "general": "일반",
+    "work": "일자리",
+    "life": "생활",
+    "visa": "비자",
+    "housing": "주거",
+    "health": "건강"
+  },
+  "post": {
+    "createPost": "새 글 작성",
+    "editPost": "글 수정",
+    "title": "제목",
+    "content": "내용",
+    "category": "카테고리",
+    "selectCategory": "카테고리 선택",
+    "submit": "등록",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "수정",
+    "like": "좋아요",
+    "views": "조회",
+    "comments": "댓글",
+    "noTitle": "제목을 입력하세요",
+    "noContent": "내용을 입력하세요",
+    "createSuccess": "게시글이 작성되었습니다",
+    "deleteSuccess": "게시글이 삭제되었습니다",
+    "createError": "게시글 작성에 실패했습니다",
+    "deleteError": "게시글 삭제에 실패했습니다"
+  },
+  "comment": {
+    "addComment": "댓글 추가",
+    "writeComment": "댓글을 입력하세요",
+    "submit": "등록",
+    "delete": "삭제",
+    "noComments": "댓글이 없습니다",
+    "createSuccess": "댓글이 작성되었습니다",
+    "deleteSuccess": "댓글이 삭제되었습니다",
+    "createError": "댓글 작성에 실패했습니다",
+    "deleteError": "댓글 삭제에 실패했습니다"
+  },
+  "login": {
+    "title": "WeWorkHere 로그인",
+    "subtitle": "익명 닉네임으로 시작하세요",
+    "nickname": "닉네임",
+    "nicknamePlaceholder": "닉네임을 입력하세요",
+    "loginButton": "시작하기",
+    "nicknameRequired": "닉네임을 입력해주세요",
+    "nicknameLength": "닉네임은 2-50자 사이여야 합니다",
+    "loginError": "로그인에 실패했습니다"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "confirm": "확인",
+    "back": "뒤로"
+  },
+  "ocr": {
+    "title": "문서 스캔",
+    "subtitle": "AI 문서 분석 및 번역",
+    "languageSettings": "언어 설정",
+    "sourceLang": "원본 언어",
+    "targetLang": "번역 언어",
+    "uploadImage": "이미지 업로드",
+    "uploadDesc": "근로계약서, 비자 서류, 임금명세서 등",
+    "fileFormat": "JPG, PNG (최대 20MB)",
+    "analyzing": "분석 중...",
+    "startAnalysis": "문서 분석 시작",
+    "error": "오류 발생",
+    "analysisComplete": "분석 완료",
+    "confidence": "신뢰도",
+    "analyzeNew": "새로 분석",
+    "documentType": "문서 종류",
+    "originalText": "원문",
+    "translatedText": "번역문",
+    "summary": "요약",
+    "keyInfo": "주요 정보",
+    "company": "회사명",
+    "date": "날짜",
+    "amount": "금액",
+    "period": "기간",
+    "conditions": "조건",
+    "imageOnly": "이미지 파일만 업로드 가능합니다",
+    "fileSizeLimit": "파일 크기는 20MB 이하여야 합니다",
+    "analysisFailed": "문서 분석에 실패했습니다",
+    "noInfo": "정보가 없습니다",
+    "languages": {
+      "ko": "한국어",
+      "en": "English",
+      "vi": "Tiếng Việt",
+      "ne": "नेपाली"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "title": "WeWorkHere - Foreign Worker Community",
+    "description": "Anonymous community for foreign workers. Share jobs, life, and visa information."
+  },
+  "dashboard": {
+    "greeting": "Welcome",
+    "aiManual": "AI Manual",
+    "aiManualDesc": "Ask about workplace tasks and safety",
+    "startChat": "Start Chat",
+    "community": "Community",
+    "communityDesc": "Share information and connect with colleagues",
+    "joinDiscussion": "Join Discussion",
+    "ocrScan": "Document Scan",
+    "ocrScanDesc": "Quickly translate work documents",
+    "startScanning": "Start Scanning"
+  },
+  "nav": {
+    "home": "Home",
+    "newPost": "New Post",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "categories": {
+    "all": "All",
+    "general": "General",
+    "work": "Jobs",
+    "life": "Life",
+    "visa": "Visa",
+    "housing": "Housing",
+    "health": "Health"
+  },
+  "post": {
+    "createPost": "Create New Post",
+    "editPost": "Edit Post",
+    "title": "Title",
+    "content": "Content",
+    "category": "Category",
+    "selectCategory": "Select Category",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "like": "Like",
+    "views": "Views",
+    "comments": "Comments",
+    "noTitle": "Please enter a title",
+    "noContent": "Please enter content",
+    "createSuccess": "Post created successfully",
+    "deleteSuccess": "Post deleted successfully",
+    "createError": "Failed to create post",
+    "deleteError": "Failed to delete post"
+  },
+  "comment": {
+    "addComment": "Add Comment",
+    "writeComment": "Write a comment",
+    "submit": "Submit",
+    "delete": "Delete",
+    "noComments": "No comments yet",
+    "createSuccess": "Comment added successfully",
+    "deleteSuccess": "Comment deleted successfully",
+    "createError": "Failed to add comment",
+    "deleteError": "Failed to delete comment"
+  },
+  "login": {
+    "title": "WeWorkHere Login",
+    "subtitle": "Start with an anonymous nickname",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "Enter your nickname",
+    "loginButton": "Get Started",
+    "nicknameRequired": "Please enter a nickname",
+    "nicknameLength": "Nickname must be between 2-50 characters",
+    "loginError": "Login failed"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "back": "Back"
+  },
+  "ocr": {
+    "title": "Document Scan",
+    "subtitle": "AI Document Analysis & Translation",
+    "languageSettings": "Language Settings",
+    "sourceLang": "Source Language",
+    "targetLang": "Target Language",
+    "uploadImage": "Upload Image",
+    "uploadDesc": "Employment contract, visa documents, pay stubs, etc.",
+    "fileFormat": "JPG, PNG (Max 20MB)",
+    "analyzing": "Analyzing...",
+    "startAnalysis": "Start Analysis",
+    "error": "Error Occurred",
+    "analysisComplete": "Analysis Complete",
+    "confidence": "Confidence",
+    "analyzeNew": "Analyze New",
+    "documentType": "Document Type",
+    "originalText": "Original Text",
+    "translatedText": "Translated Text",
+    "summary": "Summary",
+    "keyInfo": "Key Information",
+    "company": "Company",
+    "date": "Date",
+    "amount": "Amount",
+    "period": "Period",
+    "conditions": "Conditions",
+    "imageOnly": "Only image files can be uploaded",
+    "fileSizeLimit": "File size must be under 20MB",
+    "analysisFailed": "Document analysis failed",
+    "noInfo": "No information available",
+    "languages": {
+      "ko": "한국어",
+      "en": "English",
+      "vi": "Tiếng Việt",
+      "ne": "नेपाली"
+    }
+  }
+}

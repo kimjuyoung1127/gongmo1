@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "title": "WeWorkHere - Cộng đồng lao động nước ngoài",
+    "description": "Cộng đồng ẩn danh cho lao động nước ngoài. Chia sẻ công việc, cuộc sống và thông tin visa."
+  },
+  "dashboard": {
+    "greeting": "Chào mừng",
+    "aiManual": "Hướng dẫn AI",
+    "aiManualDesc": "Hỏi về công việc và an toàn lao động",
+    "startChat": "Bắt đầu trò chuyện",
+    "community": "Cộng đồng",
+    "communityDesc": "Chia sẻ thông tin và kết nối với đồng nghiệp",
+    "joinDiscussion": "Tham gia thảo luận",
+    "ocrScan": "Quét tài liệu",
+    "ocrScanDesc": "Dịch tài liệu công việc nhanh chóng",
+    "startScanning": "Bắt đầu quét"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "newPost": "Viết bài",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất"
+  },
+  "categories": {
+    "all": "Tất cả",
+    "general": "Tổng hợp",
+    "work": "Việc làm",
+    "life": "Cuộc sống",
+    "visa": "Visa",
+    "housing": "Nhà ở",
+    "health": "Sức khỏe"
+  },
+  "post": {
+    "createPost": "Tạo bài viết mới",
+    "editPost": "Chỉnh sửa bài viết",
+    "title": "Tiêu đề",
+    "content": "Nội dung",
+    "category": "Danh mục",
+    "selectCategory": "Chọn danh mục",
+    "submit": "Đăng",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "like": "Thích",
+    "views": "Lượt xem",
+    "comments": "Bình luận",
+    "noTitle": "Vui lòng nhập tiêu đề",
+    "noContent": "Vui lòng nhập nội dung",
+    "createSuccess": "Đã tạo bài viết thành công",
+    "deleteSuccess": "Đã xóa bài viết thành công",
+    "createError": "Tạo bài viết thất bại",
+    "deleteError": "Xóa bài viết thất bại"
+  },
+  "comment": {
+    "addComment": "Thêm bình luận",
+    "writeComment": "Viết bình luận",
+    "submit": "Đăng",
+    "delete": "Xóa",
+    "noComments": "Chưa có bình luận",
+    "createSuccess": "Đã thêm bình luận thành công",
+    "deleteSuccess": "Đã xóa bình luận thành công",
+    "createError": "Thêm bình luận thất bại",
+    "deleteError": "Xóa bình luận thất bại"
+  },
+  "login": {
+    "title": "Đăng nhập WeWorkHere",
+    "subtitle": "Bắt đầu với biệt danh ẩn danh",
+    "nickname": "Biệt danh",
+    "nicknamePlaceholder": "Nhập biệt danh của bạn",
+    "loginButton": "Bắt đầu",
+    "nicknameRequired": "Vui lòng nhập biệt danh",
+    "nicknameLength": "Biệt danh phải từ 2-50 ký tự",
+    "loginError": "Đăng nhập thất bại"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "confirm": "Xác nhận",
+    "back": "Quay lại"
+  },
+  "ocr": {
+    "title": "Quét tài liệu",
+    "subtitle": "Phân tích & Dịch tài liệu AI",
+    "languageSettings": "Cài đặt ngôn ngữ",
+    "sourceLang": "Ngôn ngữ gốc",
+    "targetLang": "Ngôn ngữ dịch",
+    "uploadImage": "Tải ảnh lên",
+    "uploadDesc": "Hợp đồng lao động, giấy tờ visa, phiếu lương, v.v.",
+    "fileFormat": "JPG, PNG (Tối đa 20MB)",
+    "analyzing": "Đang phân tích...",
+    "startAnalysis": "Bắt đầu phân tích",
+    "error": "Đã xảy ra lỗi",
+    "analysisComplete": "Phân tích hoàn tất",
+    "confidence": "Độ tin cậy",
+    "analyzeNew": "Phân tích mới",
+    "documentType": "Loại tài liệu",
+    "originalText": "Văn bản gốc",
+    "translatedText": "Văn bản dịch",
+    "summary": "Tóm tắt",
+    "keyInfo": "Thông tin chính",
+    "company": "Công ty",
+    "date": "Ngày",
+    "amount": "Số tiền",
+    "period": "Thời hạn",
+    "conditions": "Điều kiện",
+    "imageOnly": "Chỉ có thể tải lên tệp hình ảnh",
+    "fileSizeLimit": "Kích thước tệp phải dưới 20MB",
+    "analysisFailed": "Phân tích tài liệu thất bại",
+    "noInfo": "Không có thông tin",
+    "languages": {
+      "ko": "한국어",
+      "en": "English",
+      "vi": "Tiếng Việt",
+      "ne": "नेपाली"
+    }
+  }
+}
