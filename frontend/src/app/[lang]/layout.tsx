@@ -1,14 +1,32 @@
-import { getDictionary } from '@/dictionaries';
-import { DictionaryProvider } from '@/contexts/DictionaryContext';
-import { Header } from '@/components/materials/Header';
-import { Locale } from '@/types/common';
+// src/app/[lang]/layout.tsx
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
-  return [{ lang: 'ko' }, { lang: 'en' }, { lang: 'vi' }, { lang: 'ne' }];
+import { getDictionary } from "@/dictionaries";
+import { DictionaryProvider } from "@/contexts/DictionaryContext";
+import { Header } from "@/components/materials/Header";
+import { BottomNav } from "@/components/materials/BottomNav";
+import type { Locale } from "@/types/common";
+
+const SUPPORTED_LOCALES = ["ko", "en", "vi", "ne"] as const;
+type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
+
+function isSupportedLocale(lang: string): lang is SupportedLocale {
+  return (SUPPORTED_LOCALES as readonly string[]).includes(lang);
 }
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }) {
-  const dict = await getDictionary(params.lang);
+export async function generateStaticParams() {
+  return SUPPORTED_LOCALES.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: Locale };
+}): Promise<Metadata> {
+  // 안전장치: 지원하지 않는 lang면 기본값으로 처리하거나 notFound 처리
+  const lang = isSupportedLocale(params.lang) ? params.lang : "ko";
+  const dict = await getDictionary(lang);
 
   return {
     title: dict.metadata.title,
@@ -16,13 +34,11 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
-      type: 'website',
-      locale: params.lang,
+      type: "website",
+      locale: lang,
     },
   };
 }
-
-import { BottomNav } from '@/components/materials/BottomNav';
 
 export default async function LangLayout({
   children,
@@ -31,6 +47,12 @@ export default async function LangLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
+  // 1) URL lang 검증
+  if (!isSupportedLocale(params.lang)) {
+    notFound();
+  }
+
+  // 2) lang별 dictionary 주입
   const dictionary = await getDictionary(params.lang);
 
   return (
@@ -40,10 +62,12 @@ export default async function LangLayout({
         <main className="w-full min-h-full">
           {children}
         </main>
+        <main className="w-full min-h-full pt-16">{children}</main>
         <div className="md:hidden">
           <BottomNav />
         </div>
-      </div>
+        </div>
+      
     </DictionaryProvider>
   );
 }
