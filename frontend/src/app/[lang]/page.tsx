@@ -14,7 +14,7 @@ export default function MainPage() {
   const [isBriefingOpen, setIsBriefingOpen] = useState(false);
 
   return (
-    <div className="relative bg-gray-900 pt-20 flex flex-col h-[calc(100dvh-4rem-env(safe-area-inset-bottom))] md:h-screen">
+    <div className="fixed inset-0 z-0 bg-gray-900 pt-20 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0 overflow-hidden flex flex-col overscroll-none">
 
       {/* Red Notification Button (Toss Style Trigger) */}
       <button
@@ -26,9 +26,9 @@ export default function MainPage() {
         <span className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-red-500" />
       </button>
 
-      <main className="container mx-auto px-4 h-full flex flex-col md:justify-center">
+      <main className="container mx-auto px-4 flex-1 flex flex-col md:justify-center overflow-hidden">
         {/* Mobile: Flex Column (Stretch) | Desktop: Grid (Centered, Fixed Size) */}
-        <div className="flex flex-col h-full pb-6 gap-3 md:grid md:grid-cols-3 md:gap-8 md:h-auto md:pb-0 md:w-full md:max-w-6xl md:mx-auto">
+        <div className="flex flex-col h-full gap-3 md:grid md:grid-cols-3 md:gap-8 md:h-auto md:w-full md:max-w-6xl md:mx-auto">
 
           {/* AI Manual Card */}
           <FeatureCard
