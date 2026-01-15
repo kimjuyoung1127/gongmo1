@@ -2,6 +2,7 @@
 
 import { X, Check } from 'lucide-react';
 import { Locale } from '@/types/common';
+import { useDictionary } from '@/contexts/DictionaryContext';
 
 interface LanguageModalProps {
     isOpen: boolean;
@@ -19,6 +20,7 @@ const LANGUAGES: { code: Locale; label: string }[] = [
 ];
 
 export function LanguageModal({ isOpen, onClose, currentLang, onChange }: LanguageModalProps) {
+    const dict = useDictionary();
     if (!isOpen) return null;
 
     return (
@@ -27,7 +29,7 @@ export function LanguageModal({ isOpen, onClose, currentLang, onChange }: Langua
 
             <div className="relative w-full max-w-sm bg-white rounded-t-[24px] sm:rounded-[24px] overflow-hidden shadow-2xl animate-fade-in-up sm:animate-scale-up">
                 <div className="p-5 flex items-center justify-between border-b border-gray-100">
-                    <h2 className="text-xl font-bold text-gray-900">언어 선택</h2>
+                    <h2 className="text-xl font-bold text-gray-900">{dict.mypage.languageSelectTitle}</h2>
                     <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100">
                         <X size={24} className="text-gray-500" />
                     </button>

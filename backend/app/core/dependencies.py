@@ -4,6 +4,7 @@ from typing import Optional
 
 from app.core.database import get_db
 from app.repositories.user_repository import UserRepository
+from app.services.auth_service import AuthService
 from app.models.user import User
 
 
@@ -18,7 +19,8 @@ async def get_current_user_optional(
         return None
 
     repo = UserRepository(db)
-    user = await repo.get_by_session_token(session_token)
+    auth_service = AuthService(repo)
+    user = await auth_service.validate_session(session_token)
     return user
 
 
@@ -36,7 +38,8 @@ async def get_current_user(
         )
 
     repo = UserRepository(db)
-    user = await repo.get_by_session_token(session_token)
+    auth_service = AuthService(repo)
+    user = await auth_service.validate_session(session_token)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

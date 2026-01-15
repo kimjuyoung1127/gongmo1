@@ -40,9 +40,9 @@ export function useComments(postId: number) {
     }
   };
 
-  const addComment = async (content: string): Promise<boolean> => {
+  const addComment = async (content: string, isAnonymous: boolean): Promise<boolean> => {
     try {
-      await commentService.createComment(postId, { content });
+      await commentService.createComment(postId, { content, is_anonymous: isAnonymous });
       await refetch();
       return true;
     } catch (err) {

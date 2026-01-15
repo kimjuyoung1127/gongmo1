@@ -37,6 +37,7 @@
     "content": "내용",
     "category": "카테고리",
     "selectCategory": "카테고리 선택",
+    "anonymous": "익명으로 게시",
     "submit": "등록",
     "cancel": "취소",
     "delete": "삭제",
@@ -54,6 +55,7 @@
   "comment": {
     "addComment": "댓글 추가",
     "writeComment": "댓글을 입력하세요",
+    "anonymous": "익명으로 댓글",
     "submit": "등록",
     "delete": "삭제",
     "noComments": "댓글이 없습니다",
@@ -71,6 +73,46 @@
     "nicknameRequired": "닉네임을 입력해주세요",
     "nicknameLength": "닉네임은 2-50자 사이여야 합니다",
     "loginError": "로그인에 실패했습니다"
+  },
+  "aiManualChat": {
+    "titleFallback": "챗봇",
+    "assistantGreeting": "🤖안녕하세요, \"{section}\" 도우미입니다. 무엇을 도와드릴까요?",
+    "inputPlaceholder": "질문을 입력하세요...",
+    "send": "전송",
+    "loadingResponse": "응답 중...",
+    "answerUnavailable": "답변을 생성하지 못했습니다.",
+    "errorPrefix": "❌ 오류: ",
+    "networkErrorPrefix": "❌ 통신 오류: ",
+    "sections": {
+      "bom": "BOM 조회",
+      "product-guide": "제품 가이드",
+      "sop": "작업 지시서(SOP)",
+      "policy": "인사·복지 & 안전 지침",
+      "wiki": "현장 용어 위키"
+    }
+  },
+  "mypage": {
+    "title": "마이페이지",
+    "profileFallback": "사용자",
+    "profileImageAlt": "프로필",
+    "editProfile": "내 정보 수정",
+    "editProfileAlert": "프로필 수정 기능 준비중",
+    "activityTitle": "나의 활동",
+    "stats": {
+      "posts": "작성한 글",
+      "comments": "댓글",
+      "likesReceived": "받은 좋아요",
+      "companyIssues": "회사 이슈"
+    },
+    "pointsLabel": "{name}님의 포인트",
+    "pointsHistory": "포인트 내역 보기",
+    "languageSetting": "언어 설정",
+    "company": "소속 회사",
+    "companyNone": "소속 없음",
+    "logout": "로그아웃",
+    "logoutConfirm": "로그아웃 하시겠습니까?",
+    "languageSelectTitle": "언어 선택",
+    "versionPrefix": "버전"
   },
   "common": {
     "loading": "로딩 중...",
@@ -114,5 +156,31 @@
       "vi": "Tiếng Việt",
       "ne": "नेपाली"
     }
+  },
+  "communityPage": {
+    "companyIssues": "우리 회사 이슈",
+    "freeBoard": "자유게시판",
+    "goToFreeBoard": "자유게시판 이동 >",
+    "goToCompanyIssues": "< 회사 이슈 보기"
+  },
+  "aiManualMenu": {
+    "mainMenu": "메인 메뉴",
+    "selectInfo": "필요한 정보를 선택하세요",
+    "language": "언어",
+    "status": "상태",
+    "statusDummy": "더미(일반 챗봇)",
+    "connection": "연결",
+    "open": "열기",
+    "bomTitle": "BOM 조회",
+    "bomDesc": "품번별 부품/수량",
+    "productGuideTitle": "제품 가이드",
+    "productGuideDesc": "용도/형상 정보",
+    "sopTitle": "작업 지시서",
+    "sopDesc": "공정별 작업 절차 확인",
+    "policyTitle": "인사·복지 & 안전 지침",
+    "policyDesc": "사내 규정 및 복리후생 질의응답",
+    "wikiTitle": "현장 용어 위키(Wiki)",
+    "wikiDesc": "현장 전문용어 풀이",
+    "backToMain": "메인 화면으로 돌아가기"
   }
 }

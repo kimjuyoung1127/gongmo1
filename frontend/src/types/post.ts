@@ -5,10 +5,24 @@ export interface Post {
   title: string;
   content: string;
   image_url: string | null;
+  image_urls: string[];
+  is_anonymous: boolean;
   view_count: number;
   like_count: number;
   created_at: string;
   updated_at: string;
+}
+
+export interface PostImage {
+  id: number;
+  post_id: number;
+  url: string;
+  sort_order: number;
+  created_at: string;
+}
+
+export interface PostImageListResponse {
+  images: PostImage[];
 }
 
 export interface PostCreate {
@@ -16,6 +30,8 @@ export interface PostCreate {
   title: string;
   content: string;
   image_url?: string | null;
+  image_urls?: string[];
+  is_anonymous?: boolean;
 }
 
 export interface PostUpdate {
@@ -23,6 +39,8 @@ export interface PostUpdate {
   title?: string;
   content?: string;
   image_url?: string | null;
+  image_urls?: string[];
+  is_anonymous?: boolean;
 }
 
 export interface PostListResponse {

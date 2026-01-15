@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import { useLang } from '@/contexts/DictionaryContext';
+import { useDictionary, useLang } from '@/contexts/DictionaryContext';
 import { ProfileSection } from '@/components/Mypage/ProfileSection';
 import { ActivitySummary } from '@/components/Mypage/ActivitySummary';
 import { MenuSection } from '@/components/Mypage/MenuSection';
@@ -12,6 +12,7 @@ import { Locale } from '@/types/common';
 
 export default function Mypage() {
     const lang = useLang();
+    const dict = useDictionary();
     const router = useRouter();
     const { user, logout, isAuthenticated, loading } = useAuth();
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function Mypage() {
 
     const handleEditProfile = () => {
         // Implement edit profile logic or navigation
-        alert('프로필 수정 기능 준비중');
+        alert(dict.mypage.editProfileAlert);
     };
 
     const handleLanguageChange = (newLang: Locale) => {
@@ -35,7 +36,7 @@ export default function Mypage() {
     };
 
     const handleLogout = async () => {
-        if (confirm('로그아웃 하시겠습니까?')) {
+        if (confirm(dict.mypage.logoutConfirm)) {
             await logout();
             router.push(`/${lang}/login`);
         }
@@ -55,7 +56,9 @@ export default function Mypage() {
     return (
         <div className="h-screen overflow-hidden bg-gray-50 pt-20">
             <div className="max-w-md mx-auto px-4">
-                <h1 className="text-2xl font-extrabold text-gray-900 mb-6 px-2">마이페이지</h1>
+                <h1 className="text-2xl font-extrabold text-gray-900 mb-6 px-2">
+                    {dict.mypage.title}
+                </h1>
 
                 <ProfileSection
                     user={user}
@@ -75,7 +78,7 @@ export default function Mypage() {
                 />
 
                 <div className="px-2 text-xs text-gray-400 text-center mt-8">
-                    버전 1.0.0
+                    {dict.mypage.versionPrefix} 1.0.0
                 </div>
             </div>
 

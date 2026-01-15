@@ -31,6 +31,7 @@ export const PostForm = memo<PostFormProps>( ({
   const [categoryId, setCategoryId] = useState<number | null>(
     initialData?.category_id || null
   );
+  const [isAnonymous, setIsAnonymous] = useState<boolean>(initialData?.is_anonymous ?? false);
   const [images, setImages] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -90,19 +91,27 @@ export const PostForm = memo<PostFormProps>( ({
       title: title.trim(),
       content: content.trim(),
       category_id: categoryId,
+      is_anonymous: isAnonymous,
     };
 
     try {
       setLoading(true);
-      // Note: Real implementation would use FormData for images
+      let targetPostId = postId;
       if (postId) {
         await postService.updatePost(postId, postData);
       } else {
-        await postService.createPost(postData);
+        const created = await postService.createPost(postData);
+        targetPostId = created.id;
+      }
+
+      if (targetPostId && images.length > 0) {
+        await postService.uploadPostImages(targetPostId, images);
       }
       
       if (onSuccess) {
         onSuccess();
+      } else if (targetPostId) {
+        router.push(`/${lang}/posts/${targetPostId}`);
       } else {
         router.push(`/${lang}/community`);
       }
@@ -142,6 +151,16 @@ export const PostForm = memo<PostFormProps>( ({
           </div>
         </div>
       </div>
+
+      <label className="flex items-center space-x-2 text-sm text-gray-700">
+        <input
+          type="checkbox"
+          checked={isAnonymous}
+          onChange={(e) => setIsAnonymous(e.target.checked)}
+          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+        />
+        <span>{dict.post.anonymous}</span>
+      </label>
 
       <div>
         <label className="block text-sm font-bold text-black mb-2">

@@ -74,6 +74,12 @@ export default function PostDetailPage() {
 
   const isOwner = user?.id === post.user_id;
   const categoryName = getCategoryName();
+  const imageUrls =
+    post.image_urls && post.image_urls.length > 0
+      ? post.image_urls
+      : post.image_url
+      ? [post.image_url]
+      : [];
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
@@ -91,6 +97,15 @@ export default function PostDetailPage() {
           <div className="prose max-w-none">
             <p className="text-gray-800 whitespace-pre-wrap">{post.content}</p>
           </div>
+          {imageUrls.length > 0 && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {imageUrls.map((url, idx) => (
+                <div key={`${url}-${idx}`} className="overflow-hidden rounded-lg border border-gray-200 bg-gray-100">
+                  <img src={url} alt={`Post image ${idx + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
           <div className="flex space-x-2 pt-4 border-t border-gray-200">
             <Button variant="primary" size="small" onClick={likePost}>
               {dict.post.like}

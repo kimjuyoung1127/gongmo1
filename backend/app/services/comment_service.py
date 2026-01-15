@@ -70,11 +70,14 @@ class CommentService:
         comment.content = content
         return await self.comment_repo.update(comment)
 
-    async def delete_comment(self, comment_id: int, user_id: int) -> bool:
+    async def delete_comment(self, comment_id: int, user_id: int, post_id: int) -> bool:
         """댓글 삭제 (작성자만 가능)"""
         comment = await self.comment_repo.get_by_id(comment_id)
 
         if not comment:
+            return False
+
+        if comment.post_id != post_id:
             return False
 
         if comment.user_id != user_id:

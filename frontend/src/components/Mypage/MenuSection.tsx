@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronRight, Globe, Building2, LogOut } from 'lucide-react';
+import { useDictionary } from '@/contexts/DictionaryContext';
 
 interface MenuSectionProps {
     currentLang: string;
@@ -10,11 +11,13 @@ interface MenuSectionProps {
 }
 
 export function MenuSection({ currentLang, onChangeLang, companyName, onLogout }: MenuSectionProps) {
+    const dict = useDictionary();
     const LANG_LABELS: Record<string, string> = {
         'ko': '한국어',
         'en': 'English',
         'vi': 'Tiếng Việt',
-        'ne': 'नेपाली'
+        'ne': 'नेपाली',
+        'km': 'ខ្មែរ'
     };
 
     return (
@@ -26,7 +29,7 @@ export function MenuSection({ currentLang, onChangeLang, companyName, onLogout }
             >
                 <div className="flex items-center gap-3">
                     <Globe size={20} className="text-gray-500" />
-                    <span className="font-medium text-gray-900">언어 설정</span>
+                    <span className="font-medium text-gray-900">{dict.mypage.languageSetting}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-500 group">
                     <span className="text-sm">{LANG_LABELS[currentLang] || currentLang}</span>
@@ -38,9 +41,9 @@ export function MenuSection({ currentLang, onChangeLang, companyName, onLogout }
             <div className="w-full flex items-center justify-between p-5 border-b border-gray-50">
                 <div className="flex items-center gap-3">
                     <Building2 size={20} className="text-gray-500" />
-                    <span className="font-medium text-gray-900">소속 회사</span>
+                    <span className="font-medium text-gray-900">{dict.mypage.company}</span>
                 </div>
-                <span className="text-sm text-gray-500">{companyName || '소속 없음'}</span>
+                <span className="text-sm text-gray-500">{companyName || dict.mypage.companyNone}</span>
             </div>
 
             {/* Logout */}
@@ -49,7 +52,7 @@ export function MenuSection({ currentLang, onChangeLang, companyName, onLogout }
                 className="w-full flex items-center gap-3 p-5 hover:bg-red-50 transition-colors text-red-500"
             >
                 <LogOut size={20} />
-                <span className="font-medium">로그아웃</span>
+                <span className="font-medium">{dict.mypage.logout}</span>
             </button>
         </div>
     );

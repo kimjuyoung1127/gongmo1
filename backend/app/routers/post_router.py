@@ -7,6 +7,7 @@ from app.core.dependencies import get_current_user
 from app.models.user import User
 from app.repositories.post_repository import PostRepository
 from app.repositories.post_image_repository import PostImageRepository
+from app.repositories.reaction_repository import ReactionRepository
 from app.services.post_service import PostService
 from app.services.post_image_service import PostImageService
 from app.schemas.post_schema import PostCreate, PostResponse, PostUpdate, PostListResponse
@@ -27,7 +28,8 @@ async def create_post(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     new_post = await post_service.create_post(current_user.id, post_data)
 
@@ -48,7 +50,8 @@ async def get_posts(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     result = await post_service.get_posts_paginated(page, page_size, category_id)
 
@@ -67,7 +70,8 @@ async def get_post(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     post = await post_service.get_post_by_id(post_id, increment_view=True)
 
@@ -94,7 +98,8 @@ async def update_post(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     updated_post = await post_service.update_post(post_id, current_user.id, post_data)
 
@@ -120,7 +125,8 @@ async def delete_post(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     success = await post_service.delete_post(post_id, current_user.id)
 
@@ -146,7 +152,8 @@ async def toggle_like(
     """
     post_repo = PostRepository(db)
     post_image_repo = PostImageRepository(db)
-    post_service = PostService(post_repo, post_image_repo)
+    reaction_repo = ReactionRepository(db)
+    post_service = PostService(post_repo, post_image_repo, reaction_repo)
 
     result = await post_service.toggle_like(post_id, current_user.id)
 

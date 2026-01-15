@@ -39,6 +39,7 @@ export type Dictionary = {
     content: string;
     category: string;
     selectCategory: string;
+    anonymous: string;
     submit: string;
     cancel: string;
     delete: string;
@@ -56,6 +57,7 @@ export type Dictionary = {
   comment: {
     addComment: string;
     writeComment: string;
+    anonymous: string;
     submit: string;
     delete: string;
     noComments: string;
@@ -102,13 +104,53 @@ export type Dictionary = {
     imageOnly: string;
     fileSizeLimit: string;
     analysisFailed: string;
-    noInfo: string; // ⭐ 추가!
+    noInfo: string;
     languages: {
       ko: string;
       en: string;
       vi: string;
       ne: string;
     };
+  };
+  aiManualChat: {
+    titleFallback: string;
+    assistantGreeting: string;
+    inputPlaceholder: string;
+    send: string;
+    loadingResponse: string;
+    answerUnavailable: string;
+    errorPrefix: string;
+    networkErrorPrefix: string;
+    sections: {
+      bom: string;
+      "product-guide": string;
+      sop: string;
+      policy: string;
+      wiki: string;
+    };
+  };
+  mypage: {
+    title: string;
+    profileFallback: string;
+    profileImageAlt: string;
+    editProfile: string;
+    editProfileAlert: string;
+    activityTitle: string;
+    stats: {
+      posts: string;
+      comments: string;
+      likesReceived: string;
+      companyIssues: string;
+    };
+    pointsLabel: string;
+    pointsHistory: string;
+    languageSetting: string;
+    company: string;
+    companyNone: string;
+    logout: string;
+    logoutConfirm: string;
+    languageSelectTitle: string;
+    versionPrefix: string;
   };
   common: {
     loading: string;
@@ -117,6 +159,32 @@ export type Dictionary = {
     confirm: string;
     back: string;
   };
+  communityPage: {
+    companyIssues: string;
+    freeBoard: string;
+    goToFreeBoard: string;
+    goToCompanyIssues: string;
+  };
+  aiManualMenu: {
+    mainMenu: string;
+    selectInfo: string;
+    language: string;
+    status: string;
+    statusDummy: string;
+    connection: string;
+    open: string;
+    bomTitle: string;
+    bomDesc: string;
+    productGuideTitle: string;
+    productGuideDesc: string;
+    sopTitle: string;
+    sopDesc: string;
+    policyTitle: string;
+    policyDesc: string;
+    wikiTitle: string;
+    wikiDesc: string;
+    backToMain: string;
+  };
 };
 
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
@@ -124,6 +192,7 @@ const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
   en: () => import('./en.json').then((module) => module.default),
   vi: () => import('./vi.json').then((module) => module.default),
   ne: () => import('./ne.json').then((module) => module.default),
+  km: () => import('./km.json').then((module) => module.default),
 };
 
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {

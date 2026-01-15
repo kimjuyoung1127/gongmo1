@@ -37,6 +37,7 @@
     "content": "Content",
     "category": "Category",
     "selectCategory": "Select Category",
+    "anonymous": "Post anonymously",
     "submit": "Submit",
     "cancel": "Cancel",
     "delete": "Delete",
@@ -54,6 +55,7 @@
   "comment": {
     "addComment": "Add Comment",
     "writeComment": "Write a comment",
+    "anonymous": "Comment anonymously",
     "submit": "Submit",
     "delete": "Delete",
     "noComments": "No comments yet",
@@ -71,6 +73,46 @@
     "nicknameRequired": "Please enter a nickname",
     "nicknameLength": "Nickname must be between 2-50 characters",
     "loginError": "Login failed"
+  },
+  "aiManualChat": {
+    "titleFallback": "Chatbot",
+    "assistantGreeting": "🤖 Hi, I'm the \"{section}\" assistant. How can I help?",
+    "inputPlaceholder": "Type your question...",
+    "send": "Send",
+    "loadingResponse": "Thinking...",
+    "answerUnavailable": "I couldn't generate an answer.",
+    "errorPrefix": "❌ Error: ",
+    "networkErrorPrefix": "❌ Network error: ",
+    "sections": {
+      "bom": "BOM Lookup",
+      "product-guide": "Product Guide",
+      "sop": "Work Instruction (SOP)",
+      "policy": "HR · Welfare & Safety",
+      "wiki": "Site Terms Wiki"
+    }
+  },
+  "mypage": {
+    "title": "My Page",
+    "profileFallback": "User",
+    "profileImageAlt": "Profile",
+    "editProfile": "Edit Profile",
+    "editProfileAlert": "Profile editing is coming soon.",
+    "activityTitle": "My Activity",
+    "stats": {
+      "posts": "Posts",
+      "comments": "Comments",
+      "likesReceived": "Likes received",
+      "companyIssues": "Company issues"
+    },
+    "pointsLabel": "{name}'s points",
+    "pointsHistory": "View point history",
+    "languageSetting": "Language",
+    "company": "Company",
+    "companyNone": "No company",
+    "logout": "Log out",
+    "logoutConfirm": "Do you want to log out?",
+    "languageSelectTitle": "Select language",
+    "versionPrefix": "Version"
   },
   "common": {
     "loading": "Loading...",
@@ -114,5 +156,31 @@
       "vi": "Tiếng Việt",
       "ne": "नेपाली"
     }
+  },
+  "communityPage": {
+    "companyIssues": "Company Issues",
+    "freeBoard": "Free Board",
+    "goToFreeBoard": "Go to Free Board >",
+    "goToCompanyIssues": "< View Company Issues"
+  },
+  "aiManualMenu": {
+    "mainMenu": "Main Menu",
+    "selectInfo": "Select the information you need",
+    "language": "Language",
+    "status": "Status",
+    "statusDummy": "Dummy (General Chatbot)",
+    "connection": "Connection",
+    "open": "Open",
+    "bomTitle": "BOM Lookup",
+    "bomDesc": "Parts/Quantity by Part Number",
+    "productGuideTitle": "Product Guide",
+    "productGuideDesc": "Usage/Shape Information",
+    "sopTitle": "Work Instructions",
+    "sopDesc": "Check Process Work Procedures",
+    "policyTitle": "HR & Safety Guidelines",
+    "policyDesc": "Company Policies and Benefits Q&A",
+    "wikiTitle": "Site Terminology Wiki",
+    "wikiDesc": "On-site Technical Terms Explained",
+    "backToMain": "Back to Main Screen"
   }
 }

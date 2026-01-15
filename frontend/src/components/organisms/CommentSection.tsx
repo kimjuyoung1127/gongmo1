@@ -20,6 +20,7 @@ export const CommentSection = memo<CommentSectionProps>(({
   const dict = useDictionary();
   const { comments, loading, error, addComment, deleteComment } = useComments(postId);
   const [newComment, setNewComment] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,7 +28,7 @@ export const CommentSection = memo<CommentSectionProps>(({
     if (!newComment.trim()) return;
 
     setSubmitting(true);
-    const success = await addComment(newComment.trim());
+    const success = await addComment(newComment.trim(), isAnonymous);
     if (success) {
       setNewComment('');
     }
@@ -59,6 +60,15 @@ export const CommentSection = memo<CommentSectionProps>(({
             rows={3}
             disabled={submitting}
           />
+          <label className="flex items-center space-x-2 text-sm text-gray-700">
+            <input
+              type="checkbox"
+              checked={isAnonymous}
+              onChange={(e) => setIsAnonymous(e.target.checked)}
+              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            />
+            <span>{dict.comment.anonymous}</span>
+          </label>
           <Button type="submit" disabled={submitting || !newComment.trim()}>
             {submitting ? dict.common.loading : dict.comment.submit}
           </Button>

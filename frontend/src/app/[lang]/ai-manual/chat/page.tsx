@@ -1,37 +1,44 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useDictionary } from "@/contexts/DictionaryContext";
 
 type Section = "bom" | "product-guide" | "sop" | "policy" | "wiki";
 type Msg = { role: "user" | "assistant"; content: string };
 
-const SECTION_LABEL: Record<Section, string> = {
-  bom: "BOM 조회",
-  "product-guide": "제품 가이드",
-  sop: "작업 지시서(SOP)",
-  policy: "인사·복지 & 안전 지침",
-  wiki: "현장 용어 위키",
-};
+const SECTIONS: Section[] = ["bom", "product-guide", "sop", "policy", "wiki"];
+
+function isSection(value: string | null): value is Section {
+  return !!value && SECTIONS.includes(value as Section);
+}
 
 function ChatContent() {
   const router = useRouter();
   const params = useParams<{ lang: string }>();
   const lang = params.lang ?? "ko";
   const sp = useSearchParams();
+  const dict = useDictionary();
 
-  const section = (sp.get("section") ?? "bom") as Section;
+  const rawSection = sp.get("section");
+  const section: Section = isSection(rawSection) ? rawSection : "bom";
+  const sectionLabel =
+    dict.aiManualChat.sections[section] ?? dict.aiManualChat.titleFallback;
+  const greeting = dict.aiManualChat.assistantGreeting.replace(
+    "{section}",
+    sectionLabel
+  );
 
   const [messages, setMessages] = useState<Msg[]>(() => [
     {
       role: "assistant",
-      content: `🤖안녕하세요, "${SECTION_LABEL[section]}" 도우미입니다. 무엇을 도와드릴까요?`,
+      content: greeting,
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const title = useMemo(() => SECTION_LABEL[section] ?? "챗봇", [section]);
+  const title = sectionLabel || dict.aiManualChat.titleFallback;
 
   const goBack = () => router.push(`/${lang}/ai-manual/menu`);
   const goConfirm = () => router.push(`/${lang}/ai-manual/menu`);
@@ -56,18 +63,27 @@ function ChatContent() {
       if (res.ok) {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: data.answer ?? "답변을 생성하지 못했습니다." },
+          {
+            role: "assistant",
+            content: data.answer ?? dict.aiManualChat.answerUnavailable,
+          },
         ]);
       } else {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: `❌ 오류: ${data.error ?? res.statusText}` },
+          {
+            role: "assistant",
+            content: `${dict.aiManualChat.errorPrefix}${data.error ?? res.statusText}`,
+          },
         ]);
       }
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: `❌ 통신 오류: ${err.message}` },
+        {
+          role: "assistant",
+          content: `${dict.aiManualChat.networkErrorPrefix}${err.message}`,
+        },
       ]);
     } finally {
       setLoading(false);
@@ -82,7 +98,7 @@ function ChatContent() {
           onClick={goBack}
           className="text-sm font-medium hover:underline"
         >
-          ← 뒤로
+          ← {dict.common.back}
         </button>
         <h1 className="text-lg font-bold">{title}</h1>
       </div>
@@ -108,7 +124,7 @@ function ChatContent() {
         {loading && (
           <div className="flex justify-start">
             <div className="bg-white px-4 py-2 rounded-lg border text-gray-500">
-              응답 중...
+              {dict.aiManualChat.loadingResponse}
             </div>
           </div>
         )}
@@ -119,7 +135,7 @@ function ChatContent() {
         <input
           type="text"
           className="flex-1 border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="질문을 입력하세요..."
+          placeholder={dict.aiManualChat.inputPlaceholder}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send()}
@@ -130,7 +146,7 @@ function ChatContent() {
           disabled={loading}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
         >
-          전송
+          {dict.aiManualChat.send}
         </button>
       </div>
 
@@ -140,7 +156,7 @@ function ChatContent() {
           onClick={goConfirm}
           className="w-full bg-green-600 text-white font-bold py-2 rounded hover:bg-green-700"
         >
-          확인
+          {dict.common.confirm}
         </button>
       </div>
     </div>
@@ -148,8 +164,15 @@ function ChatContent() {
 }
 
 export default function SectionChatPage() {
+  const dict = useDictionary();
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-screen">
+          {dict.common.loading}
+        </div>
+      }
+    >
       <ChatContent />
     </Suspense>
   );

@@ -1,5 +1,5 @@
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from app.models.user import User
@@ -49,6 +49,7 @@ class AuthService:
         # 세션 토큰 생성
         session_token = self._generate_session_token()
         user.session_token = session_token
+        user.session_created_at = datetime.now(timezone.utc)
         await self.user_repo.update(user)
 
         return user
@@ -65,6 +66,7 @@ class AuthService:
             nickname=user_data.nickname,
             password_hash=password_hash_value,
             session_token=session_token,
+            session_created_at=datetime.now(timezone.utc),
         )
 
         return await self.user_repo.create(new_user)
@@ -77,10 +79,13 @@ class AuthService:
             return None
 
         # 세션 만료 체크 (설정된 시간 기준)
-        session_expire_time = user.created_at + timedelta(
-            hours=settings.SESSION_EXPIRE_HOURS
-        )
-        if datetime.now(user.created_at.tzinfo) > session_expire_time:
+        session_start = user.session_created_at or user.created_at
+        session_expire_time = session_start + timedelta(hours=settings.SESSION_EXPIRE_HOURS)
+        now = datetime.now(session_start.tzinfo or timezone.utc)
+        if now > session_expire_time:
+            user.session_token = None
+            user.session_created_at = None
+            await self.user_repo.update(user)
             return None
 
         return user

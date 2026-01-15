@@ -37,6 +37,7 @@
     "content": "Nội dung",
     "category": "Danh mục",
     "selectCategory": "Chọn danh mục",
+    "anonymous": "Đăng ẩn danh",
     "submit": "Đăng",
     "cancel": "Hủy",
     "delete": "Xóa",
@@ -54,6 +55,7 @@
   "comment": {
     "addComment": "Thêm bình luận",
     "writeComment": "Viết bình luận",
+    "anonymous": "Bình luận ẩn danh",
     "submit": "Đăng",
     "delete": "Xóa",
     "noComments": "Chưa có bình luận",
@@ -71,6 +73,46 @@
     "nicknameRequired": "Vui lòng nhập biệt danh",
     "nicknameLength": "Biệt danh phải từ 2-50 ký tự",
     "loginError": "Đăng nhập thất bại"
+  },
+  "aiManualChat": {
+    "titleFallback": "Trợ lý",
+    "assistantGreeting": "🤖 Xin chào, tôi là trợ lý \"{section}\". Tôi có thể giúp gì?",
+    "inputPlaceholder": "Nhập câu hỏi...",
+    "send": "Gửi",
+    "loadingResponse": "Đang trả lời...",
+    "answerUnavailable": "Không thể tạo câu trả lời.",
+    "errorPrefix": "❌ Lỗi: ",
+    "networkErrorPrefix": "❌ Lỗi kết nối: ",
+    "sections": {
+      "bom": "Tra cứu BOM",
+      "product-guide": "Hướng dẫn sản phẩm",
+      "sop": "Hướng dẫn công việc (SOP)",
+      "policy": "Nhân sự · Phúc lợi & An toàn",
+      "wiki": "Từ vựng hiện trường"
+    }
+  },
+  "mypage": {
+    "title": "Trang cá nhân",
+    "profileFallback": "Người dùng",
+    "profileImageAlt": "Hồ sơ",
+    "editProfile": "Chỉnh sửa hồ sơ",
+    "editProfileAlert": "Tính năng chỉnh sửa hồ sơ đang được chuẩn bị.",
+    "activityTitle": "Hoạt động của tôi",
+    "stats": {
+      "posts": "Bài viết",
+      "comments": "Bình luận",
+      "likesReceived": "Lượt thích nhận được",
+      "companyIssues": "Vấn đề công ty"
+    },
+    "pointsLabel": "Điểm của {name}",
+    "pointsHistory": "Xem lịch sử điểm",
+    "languageSetting": "Ngôn ngữ",
+    "company": "Công ty",
+    "companyNone": "Chưa có công ty",
+    "logout": "Đăng xuất",
+    "logoutConfirm": "Bạn có muốn đăng xuất không?",
+    "languageSelectTitle": "Chọn ngôn ngữ",
+    "versionPrefix": "Phiên bản"
   },
   "common": {
     "loading": "Đang tải...",
@@ -114,5 +156,31 @@
       "vi": "Tiếng Việt",
       "ne": "नेपाली"
     }
+  },
+  "communityPage": {
+    "companyIssues": "Vấn đề công ty",
+    "freeBoard": "Bảng tự do",
+    "goToFreeBoard": "Đi đến Bảng tự do >",
+    "goToCompanyIssues": "< Xem vấn đề công ty"
+  },
+  "aiManualMenu": {
+    "mainMenu": "Menu chính",
+    "selectInfo": "Chọn thông tin bạn cần",
+    "language": "Ngôn ngữ",
+    "status": "Trạng thái",
+    "statusDummy": "Demo (Chatbot thông thường)",
+    "connection": "Kết nối",
+    "open": "Mở",
+    "bomTitle": "Tra cứu BOM",
+    "bomDesc": "Linh kiện/Số lượng theo mã",
+    "productGuideTitle": "Hướng dẫn sản phẩm",
+    "productGuideDesc": "Thông tin công dụng/hình dạng",
+    "sopTitle": "Hướng dẫn công việc",
+    "sopDesc": "Kiểm tra quy trình làm việc",
+    "policyTitle": "Nhân sự & An toàn",
+    "policyDesc": "Quy định công ty và phúc lợi",
+    "wikiTitle": "Wiki thuật ngữ",
+    "wikiDesc": "Giải thích thuật ngữ chuyên môn",
+    "backToMain": "Quay lại màn hình chính"
   }
 }

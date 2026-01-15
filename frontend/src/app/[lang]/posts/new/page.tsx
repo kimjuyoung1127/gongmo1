@@ -22,7 +22,7 @@ export default function NewPostPage() {
   const lang = useLang();
   const router = useRouter();
   const { isAuthenticated, loading } = useAuth();
-  const [categories, setCategories] = useState<Category[]>(MOCK_CATEGORIES);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     // Development Bypass: Commented out authentication check
@@ -33,18 +33,18 @@ export default function NewPostPage() {
     */
   }, [isAuthenticated, loading, lang, router]);
 
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const cats = await categoryService.getCategories();
-  //       setCategories(cats);
-  //     } catch (err) {
-  //       console.error('Failed to fetch categories', err);
-  //       setCategories(MOCK_CATEGORIES); // Fallback to mock
-  //     }
-  //   };
-  //   fetchCategories();
-  // }, []);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const cats = await categoryService.getCategories();
+        setCategories(cats);
+      } catch (err) {
+        console.error('Failed to fetch categories', err);
+        setCategories(MOCK_CATEGORIES);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   if (loading) {
     return (

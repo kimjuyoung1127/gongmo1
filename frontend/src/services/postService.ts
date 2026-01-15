@@ -1,5 +1,5 @@
 import apiClient from './apiClient';
-import { Post, PostCreate, PostUpdate, PostListResponse, PaginationParams } from '@/types';
+import { Post, PostCreate, PostUpdate, PostListResponse, PaginationParams, PostImageListResponse } from '@/types';
 
 export const postService = {
   async getPosts(params: PaginationParams): Promise<PostListResponse> {
@@ -28,6 +28,24 @@ export const postService = {
 
   async likePost(id: number): Promise<{ like_count: number }> {
     const response = await apiClient.post<{ like_count: number }>(`/posts/${id}/like`);
+    return response.data;
+  },
+
+  async uploadPostImages(id: number, files: File[]): Promise<PostImageListResponse> {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+
+    const response = await apiClient.post<PostImageListResponse>(
+      `/posts/${id}/images`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
     return response.data;
   },
 };

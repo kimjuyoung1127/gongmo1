@@ -69,7 +69,7 @@ async def delete_comment(
     post_repo = PostRepository(db)
     comment_service = CommentService(comment_repo, post_repo)
 
-    success = await comment_service.delete_comment(comment_id, current_user.id)
+    success = await comment_service.delete_comment(comment_id, current_user.id, post_id)
 
     if not success:
         raise HTTPException(

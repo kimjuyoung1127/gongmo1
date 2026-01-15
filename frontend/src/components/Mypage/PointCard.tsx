@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronRight, Coins } from 'lucide-react';
+import { useDictionary } from '@/contexts/DictionaryContext';
 
 interface PointCardProps {
     points: number;
@@ -8,6 +9,9 @@ interface PointCardProps {
 }
 
 export function PointCard({ points, userName }: PointCardProps) {
+    const dict = useDictionary();
+    const label = dict.mypage.pointsLabel.replace('{name}', userName);
+
     return (
         <div className="bg-blue-500 rounded-[24px] p-6 mb-6 shadow-md text-white relative overflow-hidden">
             {/* Decorative Background Circles */}
@@ -16,7 +20,7 @@ export function PointCard({ points, userName }: PointCardProps) {
 
             <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                    <span className="text-blue-100 font-medium text-sm">{userName}님의 포인트</span>
+                    <span className="text-blue-100 font-medium text-sm">{label}</span>
                     <Coins size={20} className="text-blue-200" />
                 </div>
 
@@ -26,7 +30,7 @@ export function PointCard({ points, userName }: PointCardProps) {
                 </div>
 
                 <button className="w-full bg-black/20 hover:bg-black/30 backdrop-blur-sm py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-1 transition-colors mt-2">
-                    포인트 내역 보기 <ChevronRight size={16} />
+                    {dict.mypage.pointsHistory} <ChevronRight size={16} />
                 </button>
             </div>
         </div>

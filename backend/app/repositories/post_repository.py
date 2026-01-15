@@ -56,29 +56,32 @@ class PostRepository(BaseRepository[Post]):
         result = await self.db.execute(query)
         return result.scalar_one()
 
-    async def increment_view_count(self, post_id: int) -> bool:
+    async def increment_view_count(self, post_id: int) -> Optional[int]:
         """조회수 증가"""
         post = await self.get_by_id(post_id)
         if post:
             post.view_count += 1
             await self.db.flush()
-            return True
-        return False
+            await self.db.refresh(post)
+            return post.view_count
+        return None
 
-    async def increment_like_count(self, post_id: int) -> bool:
+    async def increment_like_count(self, post_id: int) -> Optional[int]:
         """좋아요 수 증가"""
         post = await self.get_by_id(post_id)
         if post:
             post.like_count += 1
             await self.db.flush()
-            return True
-        return False
+            await self.db.refresh(post)
+            return post.like_count
+        return None
 
-    async def decrement_like_count(self, post_id: int) -> bool:
+    async def decrement_like_count(self, post_id: int) -> Optional[int]:
         """좋아요 수 감소"""
         post = await self.get_by_id(post_id)
         if post and post.like_count > 0:
             post.like_count -= 1
             await self.db.flush()
-            return True
-        return False
+            await self.db.refresh(post)
+            return post.like_count
+        return None

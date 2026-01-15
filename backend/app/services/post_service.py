@@ -5,13 +5,21 @@ import math
 from app.models.post import Post
 from app.repositories.post_repository import PostRepository
 from app.repositories.post_image_repository import PostImageRepository
+from app.repositories.reaction_repository import ReactionRepository
+from app.models.reaction import Reaction
 from app.schemas.post_schema import PostCreate, PostUpdate
 
 
 class PostService:
-    def __init__(self, post_repo: PostRepository, post_image_repo: PostImageRepository):
+    def __init__(
+        self,
+        post_repo: PostRepository,
+        post_image_repo: PostImageRepository,
+        reaction_repo: ReactionRepository,
+    ):
         self.post_repo = post_repo
         self.post_image_repo = post_image_repo
+        self.reaction_repo = reaction_repo
 
     def _normalize_image_urls(
         self,
@@ -56,7 +64,9 @@ class PostService:
         post = await self.post_repo.get_by_id(post_id)
 
         if post and increment_view:
-            await self.post_repo.increment_view_count(post_id)
+            updated_count = await self.post_repo.increment_view_count(post_id)
+            if updated_count is not None:
+                post.view_count = updated_count
 
         return post
 
@@ -143,9 +153,7 @@ class PostService:
         return await self.post_repo.delete(post_id)
 
     async def toggle_like(self, post_id: int, user_id: int) -> Dict[str, Any]:
-        """좋아요 토글 (향후 Reaction 모델과 연동)"""
-        # 현재는 단순 카운트만 증가/감소
-        # TODO: Reaction 모델과 연동하여 중복 체크 및 토글 구현
+        """좋아요 토글"""
         post = await self.post_repo.get_by_id(post_id)
 
         if not post:
@@ -154,11 +162,26 @@ class PostService:
                 detail="Post not found"
             )
 
-        # 임시 구현: 단순 증가
-        await self.post_repo.increment_like_count(post_id)
+        existing_reaction = await self.reaction_repo.get_by_post_user_type(
+            post_id,
+            user_id,
+            "like",
+        )
+        if existing_reaction:
+            await self.reaction_repo.delete_reaction(existing_reaction)
+            updated_count = await self.post_repo.decrement_like_count(post_id)
+            action = "Like removed"
+        else:
+            reaction = Reaction(post_id=post_id, user_id=user_id, type="like")
+            await self.reaction_repo.create(reaction)
+            updated_count = await self.post_repo.increment_like_count(post_id)
+            action = "Like added"
+
+        if updated_count is None:
+            updated_count = post.like_count
 
         return {
             "post_id": post_id,
-            "like_count": post.like_count + 1,
-            "message": "Like added"
+            "like_count": updated_count,
+            "message": action
         }
