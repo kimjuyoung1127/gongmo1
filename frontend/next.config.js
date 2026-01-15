@@ -2,13 +2,17 @@
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
-  images: {
-    domains: ['localhost', 'picsum.photos'],
+  
+  // 👈 HTTP 타임아웃 설정 추가 (2분)
+  httpAgentOptions: {
+    keepAlive: true,
   },
+  
+  images: {
+    domains: ['localhost'],
+  },
+  
   async rewrites() {
-    // BACKEND_URL 환경변수 필수 사용
-    // 로컬 개발: http://localhost:25051
-    // Docker: http://backend:25050
     const backendUrl = process.env.BACKEND_URL;
 
     if (!backendUrl) {

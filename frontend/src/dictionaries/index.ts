@@ -74,6 +74,42 @@ export type Dictionary = {
     nicknameLength: string;
     loginError: string;
   };
+  ocr: {
+    title: string;
+    subtitle: string;
+    languageSettings: string;
+    sourceLang: string;
+    targetLang: string;
+    uploadImage: string;
+    uploadDesc: string;
+    fileFormat: string;
+    analyzing: string;
+    startAnalysis: string;
+    error: string;
+    analysisComplete: string;
+    confidence: string;
+    analyzeNew: string;
+    documentType: string;
+    originalText: string;
+    translatedText: string;
+    summary: string;
+    keyInfo: string;
+    company: string;
+    date: string;
+    amount: string;
+    period: string;
+    conditions: string;
+    imageOnly: string;
+    fileSizeLimit: string;
+    analysisFailed: string;
+    noInfo: string; // ⭐ 추가!
+    languages: {
+      ko: string;
+      en: string;
+      vi: string;
+      ne: string;
+    };
+  };
   common: {
     loading: string;
     error: string;
@@ -88,7 +124,6 @@ const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
   en: () => import('./en.json').then((module) => module.default),
   vi: () => import('./vi.json').then((module) => module.default),
   ne: () => import('./ne.json').then((module) => module.default),
-  km: () => import('./km.json').then((module) => module.default),
 };
 
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {

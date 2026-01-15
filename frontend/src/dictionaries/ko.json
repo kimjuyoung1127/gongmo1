@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "LinkON - 외국인 노동자 커뮤니티",
+    "title": "WeWorkHere - 외국인 노동자 커뮤니티",
     "description": "외국인 노동자를 위한 익명 커뮤니티. 일자리, 생활, 비자 정보를 공유하세요."
   },
   "dashboard": {
@@ -63,7 +63,7 @@
     "deleteError": "댓글 삭제에 실패했습니다"
   },
   "login": {
-    "title": "LinkON 로그인",
+    "title": "WeWorkHere 로그인",
     "subtitle": "익명 닉네임으로 시작하세요",
     "nickname": "닉네임",
     "nicknamePlaceholder": "닉네임을 입력하세요",
@@ -78,5 +78,41 @@
     "success": "성공",
     "confirm": "확인",
     "back": "뒤로"
+  },
+  "ocr": {
+    "title": "문서 스캔",
+    "subtitle": "AI 문서 분석 및 번역",
+    "languageSettings": "언어 설정",
+    "sourceLang": "원본 언어",
+    "targetLang": "번역 언어",
+    "uploadImage": "이미지 업로드",
+    "uploadDesc": "근로계약서, 비자 서류, 임금명세서 등",
+    "fileFormat": "JPG, PNG (최대 20MB)",
+    "analyzing": "분석 중...",
+    "startAnalysis": "문서 분석 시작",
+    "error": "오류 발생",
+    "analysisComplete": "분석 완료",
+    "confidence": "신뢰도",
+    "analyzeNew": "새로 분석",
+    "documentType": "문서 종류",
+    "originalText": "원문",
+    "translatedText": "번역문",
+    "summary": "요약",
+    "keyInfo": "주요 정보",
+    "company": "회사명",
+    "date": "날짜",
+    "amount": "금액",
+    "period": "기간",
+    "conditions": "조건",
+    "imageOnly": "이미지 파일만 업로드 가능합니다",
+    "fileSizeLimit": "파일 크기는 20MB 이하여야 합니다",
+    "analysisFailed": "문서 분석에 실패했습니다",
+    "noInfo": "정보가 없습니다",
+    "languages": {
+      "ko": "한국어",
+      "en": "English",
+      "vi": "Tiếng Việt",
+      "ne": "नेपाली"
+    }
   }
 }

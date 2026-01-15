@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "title": "LinkON - Foreign Workers Community",
+    "title": "WeWorkHere - Foreign Worker Community",
     "description": "Anonymous community for foreign workers. Share jobs, life, and visa information."
   },
   "dashboard": {
-    "greeting": "Hello, User",
+    "greeting": "Welcome",
     "aiManual": "AI Manual",
-    "aiManualDesc": "Ask about site work & safety",
+    "aiManualDesc": "Ask about workplace tasks and safety",
     "startChat": "Start Chat",
     "community": "Community",
-    "communityDesc": "Share info & connect with others",
+    "communityDesc": "Share information and connect with colleagues",
     "joinDiscussion": "Join Discussion",
-    "ocrScan": "OCR Scan",
-    "ocrScanDesc": "Translate work documents",
+    "ocrScan": "Document Scan",
+    "ocrScanDesc": "Quickly translate work documents",
     "startScanning": "Start Scanning"
   },
   "nav": {
@@ -24,7 +24,7 @@
   "categories": {
     "all": "All",
     "general": "General",
-    "work": "Work",
+    "work": "Jobs",
     "life": "Life",
     "visa": "Visa",
     "housing": "Housing",
@@ -63,7 +63,7 @@
     "deleteError": "Failed to delete comment"
   },
   "login": {
-    "title": "LinkON Login",
+    "title": "WeWorkHere Login",
     "subtitle": "Start with an anonymous nickname",
     "nickname": "Nickname",
     "nicknamePlaceholder": "Enter your nickname",
@@ -78,5 +78,41 @@
     "success": "Success",
     "confirm": "Confirm",
     "back": "Back"
+  },
+  "ocr": {
+    "title": "Document Scan",
+    "subtitle": "AI Document Analysis & Translation",
+    "languageSettings": "Language Settings",
+    "sourceLang": "Source Language",
+    "targetLang": "Target Language",
+    "uploadImage": "Upload Image",
+    "uploadDesc": "Employment contract, visa documents, pay stubs, etc.",
+    "fileFormat": "JPG, PNG (Max 20MB)",
+    "analyzing": "Analyzing...",
+    "startAnalysis": "Start Analysis",
+    "error": "Error Occurred",
+    "analysisComplete": "Analysis Complete",
+    "confidence": "Confidence",
+    "analyzeNew": "Analyze New",
+    "documentType": "Document Type",
+    "originalText": "Original Text",
+    "translatedText": "Translated Text",
+    "summary": "Summary",
+    "keyInfo": "Key Information",
+    "company": "Company",
+    "date": "Date",
+    "amount": "Amount",
+    "period": "Period",
+    "conditions": "Conditions",
+    "imageOnly": "Only image files can be uploaded",
+    "fileSizeLimit": "File size must be under 20MB",
+    "analysisFailed": "Document analysis failed",
+    "noInfo": "No information available",
+    "languages": {
+      "ko": "한국어",
+      "en": "English",
+      "vi": "Tiếng Việt",
+      "ne": "नेपाली"
+    }
   }
 }
