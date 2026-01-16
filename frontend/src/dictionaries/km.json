@@ -66,13 +66,62 @@
   },
   "login": {
     "title": "ចូល LinkON",
-    "subtitle": "ចាប់ផ្តើមដោយឈ្មោះអនាមិក",
+    "subtitle": "សូមស្វាគមន៍មកកាន់ LinkON",
     "nickname": "ឈ្មោះក្រៅ",
     "nicknamePlaceholder": "បញ្ចូលឈ្មោះក្រៅ",
-    "loginButton": "ចាប់ផ្តើម",
+    "loginButton": "ចូល",
     "nicknameRequired": "សូមបញ្ចូលឈ្មោះក្រៅ",
     "nicknameLength": "ឈ្មោះក្រៅត្រូវមាន 2-50 តួអក្សរ",
-    "loginError": "ចូលបរាជ័យ"
+    "loginError": "ចូលបរាជ័យ",
+    "password": "ពាក្យសម្ងាត់",
+    "passwordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់",
+    "passwordRequired": "សូមបញ្ចូលពាក្យសម្ងាត់",
+    "submitting": "កំពុងចូល...",
+    "noAccount": "មិនមានគណនីទេ?",
+    "register": "ចុះឈ្មោះ",
+    "or": "ឬ"
+  },
+  "register": {
+    "title": "ចុះឈ្មោះ",
+    "subtitle": "បង្កើតគណនី LinkON របស់អ្នក",
+    "nickname": "ឈ្មោះក្រៅ",
+    "nicknamePlaceholder": "បញ្ចូលឈ្មោះក្រៅ (2-50 តួអក្សរ)",
+    "password": "ពាក្យសម្ងាត់",
+    "passwordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ (6+ តួអក្សរ)",
+    "confirmPassword": "បញ្ជាក់ពាក្យសម្ងាត់",
+    "confirmPasswordPlaceholder": "បញ្ចូលពាក្យសម្ងាត់ម្តងទៀត",
+    "nicknameRequired": "សូមបញ្ចូលឈ្មោះក្រៅ",
+    "passwordRequired": "សូមបញ្ចូលពាក្យសម្ងាត់",
+    "confirmPasswordRequired": "សូមបញ្ជាក់ពាក្យសម្ងាត់",
+    "nicknameLength": "ឈ្មោះក្រៅត្រូវមាន 2-50 តួអក្សរ",
+    "passwordLength": "ពាក្យសម្ងាត់ត្រូវមាន 6-100 តួអក្សរ",
+    "passwordMismatch": "ពាក្យសម្ងាត់មិនផ្គូផ្គង",
+    "registerButton": "ចុះឈ្មោះ",
+    "submitting": "កំពុងចុះឈ្មោះ...",
+    "registerError": "ចុះឈ្មោះបរាជ័យ",
+    "hasAccount": "មានគណនីហើយ?",
+    "login": "ចូល",
+    "or": "ឬ"
+  },
+  "settings": {
+    "title": "ការកំណត់",
+    "subtitle": "គ្រប់គ្រងប្រវត្តិរូប និងការកំណត់ភាសា",
+    "nickname": "ឈ្មោះក្រៅ",
+    "nicknamePlaceholder": "បញ្ចូលឈ្មោះក្រៅ (2-50 តួអក្សរ)",
+    "preferredLanguage": "ភាសាដែលចូលចិត្ត",
+    "languageHint": "អ្នកនឹងត្រូវបានបញ្ជូនដោយស្វ័យប្រវត្តិទៅភាសាដែលអ្នកចូលចិត្តពេលចូល",
+    "saveButton": "រក្សាទុកការកំណត់",
+    "saving": "កំពុងរក្សាទុក...",
+    "saveSuccess": "បានរក្សាទុកការកំណត់",
+    "saveError": "រក្សាទុកការកំណត់បរាជ័យ",
+    "nicknameRequired": "សូមបញ្ចូលឈ្មោះក្រៅ",
+    "nicknameLength": "ឈ្មោះក្រៅត្រូវមាន 2-50 តួអក្សរ",
+    "loading": "កំពុងផ្ទុក..."
+  },
+  "notFound": {
+    "title": "មុខងារកំពុងអភិវឌ្ឍ",
+    "description": "រកមិនឃើញទំព័រដែលអ្នកស្នើសុំ។",
+    "homeButton": "ទៅទំព័រដើម"
   },
   "aiManualChat": {
     "titleFallback": "Chatbot",
@@ -182,5 +231,15 @@
     "wikiTitle": "វិគីពាក្យបច្ចេកទេស",
     "wikiDesc": "ពន្យល់ពាក្យបច្ចេកទេសនៅកន្លែងធ្វើការ",
     "backToMain": "ត្រឡប់ទៅអេក្រង់មេ"
+  },
+  "aiManualNotice": {
+    "title": "សេចក្តីជូនដំណឹង",
+    "back": "ត្រឡប់ក្រោយ",
+    "todayNotices": "សេចក្តីជូនដំណឹងថ្ងៃនេះ",
+    "shiftIssues": "បញ្ហាវេនមុន",
+    "confirmButton": "ខ្ញុំបានបញ្ជាក់មាតិកា",
+    "author": "អ្នកនិពន្ធ",
+    "statusInProgress": "កំពុងដំណើរការ",
+    "statusMonitoring": "កំពុងត្រួតពិនិត្យ"
   }
 }

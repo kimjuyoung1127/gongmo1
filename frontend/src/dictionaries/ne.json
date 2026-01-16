@@ -65,14 +65,63 @@
     "deleteError": "टिप्पणी मेटाउन असफल भयो"
   },
   "login": {
-    "title": "WeWorkHere लगइन",
-    "subtitle": "गुमनाम उपनामको साथ सुरु गर्नुहोस्",
+    "title": "LinkON लगइन",
+    "subtitle": "LinkON मा स्वागत छ",
     "nickname": "उपनाम",
     "nicknamePlaceholder": "आफ्नो उपनाम प्रविष्ट गर्नुहोस्",
-    "loginButton": "सुरु गर्नुहोस्",
+    "loginButton": "लगइन",
     "nicknameRequired": "कृपया उपनाम प्रविष्ट गर्नुहोस्",
     "nicknameLength": "उपनाम 2-50 अक्षरको बीचमा हुनुपर्छ",
-    "loginError": "लगइन असफल भयो"
+    "loginError": "लगइन असफल भयो",
+    "password": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड प्रविष्ट गर्नुहोस्",
+    "passwordRequired": "कृपया पासवर्ड प्रविष्ट गर्नुहोस्",
+    "submitting": "लगइन गर्दै...",
+    "noAccount": "खाता छैन?",
+    "register": "दर्ता गर्नुहोस्",
+    "or": "वा"
+  },
+  "register": {
+    "title": "दर्ता",
+    "subtitle": "आफ्नो LinkON खाता बनाउनुहोस्",
+    "nickname": "उपनाम",
+    "nicknamePlaceholder": "उपनाम प्रविष्ट गर्नुहोस् (2-50 अक्षर)",
+    "password": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड प्रविष्ट गर्नुहोस् (6+ अक्षर)",
+    "confirmPassword": "पासवर्ड पुष्टि",
+    "confirmPasswordPlaceholder": "पासवर्ड फेरि प्रविष्ट गर्नुहोस्",
+    "nicknameRequired": "कृपया उपनाम प्रविष्ट गर्नुहोस्",
+    "passwordRequired": "कृपया पासवर्ड प्रविष्ट गर्नुहोस्",
+    "confirmPasswordRequired": "कृपया पासवर्ड पुष्टि गर्नुहोस्",
+    "nicknameLength": "उपनाम 2-50 अक्षरको बीचमा हुनुपर्छ",
+    "passwordLength": "पासवर्ड 6-100 अक्षरको बीचमा हुनुपर्छ",
+    "passwordMismatch": "पासवर्ड मेल खाँदैन",
+    "registerButton": "दर्ता गर्नुहोस्",
+    "submitting": "दर्ता गर्दै...",
+    "registerError": "दर्ता असफल भयो",
+    "hasAccount": "पहिले नै खाता छ?",
+    "login": "लगइन",
+    "or": "वा"
+  },
+  "settings": {
+    "title": "सेटिङहरू",
+    "subtitle": "प्रोफाइल र भाषा सेटिङहरू व्यवस्थापन गर्नुहोस्",
+    "nickname": "उपनाम",
+    "nicknamePlaceholder": "उपनाम प्रविष्ट गर्नुहोस् (2-50 अक्षर)",
+    "preferredLanguage": "मनपर्ने भाषा",
+    "languageHint": "लगइन गर्दा तपाईंको मनपर्ने भाषामा स्वचालित रूपमा लैजानेछ",
+    "saveButton": "सेटिङहरू बचत गर्नुहोस्",
+    "saving": "बचत गर्दै...",
+    "saveSuccess": "सेटिङहरू सफलतापूर्वक बचत भयो",
+    "saveError": "सेटिङहरू बचत गर्न असफल",
+    "nicknameRequired": "कृपया उपनाम प्रविष्ट गर्नुहोस्",
+    "nicknameLength": "उपनाम 2-50 अक्षरको बीचमा हुनुपर्छ",
+    "loading": "लोड हुँदैछ..."
+  },
+  "notFound": {
+    "title": "सुविधा विकासमा छ",
+    "description": "अनुरोध गरिएको पृष्ठ फेला परेन।",
+    "homeButton": "गृहपृष्ठमा जानुहोस्"
   },
   "aiManualChat": {
     "titleFallback": "च्याटबोट",
@@ -182,5 +231,15 @@
     "wikiTitle": "साइट शब्दावली विकी",
     "wikiDesc": "साइट प्राविधिक शब्दहरू व्याख्या",
     "backToMain": "मुख्य स्क्रिनमा फर्कनुहोस्"
+  },
+  "aiManualNotice": {
+    "title": "सूचनाहरू",
+    "back": "पछाडि",
+    "todayNotices": "आजका सूचनाहरू",
+    "shiftIssues": "अघिल्लो पालीका समस्याहरू",
+    "confirmButton": "मैले सामग्री पुष्टि गरें",
+    "author": "लेखक",
+    "statusInProgress": "प्रगतिमा",
+    "statusMonitoring": "निगरानीमा"
   }
 }

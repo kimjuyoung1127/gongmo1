@@ -11,6 +11,7 @@ const LANGUAGES = [
   { value: 'en', label: 'English' },
   { value: 'vi', label: 'Tiếng Việt (Vietnamese)' },
   { value: 'ne', label: 'नेपाली (Nepali)' },
+  { value: 'km', label: 'ភាសាខ្មែរ (Khmer)' },
 ];
 
 export default function SettingsPage() {
@@ -20,10 +21,12 @@ export default function SettingsPage() {
   const { user, updateProfile, isAuthenticated, loading } = useAuth();
 
   const [nickname, setNickname] = useState('');
-  const [preferredLanguage, setPreferredLanguage] = useState<'ko' | 'en' | 'vi' | 'ne'>('ko');
+  const [preferredLanguage, setPreferredLanguage] = useState<'ko' | 'en' | 'vi' | 'ne' | 'km'>('ko');
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const t = dict?.settings;
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -34,7 +37,7 @@ export default function SettingsPage() {
   useEffect(() => {
     if (user) {
       setNickname(user.nickname);
-      setPreferredLanguage(user.preferred_language as 'ko' | 'en' | 'vi' | 'ne');
+      setPreferredLanguage(user.preferred_language as 'ko' | 'en' | 'vi' | 'ne' | 'km');
     }
   }, [user]);
 
@@ -45,12 +48,12 @@ export default function SettingsPage() {
 
     // 입력 검증
     if (!nickname.trim()) {
-      setErrorMessage('닉네임을 입력해주세요');
+      setErrorMessage(t?.nicknameRequired || 'Please enter a nickname');
       return;
     }
 
     if (nickname.length < 2 || nickname.length > 50) {
-      setErrorMessage('닉네임은 2-50자 사이여야 합니다');
+      setErrorMessage(t?.nicknameLength || 'Nickname must be between 2-50 characters');
       return;
     }
 
@@ -61,7 +64,7 @@ export default function SettingsPage() {
     });
 
     if (result.success) {
-      setSuccessMessage('설정이 저장되었습니다');
+      setSuccessMessage(t?.saveSuccess || 'Settings saved successfully');
 
       // 언어가 변경된 경우 해당 언어의 설정 페이지로 리다이렉트
       if (preferredLanguage !== lang) {
@@ -70,7 +73,7 @@ export default function SettingsPage() {
         }, 1000);
       }
     } else {
-      setErrorMessage(result.error || '설정 저장에 실패했습니다');
+      setErrorMessage(result.error || t?.saveError || 'Failed to save settings');
     }
     setSubmitting(false);
   };
@@ -78,7 +81,7 @@ export default function SettingsPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <p>로딩 중...</p>
+        <p>{t?.loading || dict?.common?.loading || 'Loading...'}</p>
       </div>
     );
   }
@@ -92,8 +95,8 @@ export default function SettingsPage() {
       <Card className="w-full max-w-md">
         <div className="space-y-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">설정</h1>
-            <p className="text-gray-600 mt-2">프로필 및 언어 설정을 관리하세요</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t?.title || 'Settings'}</h1>
+            <p className="text-gray-600 mt-2">{t?.subtitle || 'Manage your profile and language settings'}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,33 +109,33 @@ export default function SettingsPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                닉네임
+                {t?.nickname || 'Nickname'}
               </label>
               <Input
                 value={nickname}
                 onChange={setNickname}
-                placeholder="닉네임을 입력하세요 (2-50자)"
+                placeholder={t?.nicknamePlaceholder || 'Enter your nickname (2-50 characters)'}
                 disabled={submitting}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                선호 언어
+                {t?.preferredLanguage || 'Preferred Language'}
               </label>
               <Select
                 value={preferredLanguage}
-                onChange={(value) => setPreferredLanguage(value as 'ko' | 'en' | 'vi' | 'ne')}
+                onChange={(value) => setPreferredLanguage(value as 'ko' | 'en' | 'vi' | 'ne' | 'km')}
                 options={LANGUAGES}
                 disabled={submitting}
               />
               <p className="text-sm text-gray-500 mt-1">
-                로그인 시 자동으로 선호하는 언어로 이동합니다
+                {t?.languageHint || 'You will be automatically redirected to your preferred language on login'}
               </p>
             </div>
 
             <Button type="submit" disabled={submitting} className="w-full">
-              {submitting ? '저장 중...' : '설정 저장'}
+              {submitting ? (t?.saving || 'Saving...') : (t?.saveButton || 'Save Settings')}
             </Button>
           </form>
         </div>

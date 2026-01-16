@@ -1,16 +1,23 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 import NoticeCard from "@/components/ai-manual/NoticeCard";
 import IssueCard from "@/components/ai-manual/IssueCard";
 import type { Notice, HandoverIssue, NoticeTone, IssueStatus } from "@/types/aiManual";
+import { getDictionary, Dictionary } from "@/dictionaries";
+import { Locale } from "@/types/common";
 
 export default function AiManualPage() {
   const router = useRouter();
   const params = useParams<{ lang: string }>();
-  const lang = params.lang ?? "ko";
+  const lang = (params.lang ?? "ko") as Locale;
+  const [dict, setDict] = useState<Dictionary | null>(null);
+
+  useEffect(() => {
+    getDictionary(lang).then(setDict);
+  }, [lang]);
 
   const notices = useMemo(() => {
     // ✅ 핵심: tone을 string이 아니라 NoticeTone 리터럴로 고정
@@ -68,10 +75,19 @@ export default function AiManualPage() {
   };
 
   const onBack = () => {
-    // 히스토리가 없을 수도 있으니 안전하게 fallback
     if (window.history.length > 1) router.back();
     else router.push(`/${lang}`);
   };
+
+  const t = dict?.aiManualNotice;
+
+  if (!dict) {
+    return (
+      <main className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+        <p>Loading...</p>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
@@ -81,14 +97,14 @@ export default function AiManualPage() {
           <button
             onClick={onBack}
             className="absolute left-4 top-4 rounded-lg bg-white/15 px-3 py-2 hover:bg-white/20 transition"
-            aria-label="뒤로가기"
+            aria-label={t?.back || "Back"}
           >
             ←
           </button>
 
-          <div className="text-xl font-bold text-center">공지사항</div>
+          <div className="text-xl font-bold text-center">{t?.title || "Notices"}</div>
           <div className="mt-1 text-white/90 text-sm text-center">
-            {new Date().toLocaleDateString("ko-KR")}
+            {new Date().toLocaleDateString(lang === "ko" ? "ko-KR" : lang === "vi" ? "vi-VN" : lang === "ne" ? "ne-NP" : lang === "km" ? "km-KH" : "en-US")}
           </div>
         </div>
 
@@ -97,7 +113,7 @@ export default function AiManualPage() {
           <section>
             <div className="flex items-center gap-2 font-bold text-slate-900">
               <span className="text-blue-600">ⓘ</span>
-              <span>금일 공지사항</span>
+              <span>{t?.todayNotices || "Today's Notices"}</span>
             </div>
             <div className="mt-3 space-y-3">
               {notices.map((n) => (
@@ -109,7 +125,7 @@ export default function AiManualPage() {
           <section>
             <div className="flex items-center gap-2 font-bold text-slate-900">
               <span className="text-amber-600">⚠</span>
-              <span>전임조 특이사항</span>
+              <span>{t?.shiftIssues || "Previous Shift Issues"}</span>
             </div>
             <div className="mt-3 space-y-3">
               {issues.map((i) => (
@@ -125,7 +141,7 @@ export default function AiManualPage() {
             onClick={onConfirm}
             className="w-full rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 transition"
           >
-            ✅ 내용을 확인했습니다
+            ✅ {t?.confirmButton || "I have confirmed the content"}
           </button>
         </div>
       </div>

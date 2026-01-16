@@ -19,38 +19,40 @@ export default function RegisterPage() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const t = dict?.register;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
     // 입력 검증
     if (!nickname.trim()) {
-      setErrorMessage('닉네임을 입력해주세요');
+      setErrorMessage(t?.nicknameRequired || 'Please enter a nickname');
       return;
     }
 
     if (!password) {
-      setErrorMessage('비밀번호를 입력해주세요');
+      setErrorMessage(t?.passwordRequired || 'Please enter a password');
       return;
     }
 
     if (!passwordConfirm) {
-      setErrorMessage('비밀번호 확인을 입력해주세요');
+      setErrorMessage(t?.confirmPasswordRequired || 'Please confirm your password');
       return;
     }
 
     if (nickname.length < 2 || nickname.length > 50) {
-      setErrorMessage('닉네임은 2-50자 사이여야 합니다');
+      setErrorMessage(t?.nicknameLength || 'Nickname must be between 2-50 characters');
       return;
     }
 
     if (password.length < 6 || password.length > 100) {
-      setErrorMessage('비밀번호는 6-100자 사이여야 합니다');
+      setErrorMessage(t?.passwordLength || 'Password must be between 6-100 characters');
       return;
     }
 
     if (password !== passwordConfirm) {
-      setErrorMessage('비밀번호가 일치하지 않습니다');
+      setErrorMessage(t?.passwordMismatch || 'Passwords do not match');
       return;
     }
 
@@ -63,7 +65,7 @@ export default function RegisterPage() {
     if (result.success) {
       router.push(`/${lang}/login?registered=true`);
     } else {
-      setErrorMessage(result.error || '회원가입에 실패했습니다');
+      setErrorMessage(result.error || t?.registerError || 'Sign up failed');
     }
     setSubmitting(false);
   };
@@ -73,8 +75,8 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md">
         <div className="space-y-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">회원가입</h1>
-            <p className="text-gray-600 mt-2">LinkON 계정을 만드세요</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t?.title || 'Sign Up'}</h1>
+            <p className="text-gray-600 mt-2">{t?.subtitle || 'Create your LinkON account'}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,44 +86,44 @@ export default function RegisterPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                닉네임
+                {t?.nickname || 'Nickname'}
               </label>
               <Input
                 value={nickname}
                 onChange={setNickname}
-                placeholder="닉네임을 입력하세요 (2-50자)"
+                placeholder={t?.nicknamePlaceholder || 'Enter your nickname (2-50 characters)'}
                 disabled={submitting}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                비밀번호
+                {t?.password || 'Password'}
               </label>
               <Input
                 type="password"
                 value={password}
                 onChange={setPassword}
-                placeholder="비밀번호를 입력하세요 (6자 이상)"
+                placeholder={t?.passwordPlaceholder || 'Enter your password (6+ characters)'}
                 disabled={submitting}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                비밀번호 확인
+                {t?.confirmPassword || 'Confirm Password'}
               </label>
               <Input
                 type="password"
                 value={passwordConfirm}
                 onChange={setPasswordConfirm}
-                placeholder="비밀번호를 다시 입력하세요"
+                placeholder={t?.confirmPasswordPlaceholder || 'Re-enter your password'}
                 disabled={submitting}
               />
             </div>
 
             <Button type="submit" disabled={submitting} className="w-full">
-              {submitting ? '가입 중...' : '회원가입'}
+              {submitting ? (t?.submitting || 'Signing up...') : (t?.registerButton || 'Sign Up')}
             </Button>
           </form>
 
@@ -131,17 +133,17 @@ export default function RegisterPage() {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">또는</span>
+                <span className="px-2 bg-white text-gray-500">{t?.or || 'or'}</span>
               </div>
             </div>
 
             <div className="text-sm">
-              <span className="text-gray-600">이미 계정이 있으신가요? </span>
+              <span className="text-gray-600">{t?.hasAccount || 'Already have an account?'} </span>
               <Link
                 href={`/${lang}/login`}
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                로그인
+                {t?.login || 'Login'}
               </Link>
             </div>
           </div>

@@ -65,14 +65,63 @@
     "deleteError": "Failed to delete comment"
   },
   "login": {
-    "title": "WeWorkHere Login",
-    "subtitle": "Start with an anonymous nickname",
+    "title": "LinkON Login",
+    "subtitle": "Welcome to LinkON",
     "nickname": "Nickname",
     "nicknamePlaceholder": "Enter your nickname",
-    "loginButton": "Get Started",
+    "loginButton": "Login",
     "nicknameRequired": "Please enter a nickname",
     "nicknameLength": "Nickname must be between 2-50 characters",
-    "loginError": "Login failed"
+    "loginError": "Login failed",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Please enter a password",
+    "submitting": "Logging in...",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up",
+    "or": "or"
+  },
+  "register": {
+    "title": "Sign Up",
+    "subtitle": "Create your LinkON account",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "Enter your nickname (2-50 characters)",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password (6+ characters)",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "nicknameRequired": "Please enter a nickname",
+    "passwordRequired": "Please enter a password",
+    "confirmPasswordRequired": "Please confirm your password",
+    "nicknameLength": "Nickname must be between 2-50 characters",
+    "passwordLength": "Password must be between 6-100 characters",
+    "passwordMismatch": "Passwords do not match",
+    "registerButton": "Sign Up",
+    "submitting": "Signing up...",
+    "registerError": "Sign up failed",
+    "hasAccount": "Already have an account?",
+    "login": "Login",
+    "or": "or"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile and language settings",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "Enter your nickname (2-50 characters)",
+    "preferredLanguage": "Preferred Language",
+    "languageHint": "You will be automatically redirected to your preferred language on login",
+    "saveButton": "Save Settings",
+    "saving": "Saving...",
+    "saveSuccess": "Settings saved successfully",
+    "saveError": "Failed to save settings",
+    "nicknameRequired": "Please enter a nickname",
+    "nicknameLength": "Nickname must be between 2-50 characters",
+    "loading": "Loading..."
+  },
+  "notFound": {
+    "title": "Feature Under Development",
+    "description": "The page you requested could not be found.",
+    "homeButton": "Go to Home"
   },
   "aiManualChat": {
     "titleFallback": "Chatbot",
@@ -182,5 +231,15 @@
     "wikiTitle": "Site Terminology Wiki",
     "wikiDesc": "On-site Technical Terms Explained",
     "backToMain": "Back to Main Screen"
+  },
+  "aiManualNotice": {
+    "title": "Notices",
+    "back": "Back",
+    "todayNotices": "Today's Notices",
+    "shiftIssues": "Previous Shift Issues",
+    "confirmButton": "I have confirmed the content",
+    "author": "Author",
+    "statusInProgress": "In Progress",
+    "statusMonitoring": "Monitoring"
   }
 }

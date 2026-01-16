@@ -18,6 +18,8 @@ export default function LoginPage() {
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const t = dict?.login;
+
   useEffect(() => {
     if (isAuthenticated) {
       router.push(`/${lang}`);
@@ -30,17 +32,17 @@ export default function LoginPage() {
 
     // 입력 검증
     if (!nickname.trim()) {
-      setErrorMessage('닉네임을 입력해주세요');
+      setErrorMessage(t?.nicknameRequired || 'Please enter a nickname');
       return;
     }
 
     if (!password) {
-      setErrorMessage('비밀번호를 입력해주세요');
+      setErrorMessage(t?.passwordRequired || 'Please enter a password');
       return;
     }
 
     if (nickname.length < 2 || nickname.length > 50) {
-      setErrorMessage('닉네임은 2-50자 사이여야 합니다');
+      setErrorMessage(t?.nicknameLength || 'Nickname must be between 2-50 characters');
       return;
     }
 
@@ -55,7 +57,7 @@ export default function LoginPage() {
       const preferredLang = result.user.preferred_language || 'ko';
       router.push(`/${preferredLang}`);
     } else {
-      setErrorMessage(result.error || '로그인에 실패했습니다');
+      setErrorMessage(result.error || t?.loginError || 'Login failed');
     }
     setSubmitting(false);
   };
@@ -63,7 +65,7 @@ export default function LoginPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <p>로딩 중...</p>
+        <p>{dict?.common?.loading || 'Loading...'}</p>
       </div>
     );
   }
@@ -73,8 +75,8 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <div className="space-y-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">로그인</h1>
-            <p className="text-gray-600 mt-2">LinkON에 오신 것을 환영합니다</p>
+            <h1 className="text-3xl font-bold text-gray-900">{t?.title || 'Login'}</h1>
+            <p className="text-gray-600 mt-2">{t?.subtitle || 'Welcome to LinkON'}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,31 +86,31 @@ export default function LoginPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                닉네임
+                {t?.nickname || 'Nickname'}
               </label>
               <Input
                 value={nickname}
                 onChange={setNickname}
-                placeholder="닉네임을 입력하세요"
+                placeholder={t?.nicknamePlaceholder || 'Enter your nickname'}
                 disabled={submitting}
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                비밀번호
+                {t?.password || 'Password'}
               </label>
               <Input
                 type="password"
                 value={password}
                 onChange={setPassword}
-                placeholder="비밀번호를 입력하세요"
+                placeholder={t?.passwordPlaceholder || 'Enter your password'}
                 disabled={submitting}
               />
             </div>
 
             <Button type="submit" disabled={submitting} className="w-full">
-              {submitting ? '로그인 중...' : '로그인'}
+              {submitting ? (t?.submitting || 'Logging in...') : (t?.loginButton || 'Login')}
             </Button>
           </form>
 
@@ -118,17 +120,17 @@ export default function LoginPage() {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">또는</span>
+                <span className="px-2 bg-white text-gray-500">{t?.or || 'or'}</span>
               </div>
             </div>
 
             <div className="text-sm">
-              <span className="text-gray-600">계정이 없으신가요? </span>
+              <span className="text-gray-600">{t?.noAccount || "Don't have an account?"} </span>
               <Link
                 href={`/${lang}/register`}
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                회원가입
+                {t?.register || 'Sign up'}
               </Link>
             </div>
           </div>

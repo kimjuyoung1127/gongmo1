@@ -65,14 +65,63 @@
     "deleteError": "Xóa bình luận thất bại"
   },
   "login": {
-    "title": "Đăng nhập WeWorkHere",
-    "subtitle": "Bắt đầu với biệt danh ẩn danh",
+    "title": "Đăng nhập LinkON",
+    "subtitle": "Chào mừng đến với LinkON",
     "nickname": "Biệt danh",
     "nicknamePlaceholder": "Nhập biệt danh của bạn",
-    "loginButton": "Bắt đầu",
+    "loginButton": "Đăng nhập",
     "nicknameRequired": "Vui lòng nhập biệt danh",
     "nicknameLength": "Biệt danh phải từ 2-50 ký tự",
-    "loginError": "Đăng nhập thất bại"
+    "loginError": "Đăng nhập thất bại",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "submitting": "Đang đăng nhập...",
+    "noAccount": "Chưa có tài khoản?",
+    "register": "Đăng ký",
+    "or": "hoặc"
+  },
+  "register": {
+    "title": "Đăng ký",
+    "subtitle": "Tạo tài khoản LinkON của bạn",
+    "nickname": "Biệt danh",
+    "nicknamePlaceholder": "Nhập biệt danh (2-50 ký tự)",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Nhập mật khẩu (6+ ký tự)",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+    "nicknameRequired": "Vui lòng nhập biệt danh",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
+    "nicknameLength": "Biệt danh phải từ 2-50 ký tự",
+    "passwordLength": "Mật khẩu phải từ 6-100 ký tự",
+    "passwordMismatch": "Mật khẩu không khớp",
+    "registerButton": "Đăng ký",
+    "submitting": "Đang đăng ký...",
+    "registerError": "Đăng ký thất bại",
+    "hasAccount": "Đã có tài khoản?",
+    "login": "Đăng nhập",
+    "or": "hoặc"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Quản lý hồ sơ và cài đặt ngôn ngữ",
+    "nickname": "Biệt danh",
+    "nicknamePlaceholder": "Nhập biệt danh (2-50 ký tự)",
+    "preferredLanguage": "Ngôn ngữ ưa thích",
+    "languageHint": "Bạn sẽ được chuyển đến ngôn ngữ ưa thích khi đăng nhập",
+    "saveButton": "Lưu cài đặt",
+    "saving": "Đang lưu...",
+    "saveSuccess": "Cài đặt đã được lưu",
+    "saveError": "Lưu cài đặt thất bại",
+    "nicknameRequired": "Vui lòng nhập biệt danh",
+    "nicknameLength": "Biệt danh phải từ 2-50 ký tự",
+    "loading": "Đang tải..."
+  },
+  "notFound": {
+    "title": "Tính năng đang phát triển",
+    "description": "Không tìm thấy trang bạn yêu cầu.",
+    "homeButton": "Về trang chủ"
   },
   "aiManualChat": {
     "titleFallback": "Trợ lý",
@@ -182,5 +231,15 @@
     "wikiTitle": "Wiki thuật ngữ",
     "wikiDesc": "Giải thích thuật ngữ chuyên môn",
     "backToMain": "Quay lại màn hình chính"
+  },
+  "aiManualNotice": {
+    "title": "Thông báo",
+    "back": "Quay lại",
+    "todayNotices": "Thông báo hôm nay",
+    "shiftIssues": "Vấn đề ca trước",
+    "confirmButton": "Tôi đã xác nhận nội dung",
+    "author": "Tác giả",
+    "statusInProgress": "Đang xử lý",
+    "statusMonitoring": "Đang theo dõi"
   }
 }

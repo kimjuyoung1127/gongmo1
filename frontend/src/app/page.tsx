@@ -12,7 +12,7 @@ export default function LanguageSelectPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-slate-50">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm text-center">
-        <h1 className="text-2xl font-bold mb-6">언어 선택</h1>
+        <h1 className="text-2xl font-bold mb-6">Select Language / 언어 선택</h1>
 
         <div className="space-y-3">
           <button

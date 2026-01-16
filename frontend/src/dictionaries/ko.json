@@ -65,14 +65,63 @@
     "deleteError": "댓글 삭제에 실패했습니다"
   },
   "login": {
-    "title": "WeWorkHere 로그인",
-    "subtitle": "익명 닉네임으로 시작하세요",
+    "title": "LinkON 로그인",
+    "subtitle": "LinkON에 오신 것을 환영합니다",
     "nickname": "닉네임",
     "nicknamePlaceholder": "닉네임을 입력하세요",
-    "loginButton": "시작하기",
+    "loginButton": "로그인",
     "nicknameRequired": "닉네임을 입력해주세요",
     "nicknameLength": "닉네임은 2-50자 사이여야 합니다",
-    "loginError": "로그인에 실패했습니다"
+    "loginError": "로그인에 실패했습니다",
+    "password": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력하세요",
+    "passwordRequired": "비밀번호를 입력해주세요",
+    "submitting": "로그인 중...",
+    "noAccount": "계정이 없으신가요?",
+    "register": "회원가입",
+    "or": "또는"
+  },
+  "register": {
+    "title": "회원가입",
+    "subtitle": "LinkON 계정을 만드세요",
+    "nickname": "닉네임",
+    "nicknamePlaceholder": "닉네임을 입력하세요 (2-50자)",
+    "password": "비밀번호",
+    "passwordPlaceholder": "비밀번호를 입력하세요 (6자 이상)",
+    "confirmPassword": "비밀번호 확인",
+    "confirmPasswordPlaceholder": "비밀번호를 다시 입력하세요",
+    "nicknameRequired": "닉네임을 입력해주세요",
+    "passwordRequired": "비밀번호를 입력해주세요",
+    "confirmPasswordRequired": "비밀번호 확인을 입력해주세요",
+    "nicknameLength": "닉네임은 2-50자 사이여야 합니다",
+    "passwordLength": "비밀번호는 6-100자 사이여야 합니다",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다",
+    "registerButton": "회원가입",
+    "submitting": "가입 중...",
+    "registerError": "회원가입에 실패했습니다",
+    "hasAccount": "이미 계정이 있으신가요?",
+    "login": "로그인",
+    "or": "또는"
+  },
+  "settings": {
+    "title": "설정",
+    "subtitle": "프로필 및 언어 설정을 관리하세요",
+    "nickname": "닉네임",
+    "nicknamePlaceholder": "닉네임을 입력하세요 (2-50자)",
+    "preferredLanguage": "선호 언어",
+    "languageHint": "로그인 시 자동으로 선호하는 언어로 이동합니다",
+    "saveButton": "설정 저장",
+    "saving": "저장 중...",
+    "saveSuccess": "설정이 저장되었습니다",
+    "saveError": "설정 저장에 실패했습니다",
+    "nicknameRequired": "닉네임을 입력해주세요",
+    "nicknameLength": "닉네임은 2-50자 사이여야 합니다",
+    "loading": "로딩 중..."
+  },
+  "notFound": {
+    "title": "아직 개발중인 기능이에요",
+    "description": "요청하신 페이지를 찾을 수 없습니다.",
+    "homeButton": "홈으로 돌아가기"
   },
   "aiManualChat": {
     "titleFallback": "챗봇",
@@ -182,5 +231,15 @@
     "wikiTitle": "현장 용어 위키(Wiki)",
     "wikiDesc": "현장 전문용어 풀이",
     "backToMain": "메인 화면으로 돌아가기"
+  },
+  "aiManualNotice": {
+    "title": "공지사항",
+    "back": "뒤로가기",
+    "todayNotices": "금일 공지사항",
+    "shiftIssues": "전임조 특이사항",
+    "confirmButton": "내용을 확인했습니다",
+    "author": "작성자",
+    "statusInProgress": "조치 중",
+    "statusMonitoring": "모니터링"
   }
 }

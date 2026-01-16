@@ -75,6 +75,55 @@ export type Dictionary = {
     nicknameRequired: string;
     nicknameLength: string;
     loginError: string;
+    password: string;
+    passwordPlaceholder: string;
+    passwordRequired: string;
+    submitting: string;
+    noAccount: string;
+    register: string;
+    or: string;
+  };
+  register: {
+    title: string;
+    subtitle: string;
+    nickname: string;
+    nicknamePlaceholder: string;
+    password: string;
+    passwordPlaceholder: string;
+    confirmPassword: string;
+    confirmPasswordPlaceholder: string;
+    nicknameRequired: string;
+    passwordRequired: string;
+    confirmPasswordRequired: string;
+    nicknameLength: string;
+    passwordLength: string;
+    passwordMismatch: string;
+    registerButton: string;
+    submitting: string;
+    registerError: string;
+    hasAccount: string;
+    login: string;
+    or: string;
+  };
+  settings: {
+    title: string;
+    subtitle: string;
+    nickname: string;
+    nicknamePlaceholder: string;
+    preferredLanguage: string;
+    languageHint: string;
+    saveButton: string;
+    saving: string;
+    saveSuccess: string;
+    saveError: string;
+    nicknameRequired: string;
+    nicknameLength: string;
+    loading: string;
+  };
+  notFound: {
+    title: string;
+    description: string;
+    homeButton: string;
   };
   ocr: {
     title: string;
@@ -184,6 +233,16 @@ export type Dictionary = {
     wikiTitle: string;
     wikiDesc: string;
     backToMain: string;
+  };
+  aiManualNotice: {
+    title: string;
+    back: string;
+    todayNotices: string;
+    shiftIssues: string;
+    confirmButton: string;
+    author: string;
+    statusInProgress: string;
+    statusMonitoring: string;
   };
 };
 
