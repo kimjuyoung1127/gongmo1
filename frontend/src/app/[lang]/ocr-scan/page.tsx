@@ -359,6 +359,7 @@ export default function OCRScanPage() {
                                         <option value="en">{t.languages.en}</option>
                                         <option value="vi">{t.languages.vi}</option>
                                         <option value="ne">{t.languages.ne}</option>
+                                        <option value="km">{t.languages.km}</option>
                                     </select>
                                 </div>
                                 <div>
@@ -374,6 +375,7 @@ export default function OCRScanPage() {
                                         <option value="en">{t.languages.en}</option>
                                         <option value="vi">{t.languages.vi}</option>
                                         <option value="ne">{t.languages.ne}</option>
+                                        <option value="km">{t.languages.km}</option>
                                     </select>
                                 </div>
                             </div>

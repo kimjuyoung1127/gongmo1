@@ -159,6 +159,7 @@ export type Dictionary = {
       en: string;
       vi: string;
       ne: string;
+      km: string;
     };
   };
   aiManualChat: {
