@@ -70,7 +70,7 @@ LinkON은 중소 제조 현장의 복잡한 데이터를 AI로 정제하여, 숙
 
 <div align="center">
 <img width="500" height="1295" alt="Image" src="https://github.com/user-attachments/assets/7eee4318-c70b-4dc8-994c-642c42c1f7bc" />
-<p><em>[그림 2] GPT-4o Vision 기반 문서 분석 및 3줄 요약 화면</em></p>
+<p><em>[그림 2] GPT-4o Vision 기반 문서 분석 및 요약 화면</em></p>
 </div>
 
 * **지능형 요약:** 복잡한 한국어 종이 문서를 촬영하면 즉시 **다국어 3줄 요약**으로 변환합니다.
@@ -83,7 +83,7 @@ LinkON은 중소 제조 현장의 복잡한 데이터를 AI로 정제하여, 숙
 <div align="center">
 <img width="708" height="1091" alt="Image" src="https://github.com/user-attachments/assets/f58b2870-173f-497f-af15-be7521de9ed6" />
 <img width="700" height="1085" alt="Image" src="https://github.com/user-attachments/assets/f48260ff-bc1e-44f1-8758-d82bfbb764c8" />
-<p><em>[그림 3] 텍스트 입력 없는 버튼형 신고 인터페이스 & 익명 커뮤니티</em></p>
+<p><em>[그림 3] 텍스트 입력 없는 버튼형 신고 인터페이스 & 커뮤니티</em></p>
 </div>
 
 * **원터치 리포팅:** 장갑 착용 환경을 고려한 **버튼 클릭 기반 UI**로 보고 시간을 90% 단축합니다.
@@ -93,7 +93,7 @@ LinkON은 중소 제조 현장의 복잡한 데이터를 AI로 정제하여, 숙
 ### 💰 4. 상생 리워드 시스템 (Local Win-win)
 
 * **활동 보상:** 신고, 지식 공유 등 활동량에 따라 포인트를 지급합니다.
-* **지역 연계:** 획득한 포인트는 공장 인근 소상공인 상권과 연계하여 사용할 수 있습니다.
+* **지역 연계:** 획득한 포인트는 공장 인근 소상공인 상권과 연계하여 사용 가능성.
 
 ---
 
