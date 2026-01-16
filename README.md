@@ -172,23 +172,52 @@ chmod +x dev.sh
 
 ## 📁 7. 프로젝트 구조 (Directory Structure)
 
-```bash
-LinkON/
-├── dev.sh                  # 개발 환경 관리 스크립트
-├── deploy.sh               # 배포 스크립트
-├── docker-compose.yml      # DB 및 백엔드 컨테이너 설정
-├── CLAUDE.md               # AI 개발 가이드 및 아키텍처
+```
+├── 📂 backend/                     # FastAPI 백엔드 프로젝트
+│   ├── 📂 alembic/                 # 데이터베이스 마이그레이션 도구 (스키마 이력 관리)
+│   │   ├── 📂 versions/            # 마이그레이션 히스토리
+│   │   ├── env.py
+│   │   └── script.py.mako
+│   ├── 📂 app/                     # 백엔드 핵심 비즈니스 로직
+│   │   ├── 📂 core/                # 인증, 보안, 설정 등 핵심 엔진
+│   │   ├── 📂 models/              # SQLAlchemy DB 모델 (데이터 구조 정의)
+│   │   ├── 📂 repositories/        # 데이터 접근 계층 (CRUD 처리)
+│   │   ├── 📂 routers/             # API 엔드포인트(URL) 정의
+│   │   ├── 📂 schemas/             # Pydantic 데이터 검증 및 직렬화 모델
+│   │   ├── 📂 services/            # 비즈니스 로직 처리 (AI RAG, OCR 분석 등)
+│   │   ├── 📂 utils/               # 공통 유틸리티 함수
+│   │   └── main.py                 # FastAPI 실행 엔트리포인트
+│   ├── 📂 uploads/                 # 이미지 및 파일 업로드 임시 저장소
+│   ├── alembic.ini                 # Alembic 설정 파일
+│   ├── requirements.txt            # 파이썬 의존성 패키지 목록
+│   ├── IMPLEMENTATION_SUMMARY.md   # 구현 요약 및 세부 명세
+│   └── QUICKSTART.md               # 백엔드 빠른 실행 가이드
 │
-├── frontend/               # Next.js 14 Client
-│   ├── src/app/            # App Router Pages
-│   ├── src/components/     # UI Components
-│   └── src/services/       # API Integration
+├── 📂 frontend/                    # Next.js 프론트엔드 프로젝트
+│   ├── 📂 src/                     # 프론트엔드 소스 코드
+│   │   ├── 📂 app/                 # Next.js App Router (페이지 및 레이아웃 구성)
+│   │   ├── 📂 components/          # 공통 UI 컴포넌트 (Atomic Design 패턴)
+│   │   ├── 📂 contexts/            # 전역 상태 관리 (인증 상태, 다국어 설정 등)
+│   │   ├── 📂 dictionaries/        # 다국어 지원 번역 파일 (ko, en, vi, ne)
+│   │   ├── 📂 services/            # API 통신 및 데이터 처리 서비스 레이어
+│   │   ├── 📂 hooks/               # 재사용 가능한 커스텀 리액트 훅
+│   │   └── middleware.ts           # 미들웨어 (사용자 인증 및 접근 제어)
+│   ├── next.config.js              # Next.js 프레임워크 설정
+│   ├── tailwind.config.js          # Tailwind CSS 디자인 시스템 설정
+│   └── tsconfig.json               # TypeScript 정적 타입 설정
 │
-└── backend/                # FastAPI Server
-    ├── app/routers/        # API Endpoints
-    ├── app/services/       # Business Logic (AI, OCR)
-    ├── app/models/         # DB Schema
-    └── alembic/            # DB Migration
+├── 📂 docs/                        # 프로젝트 상세 문서 보관소
+│   ├── DEPLOYMENT.md               # 서버 배포 상세 가이드
+│   ├── LOG.md                      # 프로젝트 개발 로그 및 마일스톤
+│   ├── mypage_guide.md             # 마이페이지 기능 및 UI 가이드
+│   └── PLATFORM_REUSE_CATALOG.md   # 플랫폼 재사용성 분석 보고서
+│
+├── 📄 .env.example                 # 환경 변수 설정 템플릿
+├── 📄 CLAUDE.md                    # AI 코딩 에이전트 및 컨벤션 가이드
+├── 📄 dev.sh                       # 로컬 개발 환경 자동화 스크립트
+├── 📄 deploy.sh                    # 원격 서버 배포 자동화 스크립트
+├── 📄 README.md                    # 프로젝트 메인 가이드
+└── 📄 프로젝트명세서.md              # 해커톤 최종 결과물 명세서
 
 ```
 
@@ -213,7 +242,7 @@ LinkON/
 | **팀원1** | PM / AI Engineering | [@User1](https://github.com) |
 | **팀원2** | Frontend Lead | [@User2](https://github.com) |
 | **팀원3** | Backend & DevOps | [@User3](https://github.com) |
-| **팀원4** | UI/UX Design | [@User4](https://github.com) |
+| **김주영** | UI/UX Design | gmdqn2tp@gmail.com  |
 
 ---
 
