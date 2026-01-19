@@ -235,14 +235,7 @@ chmod +x dev.sh
 
 ---
 
-## 👨‍💻 Team (팀원 소개)
 
-| **Team Name** | **Role** | **GitHub** |
-| --- | --- | --- |
-| **팀원1** | PM / AI Engineering | [@User1](https://github.com) |
-| **팀원2** | Frontend Lead | [@User2](https://github.com) |
-| **팀원3** | Backend & DevOps | [@User3](https://github.com) |
-| **김주영** | UI/UX Design | gmdqn2tp@gmail.com  |
 
 ---
 
